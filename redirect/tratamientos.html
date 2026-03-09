@@ -6,178 +6,236 @@
     <title>Tratamientos y Precios | Lumière</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style_tratamientos.css">
+    
 </head>
 <body class="pt-24 pb-20">
 
     <!-- Navegación -->
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-beige/20">
+    <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl serif font-bold tracking-widest uppercase flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                Regresar
+            <a href="../index.html" class="back-button serif font-bold text-lg tracking-widest uppercase flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Volver al Inicio
             </a>
-            <div class="text-xs font-bold uppercase tracking-widest text-gold">Carta de Servicios</div>
+            <div class="text-xs font-bold uppercase tracking-widest" style="color: #C5A059;">Carta de Servicios</div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 mb-16">
+        <div class="text-center">
+            <h1 class="serif text-5xl md:text-7xl mb-4" style="color: #3D2B1F;">
+                Nuestros <span class="italic" style="color: #C5A059;">Tratamientos</span>
+            </h1>
+            <div class="section-divider my-6"></div>
+            <p class="text-sm uppercase tracking-widest" style="color: #6b5d4f; letter-spacing: 0.3em;">
+                Inversión en tu bienestar y salud cutánea
+            </p>
+        </div>
+    </section>
+
+    <!-- Tratamientos -->
     <main class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl serif mb-6">Nuestros <span class="italic">Tratamientos</span></h1>
-            <p class="text-gray-400 text-[10px] uppercase tracking-[0.3em] font-light">Inversión en tu bienestar y salud cutánea</p>
+        
+        <!-- Limpiezas Faciales Básicas -->
+        <div class="mb-12">
+            <h2 class="serif text-3xl mb-8" style="color: #3D2B1F;">Limpiezas Faciales</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="price-category">
+                    <h3 class="category-title">L. Facial Comedogénica</h3>
+                    <p class="category-subtitle">Tratamiento profundo</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$49.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">2 Sesiones</span>
+                            <span class="price-value">$90.800</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$119.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-category">
+                    <h3 class="category-title">L. Facial con Oxígeno</h3>
+                    <p class="category-subtitle">Oxigenación profunda</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$79.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">2 Sesiones</span>
+                            <span class="price-value">$149.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$199.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-category" style="border: 2px solid #C5A059;">
+                    <h3 class="category-title">
+                        Hydrafacial
+                        <span class="premium-badge">Popular</span>
+                    </h3>
+                    <p class="category-subtitle">Limpieza premium</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$79.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">2 Sesiones</span>
+                            <span class="price-value">$149.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$199.990</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Grupo 1: Limpiezas Básicas -->
-            <div class="price-card">
-                <h3 class="serif text-xl mb-6 tracking-wide">L. Facial Comedogénica</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$49.990</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">2 Sesiones</span>
-                        <span class="price-val">$90.800</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$119.990</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="price-card">
-                <h3 class="serif text-xl mb-6 tracking-wide">L. Facial con Oxígeno</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$79.990</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">2 Sesiones</span>
-                        <span class="price-val">$149.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$199.990</span>
+        <!-- Tratamientos Clínicos -->
+        <div class="mb-12">
+            <h2 class="serif text-3xl mb-8" style="color: #3D2B1F;">Tratamientos Clínicos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="price-category">
+                    <h3 class="category-title">L. Facial Clínica</h3>
+                    <p class="category-subtitle">Rosácea • Acné • Piel Sensible</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$108.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$299.990</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="price-card border-gold/40 shadow-sm">
-                <h3 class="serif text-xl mb-6 tracking-wide text-gold">Hydrafacial</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$79.990</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">2 Sesiones</span>
-                        <span class="price-val">$149.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$199.990</span>
+                <div class="price-category">
+                    <h3 class="category-title">Peeling Químico</h3>
+                    <p class="category-subtitle">Renovación celular</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$129.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$379.990</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Clínicos y Especiales -->
-            <div class="price-card">
-                <h3 class="serif text-xl mb-1 tracking-wide">L. Facial Clínica</h3>
-                <p class="text-[8px] text-gray-400 uppercase tracking-widest mb-4">Rosácea, Acné, Sensible</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$108.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$299.990</span>
+                <div class="price-category featured-card">
+                    <h3 class="category-title">Hollywood Peel</h3>
+                    <p class="category-subtitle">Tratamiento láser premium</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$189.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$429.990</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="price-card">
-                <h3 class="serif text-xl mb-6 tracking-wide">Peeling Químico</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$129.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$379.990</span>
-                    </div>
-                </div>
             </div>
-
-            <div class="price-card bg-dark text-white">
-                <h3 class="serif text-xl mb-6 tracking-wide text-gold">Hollywood Peel</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$189.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val text-white">$429.990</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Zonas Específicas -->
-            <div class="price-card">
-                <h3 class="serif text-xl mb-6 tracking-wide">Dark Circles (Ojeras)</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$110.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$319.990</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="price-card">
-                <h3 class="serif text-xl mb-6 tracking-wide">Zona Íntima</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-beige/20 pb-2">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">1 Sesión</span>
-                        <span class="price-val">$149.990</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gray-400">3 Sesiones</span>
-                        <span class="price-val">$420.000</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Microneedling & Exosomas -->
-            <div class="price-card lg:col-span-2 border-gold/20">
-                <h3 class="serif text-2xl mb-8 tracking-wide text-gold">Microneedling + Exosomas (Exo-Skin)</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-cream p-4 rounded-xl text-center">
-                        <span class="text-[9px] uppercase font-bold text-gray-400 block mb-2">1 Sesión</span>
-                        <span class="text-xl serif font-bold">$249.990</span>
-                    </div>
-                    <div class="bg-cream p-4 rounded-xl text-center">
-                        <span class="text-[9px] uppercase font-bold text-gray-400 block mb-2">2 Sesiones</span>
-                        <span class="text-xl serif font-bold">$499.990</span>
-                    </div>
-                    <div class="bg-gold text-white p-4 rounded-xl text-center shadow-lg">
-                        <span class="text-[9px] uppercase font-bold opacity-80 block mb-2">3 Sesiones</span>
-                        <span class="text-xl serif font-bold">$660.000</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Zonas Específicas -->
+        <div class="mb-12">
+            <h2 class="serif text-3xl mb-8" style="color: #3D2B1F;">Zonas Específicas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="price-category">
+                    <h3 class="category-title">Dark Circles (Ojeras)</h3>
+                    <p class="category-subtitle">Tratamiento contorno de ojos</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$110.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$319.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-category">
+                    <h3 class="category-title">Zona Íntima</h3>
+                    <p class="category-subtitle">Blanqueamiento y rejuvenecimiento</p>
+                    <div>
+                        <div class="price-item">
+                            <span class="session-label">1 Sesión</span>
+                            <span class="price-value">$149.990</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="session-label">3 Sesiones</span>
+                            <span class="price-value">$420.000</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tratamiento Estrella -->
+        <div class="mb-12">
+            <h2 class="serif text-3xl mb-8" style="color: #3D2B1F;">
+                Tratamiento Estrella
+                <span class="premium-badge">Exclusivo</span>
+            </h2>
+            <div class="price-category" style="border: 3px solid #C5A059; padding: 3rem;">
+                <div class="text-center mb-6">
+                    <h3 class="serif text-4xl mb-2" style="color: #C5A059;">Microneedling + Exosomas</h3>
+                    <p class="category-subtitle text-base">Exo-Skin • Regeneración celular avanzada</p>
+                </div>
+                
+                <div class="package-grid">
+                    <div class="package-box">
+                        <div class="package-sessions">1 Sesión</div>
+                        <div class="package-price">$249.990</div>
+                    </div>
+                    <div class="package-box">
+                        <div class="package-sessions">2 Sesiones</div>
+                        <div class="package-price">$499.990</div>
+                    </div>
+                    <div class="package-box" style="background: #C5A059;">
+                        <div class="package-sessions" style="color: white;">3 Sesiones</div>
+                        <div class="package-price" style="color: white;">$660.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    <!-- Footer Note -->
+    <div class="max-w-7xl mx-auto px-6 py-12 text-center">
+        <p class="text-sm" style="color: #6b5d4f;">
+            *Precios sujetos a evaluación previa. Todos nuestros tratamientos incluyen protocolo personalizado.
+        </p>
+    </div>
 
 </body>
 </html>
