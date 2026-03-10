@@ -14,7 +14,10 @@
       <nav class="fixed top-0 left-0 right-0 w-full z-50 glass-effect border-b border-beige/20 px-4 md:px-0">
         <div class="max-w-7xl mx-auto py-4 flex justify-between items-center">
           <a href="${base}index.html" class="text-xl md:text-3xl font-bold tracking-[0.2em] serif uppercase">PielBy</a>
-
+          <button class="block lg:hidden bg-gold-gradient text-white px-5 md:px-7 py-2 md:py-3 rounded-full text-[12px] md:text-sm font-bold uppercase tracking-widest hover:opacity-90 transition shadow-md active:scale-95">
+            Agenda Tu Hora
+        </button>
+          
           <div class="hidden lg:flex space-x-10 text-[14px] font-semibold uppercase tracking-widest">
             <a href="${base}index.html#inicio" class="nav-link text-dark/70 hover:text-dark transition">Inicio</a>
             <a href="${base}redirect/tratamientos.html" class="nav-link text-dark/70 hover:text-dark transition">Tratamientos</a>
@@ -35,7 +38,7 @@
 
       <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
         <div id="mobile-menu-overlay" class="absolute inset-0 bg-dark/80 backdrop-blur-md"></div>
-        <div class="absolute right-0 top-0 h-full w-72 bg-cream shadow-2xl">
+        <div class="absolute right-0 top-[9vh] h-full w-72 bg-cream shadow-2xl">
           <div class="p-6 relative">
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-dark/40 hover:text-dark transition" aria-label="Cerrar menú">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,9 +46,7 @@
               </svg>
             </button>
 
-            <div class="serif text-2xl font-bold tracking-widest mb-12 mt-8">PielBy</div>
-
-            <nav class="space-y-6">
+            <nav class="space-y-12">
               <a href="${base}index.html#inicio" class="block text-dark hover:text-gold transition font-semibold uppercase tracking-widest text-sm">Inicio</a>
               <a href="${base}redirect/tratamientos.html" class="block text-dark hover:text-gold transition font-semibold uppercase tracking-widest text-sm">Tratamientos</a>
               <a href="${base}index.html#contacto" class="block text-dark hover:text-gold transition font-semibold uppercase tracking-widest text-sm">Contacto</a>
