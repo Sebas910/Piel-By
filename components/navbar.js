@@ -37,7 +37,7 @@
       </nav>
 
       <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
-        <div id="mobile-menu-overlay" class="absolute inset-0 bg-dark/80 backdrop-blur-md"></div>
+        <div id="mobile-menu-overlay" class="absolute inset-0 bg-dark/95 backdrop-blur-2xl"></div>
         <div class="absolute right-0 top-[9vh] h-full w-72 bg-cream shadow-2xl">
           <div class="p-6 relative">
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-dark/40 hover:text-dark transition" aria-label="Cerrar menú">
