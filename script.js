@@ -36,11 +36,11 @@
         // Navbar Scroll Logic
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
+            if (!nav) return;
+
             if (window.scrollY > 40) {
-                nav.classList.add('py-2', 'shadow-xl');
-                nav.classList.remove('py-4');
+                nav.classList.add('shadow-xl');
             } else {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-2', 'shadow-xl');
+                nav.classList.remove('shadow-xl');
             }
         });
