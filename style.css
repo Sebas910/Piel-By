@@ -17,13 +17,17 @@
       --sage: #8a9e8c;
     }
 
-    html { scroll-behavior: smooth; }
+p {
+      font-size: 1.15rem; /* Base paragraph size increased */
+    }
+    html { scroll-behavior: smooth; font-size: 112.5%; }
 
     body {
-      font-family: 'Jost', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: var(--cream);
       color: var(--text-dark);
       overflow-x: hidden;
+      line-height: 1.7; /* Optional: improves paragraph spacing */
     }
 
     /* ── NAV ── */
@@ -188,10 +192,28 @@
       text-transform: uppercase; text-decoration: none;
       padding: 1rem 2.5rem; background: transparent;
       color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3);
-      transition: border-color 0.3s, color 0.3s;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
       display: inline-block;
     }
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    .btn-brown-outline {
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.25em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 1.1rem 2.8rem; background: transparent;
+      color: var(--brown); border: 1px solid var(--brown);
+      transition: all 0.4s ease;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+    .btn-brown-outline:hover { 
+      background: var(--gold); 
+      border-color: var(--gold); 
+      color: var(--white); 
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(184, 149, 90, 0.25);
+    }
+    
     .hero-scroll {
       position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
@@ -222,13 +244,16 @@
     /* ── SECTION BASE ── */
     section { padding: 7rem 5vw; }
     .section-tag {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold);
-      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 500; font-style: italic; letter-spacing: 0.05em;
+      color: var(--brown);
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1.5rem;
+      padding: 0.5rem 2rem;
+      background: rgba(184, 149, 90, 0.08); /* Highlight aesthetic */
+      border: 1px solid rgba(184, 149, 90, 0.3);
+      border-radius: 40px;
+      box-shadow: 0 4px 15px rgba(184, 149, 90, 0.03);
     }
-    .section-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
-    [style*="justify-content:center"].section-tag::before,
-    [style*="justify-content: center"].section-tag::before { content: none; }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 4vw, 3.5rem);
@@ -277,7 +302,7 @@
       font-size: 1.4rem; font-weight: 300; font-style: italic;
       color: var(--brown-mid); line-height: 1.6; margin: 1.5rem 0;
     }
-    .about-body { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2rem; }
+    .about-body { font-size: 1.15rem; font-weight: 400; line-height: 1.9; color: var(--text-mid); margin-bottom: 2rem; }
     .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
     .feature-item { display: flex; align-items: flex-start; gap: 0.8rem; }
     .feature-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
@@ -286,7 +311,7 @@
     /* ── SERVICES ── */
     .services { background: var(--cream); }
     .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 0 auto 4rem; }
-    .services-desc { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: var(--text-light); max-width: 35ch; text-align: right; }
+    .services-desc { font-size: 1.15rem; font-weight: 400; line-height: 1.8; color: var(--text-light); max-width: 40ch; text-align: right; }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; }
     .service-card {
       background: var(--white); padding: 2.5rem 2rem;
@@ -313,7 +338,7 @@
       font-size: 1.5rem; font-weight: 400; color: var(--text-dark);
       margin-bottom: 0.8rem; line-height: 1.2;
     }
-    .service-desc { font-size: 0.82rem; font-weight: 300; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+    .service-desc { font-size: 1.05rem; font-weight: 400; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
     .service-tag {
       display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em;
       text-transform: uppercase; padding: 0.3rem 0.8rem;
@@ -324,8 +349,7 @@
     /* ── TRATAMIENTOS DESTACADOS ── */
     .featured { background: var(--brown); padding: 7rem 5vw; }
     .featured-header { text-align: center; margin-bottom: 4rem; }
-    .featured .section-tag { justify-content: center; }
-    .featured .section-tag::before { content: none; }
+    .featured .section-tag { justify-content: center; color: var(--gold-light); background: rgba(255,255,255,0.08); border-color: rgba(212,176,122,0.4); }
     .featured .section-title { color: var(--white); }
     .featured .section-title em { color: var(--gold-light); }
     .treatments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
@@ -344,12 +368,12 @@
       font-size: 1.2rem; font-weight: 400; color: var(--white);
       margin-bottom: 0.6rem; line-height: 1.3;
     }
-    .treatment-info { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .treatment-info { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
     /* ── PRODUCTOS ── */
     .products { background: var(--cream-dark); }
     .products-intro { max-width: 1200px; margin: 0 auto 4rem; display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4rem; }
-    .products-body { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); max-width: 45ch; }
+    .products-body { font-size: 1.15rem; font-weight: 400; line-height: 1.9; color: var(--text-mid); max-width: 48ch; }
     .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
     .product-card {
       background: var(--white); overflow: hidden;
@@ -379,7 +403,7 @@
       font-size: 1.25rem; font-weight: 400; color: var(--text-dark);
       padding: 0 1.5rem 0.6rem; line-height: 1.25;
     }
-    .product-desc { font-size: 0.8rem; font-weight: 300; line-height: 1.7; color: var(--text-light); padding: 0 1.5rem 1rem; }
+    .product-desc { font-size: 0.95rem; font-weight: 400; line-height: 1.7; color: var(--text-light); padding: 0 1.5rem 1rem; }
     .product-footer { padding: 1rem 1.5rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--cream-dark); }
     .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--brown); }
     .product-btn {
@@ -416,13 +440,12 @@
       font-size: 1.2rem; font-weight: 400; color: var(--text-dark);
       margin-bottom: 0.6rem;
     }
-    .step-text { font-size: 0.8rem; font-weight: 300; line-height: 1.7; color: var(--text-light); }
+    .step-text { font-size: 1rem; font-weight: 400; line-height: 1.7; color: var(--text-light); }
 
     /* ── TESTIMONIOS ── */
     .testimonials { background: var(--gold-pale); }
     .testimonials-header { text-align: center; margin-bottom: 4rem; }
     .testimonials .section-tag { justify-content: center; }
-    .testimonials .section-tag::before { content: none; }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .testimonial-card { background: var(--white); padding: 2.5rem 2rem; position: relative; }
     .testimonial-quote {
@@ -432,7 +455,7 @@
     }
     .testimonial-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-style: italic; font-weight: 300;
+      font-size: 1.25rem; font-style: italic; font-weight: 400;
       line-height: 1.7; color: var(--text-dark); margin-bottom: 1.5rem;
       position: relative; z-index: 1;
     }
