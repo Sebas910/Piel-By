@@ -755,13 +755,25 @@ p {
     }
     .footer-tagline { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 1.8; max-width: 28ch; margin-bottom: 1.5rem; }
     .footer-social { display: flex; gap: 0.8rem; }
-    .social-btn {
-      width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem;
-      transition: border-color 0.3s, color 0.3s, background 0.3s;
-    }
-    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.social-btn {
+  width: 40px; 
+  height: 40px; 
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; /* Agrega un pequeño borde redondeado */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; /* Esto asegurará que el SVG quede al medio */
+  color: rgba(255,255,255,0.4); 
+  text-decoration: none; 
+  transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+}
+
+.social-btn:hover { 
+  border-color: var(--gold); 
+  color: var(--gold); 
+  transform: translateY(-3px); /* Leve efecto de salto al pasar el ratón */
+}
     .footer-col-title {
       font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 1.2rem; font-weight: 500;
