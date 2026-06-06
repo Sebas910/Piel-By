@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PielBy — Nuestros Servicios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      height: 52vh; min-height: 400px;
+      position: relative; display: flex; align-items: flex-end;
+      overflow: hidden; padding-bottom: 5rem;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a0f08 0%, #2e1a10 40%, #3d2418 70%, #1a0f08 100%);
+    }
+    .page-hero-pattern {
+      position: absolute; inset: 0; opacity: 0.07;
+      background-image:
+        radial-gradient(circle at 15% 60%, #b8955a 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, #b8955a 0%, transparent 35%),
+        radial-gradient(circle at 50% 90%, #d4b07a 0%, transparent 30%);
+    }
+    .page-hero-line-left {
+      position: absolute; left: 5vw; top: 15%; bottom: 15%;
+      width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,149,90,0.5), transparent);
+    }
+    .page-hero-line-right {
+      position: absolute; right: 5vw; top: 15%; bottom: 15%;
+      width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,149,90,0.3), transparent);
+    }
+    .page-hero-content {
+      position: relative; z-index: 2; padding: 0 10vw; width: 100%;
+      opacity: 0; transform: translateY(20px);
+      animation: heroReveal 1s ease 0.1s forwards;
+    }
+    @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
+    .page-hero-eyebrow {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .page-hero-eyebrow::before { content:''; width:40px; height:1px; background:var(--gold); flex-shrink:0; }
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300; line-height: 1.08; color: var(--white);
+    }
+    .page-hero-title em { font-style: italic; color: var(--gold-light); }
+    .page-hero-sub {
+      font-size: 0.9rem; font-weight: 300; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.55); max-width: 50ch; line-height: 1.8; margin-top: 1.2rem;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--cream-dark); padding: 1rem 10vw;
+      border-bottom: 1px solid rgba(184,149,90,0.15);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .breadcrumb a {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.3s;
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb-sep { color: var(--gold); font-size: 0.65rem; opacity: 0.6; }
+    .breadcrumb-current {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    /* ── INTRO ── */
+    .services-intro {
+      background: var(--cream); padding: 4rem 10vw 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 3rem; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(184,149,90,0.12);
+    }
+    .services-intro-text .section-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: block;
+    }
+    .services-intro-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300; color: var(--text-dark); line-height: 1.15;
+    }
+    .services-intro-text h2 em { font-style: italic; color: var(--brown-mid); }
+
+    /* ── CATEGORY NAV ── */
+    .cat-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,246,240,0.97); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(184,149,90,0.18);
+      padding: 0 10vw; display: flex; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+    .cat-nav-link {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-light); text-decoration: none;
+      padding: 1.2rem 1.8rem; border-bottom: 2px solid transparent;
+      white-space: nowrap; transition: color 0.3s, border-color 0.3s; flex-shrink: 0;
+    }
+    .cat-nav-link:hover, .cat-nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ══════════════════════════════════════
+       CATEGORY BLOCK
+    ══════════════════════════════════════ */
+    .cat-block {
+      background: var(--cream);
+    }
+    .cat-block:nth-child(even) {
+      background: var(--white);
+    }
+
+    /* Category heading row */
+    .cat-heading {
+      padding: 5rem 10vw 0;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .cat-label {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem;
+    }
+    .cat-label::before { content:''; display:inline-block; width:24px; height:1px; background:var(--gold); }
+    .cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; color: var(--text-dark); line-height: 1.1;
+    }
+    .cat-title em { font-style: italic; color: var(--brown-mid); }
+    .cat-total {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem; font-weight: 300; line-height: 1;
+      color: rgba(184,149,90,0.1); user-select: none; flex-shrink: 0;
+    }
+
+    /* Divider */
+    .cat-divider {
+      margin: 2.5rem 10vw 0;
+      height: 1px; background: rgba(184,149,90,0.18);
+    }
+
+    /* ══════════════════════════════════════
+       TREATMENT ROW — imagen + texto side by side
+       Inspired by SkinUp layout
+    ══════════════════════════════════════ */
+    .treatment-list { padding-bottom: 4rem; }
+
+    .tr-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      border-bottom: 1px solid rgba(184,149,90,0.1);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .tr-row.visible { opacity:1; transform:translateY(0); }
+
+    /* Alternate: even rows flip image to right */
+    .tr-row:nth-child(even) { direction: rtl; }
+    .tr-row:nth-child(even) > * { direction: ltr; }
+
+    /* Image side */
+    .tr-img {
+      position: relative; overflow: hidden;
+      background: var(--cream-dark);
+    }
+    .tr-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.7s ease;
+    }
+    .tr-row:hover .tr-img img { transform: scale(1.04); }
+
+    /* Number badge */
+    .tr-num {
+      position: absolute; bottom: 1.8rem; right: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem; font-weight: 300; line-height: 1;
+      color: rgba(255,255,255,0.15); user-select: none; pointer-events: none;
+    }
+    .tr-row:nth-child(even) .tr-num { right: auto; left: 2rem; }
+
+    /* Text side */
+    .tr-body {
+      padding: 4rem 5vw;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+
+    /* Subtle side accent */
+    .tr-body::before {
+      content: '';
+      position: absolute; top: 3rem; bottom: 3rem; left: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+    .tr-row:nth-child(even) .tr-body::before { left: auto; right: 0; }
+
+    .tr-tag {
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .tr-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+      font-weight: 500; letter-spacing: 0.02em;
+      text-transform: uppercase; color: var(--text-dark);
+      line-height: 1.15; margin-bottom: 1.3rem;
+    }
+    .tr-desc {
+      font-size: 0.83rem; font-weight: 300;
+      color: var(--text-mid); line-height: 1.85;
+      margin-bottom: 2rem; max-width: 46ch;
+    }
+    .tr-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--gold); padding: 0.85rem 2rem;
+      text-decoration: none; border: 1px solid var(--gold);
+      align-self: flex-start;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .tr-cta:hover { background: var(--brown); border-color: var(--brown); transform: translateY(-2px); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, #1a0f08 0%, #2e1a10 50%, #1a0f08 100%);
+      padding: 6rem 10vw; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.06;
+      background: radial-gradient(circle at 50% 50%, #b8955a 0%, transparent 65%);
+    }
+    .cta-banner-inner { position: relative; z-index: 1; }
+    .cta-banner-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block;
+    }
+    .cta-banner-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .cta-banner-title em { font-style: italic; color: var(--gold-light); }
+    .cta-banner-sub {
+      font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.5);
+      max-width: 48ch; margin: 0 auto 3rem; line-height: 1.8;
+    }
+    .cta-banner-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .tr-row { grid-template-columns: 1fr; min-height: auto; }
+      .tr-row:nth-child(even) { direction: ltr; }
+      .tr-img { height: 300px; }
+      .tr-num { font-size: 4rem; }
+      .tr-body { padding: 3rem 6vw; }
+      .tr-body::before { top:0; bottom:0; left:0 !important; right:auto !important; }
+      .cat-heading { padding: 4rem 6vw 0; }
+      .cat-divider { margin: 2rem 6vw 0; }
+      .cat-total { display: none; }
+      .services-intro { padding: 3rem 6vw 2.5rem; flex-direction: column; }
+      .page-hero-content { padding: 0 6vw; }
+      .breadcrumb { padding: 1rem 6vw; }
+      .cat-nav { padding: 0 4vw; }
+      .cta-banner { padding: 4.5rem 6vw; }
+    }
+    @media (max-width: 600px) {
+      .tr-body { padding: 2.5rem 5vw; }
+      .tr-img { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">PielBy</a>
+  <ul class="nav-links">
+    <li><a href="index.html#nosotros">Nosotros</a></li>
+    <li><a href="servicios.html" style="color:var(--gold)">Servicios</a></li>
+    <li><a href="index.html#productos">Productos</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="nav-cta">Reservar Hora</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+  <a href="index.html#nosotros" class="mobile-link">Nosotros</a>
+  <a href="servicios.html" class="mobile-link" style="color:var(--gold)">Servicios</a>
+  <a href="index.html#productos" class="mobile-link">Productos</a>
+  <a href="index.html#contacto" class="mobile-link">Contacto</a>
+  <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="mobile-link" style="color:var(--gold);">Reservar Hora</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-pattern"></div>
+  <div class="page-hero-line-left"></div>
+  <div class="page-hero-line-right"></div>
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">Especialidades & Tratamientos</p>
+    <h1 class="page-hero-title">Nuestros<br><em>Servicios</em></h1>
+    <p class="page-hero-sub">Cada tratamiento es diseñado a medida, combinando las técnicas más avanzadas con productos de eficacia comprobada y tecnología de vanguardia.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="services-intro">
+  <div class="services-intro-text">
+    <span class="section-tag">Especialidades</span>
+    <h2>Ciencia y belleza en<br><em>perfecta armonía</em></h2>
+  </div>
+  <div>
+    <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="btn-primary">Agendar Consulta</a>
+  </div>
+</div>
+
+<!-- CATEGORY NAV -->
+<nav class="cat-nav" id="catNav" aria-label="Categorías de tratamientos">
+  <a href="#faciales" class="cat-nav-link">Tratamientos Faciales</a>
+  <a href="#avanzados" class="cat-nav-link">Faciales Avanzados</a>
+  <a href="#corporales" class="cat-nav-link">Tratamientos Corporales</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     CATEGORÍA 1 — TRATAMIENTOS FACIALES
+══════════════════════════════════════════ -->
+<section class="cat-block" id="faciales">
+
+  <div class="cat-heading reveal">
+    <div>
+      <p class="cat-label">Categoría 01</p>
+      <h2 class="cat-title">Tratamientos<br><em>Faciales</em></h2>
+    </div>
+    <div class="cat-total">09</div>
+  </div>
+  <div class="cat-divider"></div>
+
+  <div class="treatment-list">
+
+    <!-- 01 Limpieza Facial Comedogénica -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Comedogénica" loading="lazy">
+        <div class="tr-num">01</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Limpieza · Piel Grasa</span>
+        <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
+        <p class="tr-desc">Elimina puntos negros, impurezas y exceso de grasa, dejando la piel limpia y equilibrada.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 02 Limpieza con Oxígeno -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Oxígeno" loading="lazy">
+        <div class="tr-num">02</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Oxigenación · Luminosidad</span>
+        <h3 class="tr-name">Limpieza<br>con Oxígeno</h3>
+        <p class="tr-desc">Oxigena e hidrata la piel en profundidad, aportando frescura y luminosidad inmediata.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 03 Limpieza con Hydrafacial -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Hydrafacial" loading="lazy">
+        <div class="tr-num">03</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Hidratación · Exfoliación</span>
+        <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
+        <p class="tr-desc">Limpieza avanzada que exfolia, hidrata y revitaliza la piel para un aspecto saludable.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 04 Limpieza Facial Clínica y Patológica -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
+        <div class="tr-num">04</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Clínico · Rosácea · Acné</span>
+        <h3 class="tr-name">Limpieza Facial<br>Clínica y Patológica</h3>
+        <p class="tr-desc">Tratamiento especializado para rosácea, acné, piel sensible o deshidratada. Protocolo personalizado según las necesidades específicas de cada paciente.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar evaluación</a>
+      </div>
+    </div>
+
+    <!-- 05 Hollywood Black Peel -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&auto=format&fit=crop&q=80" alt="Hollywood Black Peel" loading="lazy">
+        <div class="tr-num">05</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Textura · Luminosidad · Poros</span>
+        <h3 class="tr-name">Hollywood<br>Black Peel</h3>
+        <p class="tr-desc">Ayuda a mejorar la textura, luminosidad y apariencia de los poros de la piel.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 06 Microneedling -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Microneedling" loading="lazy">
+        <div class="tr-num">06</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Colágeno · Cicatrices · Anti-aging</span>
+        <h3 class="tr-name">Microneedling</h3>
+        <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 07 Peeling Químico -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=900&auto=format&fit=crop&q=80" alt="Peeling Químico" loading="lazy">
+        <div class="tr-num">07</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Manchas · Acné · Envejecimiento</span>
+        <h3 class="tr-name">Peeling<br>Químico</h3>
+        <p class="tr-desc">Renueva la piel, mejora manchas, marcas de acné y signos de envejecimiento.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 09 Dark Circles -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" alt="Dark Circles" loading="lazy">
+        <div class="tr-num">09</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Ojeras · Luminosidad</span>
+        <h3 class="tr-name">Dark<br>Circles</h3>
+        <p class="tr-desc">Tratamiento enfocado en mejorar la apariencia de ojeras y aportar luminosidad.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CATEGORÍA 2 — FACIALES AVANZADOS
+══════════════════════════════════════════ -->
+<section class="cat-block" id="avanzados">
+
+  <div class="cat-heading reveal">
+    <div>
+      <p class="cat-label">Categoría 02</p>
+      <h2 class="cat-title">Faciales<br><em>Avanzados</em></h2>
+    </div>
+    <div class="cat-total">08</div>
+  </div>
+  <div class="cat-divider"></div>
+
+  <div class="treatment-list">
+
+    <!-- 01 Plenhyage + Dermofacial -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=900&auto=format&fit=crop&q=80" alt="Plenhyage + Dermofacial" loading="lazy">
+        <div class="tr-num">01</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Rejuvenecimiento · Nutrición profunda</span>
+        <h3 class="tr-name">Plenhyage<br>+ Dermofacial</h3>
+        <p class="tr-desc">Rejuvenece, nutre profundamente y mejora la calidad de la piel.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 02 PDRN + Dermofacial -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=900&auto=format&fit=crop&q=80" alt="PDRN + Dermofacial" loading="lazy">
+        <div class="tr-num">02</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Regeneración celular · Revitalización</span>
+        <h3 class="tr-name">PDRN<br>+ Dermofacial</h3>
+        <p class="tr-desc">Estimula la regeneración celular, aportando luminosidad y revitalización.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 03 Dermapen + Hydrafacial + Electroporador -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
+        <div class="tr-num">03</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Renovación intensiva · Textura</span>
+        <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
+        <p class="tr-desc">Renovación intensiva que hidrata, revitaliza y mejora la textura de la piel.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 04 Crioradiofrecuencia Facial -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1644982647869-95f09eb3e89e?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Facial" loading="lazy">
+        <div class="tr-num">04</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Firmeza · Anti-flacidez</span>
+        <h3 class="tr-name">Crioradiofrecuencia<br>Facial</h3>
+        <p class="tr-desc">Ayuda a reafirmar la piel y mejorar la flacidez facial.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 05 Pack Papada -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=900&auto=format&fit=crop&q=80" alt="Pack Papada" loading="lazy">
+        <div class="tr-num">05</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Contorno facial · Reafirmación</span>
+        <h3 class="tr-name">Pack<br>Papada</h3>
+        <p class="tr-desc">Tratamiento diseñado para reducir y reafirmar la zona de la papada.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 06 Pack Rejuvenecimiento y Nutrición -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=900&auto=format&fit=crop&q=80" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
+        <div class="tr-num">06</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Firmeza · Hidratación · Luminosidad</span>
+        <h3 class="tr-name">Pack Rejuvenecimiento<br>y Nutrición</h3>
+        <p class="tr-desc">Combina activos y tecnología para una piel más firme, hidratada y luminosa.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 07 Exosomas -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas" loading="lazy">
+        <div class="tr-num">07</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Bioregeneración · Anti-arrugas</span>
+        <h3 class="tr-name">Exosomas</h3>
+        <p class="tr-desc">Favorecen la regeneración celular, ayudando a disminuir arrugas y flacidez.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 08 Drenaje Manual Facial -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop&q=80" alt="Drenaje Manual Facial" loading="lazy">
+        <div class="tr-num">08</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Circulación · Drenaje · Desinflamación</span>
+        <h3 class="tr-name">Drenaje Manual<br>Facial</h3>
+        <p class="tr-desc">Reduce la retención de líquidos, desinflama y mejora la circulación facial.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CATEGORÍA 3 — TRATAMIENTOS CORPORALES
+══════════════════════════════════════════ -->
+<section class="cat-block" id="corporales">
+
+  <div class="cat-heading reveal">
+    <div>
+      <p class="cat-label">Categoría 03</p>
+      <h2 class="cat-title">Tratamientos<br><em>Corporales</em></h2>
+    </div>
+    <div class="cat-total">06</div>
+  </div>
+  <div class="cat-divider"></div>
+
+  <div class="treatment-list">
+
+    <!-- 01 Moldeo Corporal 360 -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80" alt="Moldeo Corporal 360" loading="lazy">
+        <div class="tr-num">01</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Silueta · Circulación · Reducción</span>
+        <h3 class="tr-name">Moldeo<br>Corporal 360</h3>
+        <p class="tr-desc">Ayuda a reducir medidas, mejorar la circulación y modelar la silueta.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 02 Mesoterapia Corporal -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&auto=format&fit=crop&q=80" alt="Mesoterapia Corporal" loading="lazy">
+        <div class="tr-num">02</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Grasa localizada · Anti-flacidez</span>
+        <h3 class="tr-name">Mesoterapia<br>Corporal</h3>
+        <p class="tr-desc">Aplicación de activos que ayudan a combatir grasa localizada y flacidez.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 03 Pack Antiinflamatorio -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&auto=format&fit=crop&q=80" alt="Pack Antiinflamatorio" loading="lazy">
+        <div class="tr-num">03</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Retención de líquidos · Desinflamación</span>
+        <h3 class="tr-name">Pack<br>Antiinflamatorio</h3>
+        <p class="tr-desc">Disminuye la retención de líquidos y ayuda a desinflamar el cuerpo.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 04 Crioradiofrecuencia Corporal -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1593476550610-87baa860004a?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Corporal" loading="lazy">
+        <div class="tr-num">04</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Reafirmación · Flacidez corporal</span>
+        <h3 class="tr-name">Crioradiofrecuencia<br>Corporal</h3>
+        <p class="tr-desc">Reafirma la piel y mejora la apariencia de la flacidez corporal.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 05 Full Body Reset -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset" loading="lazy">
+        <div class="tr-num">05</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Remodelación · Tonificación · Integral</span>
+        <h3 class="tr-name">Full Body<br>Reset</h3>
+        <p class="tr-desc">Protocolo integral para remodelar, tonificar y mejorar la apariencia corporal.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 08 Zona Íntima -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=80" alt="Zona Íntima" loading="lazy">
+        <div class="tr-num">08</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Hiperpigmentación · Tono uniforme</span>
+        <h3 class="tr-name">Zona<br>Íntima</h3>
+        <p class="tr-desc">Ayuda a disminuir la hiperpigmentación y unificar el tono de la piel.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 06 Full Body Reset + Mesoterapia Corporal -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset + Mesoterapia Corporal" loading="lazy">
+        <div class="tr-num">06</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Reducción · Reafirmación · Premium</span>
+        <h3 class="tr-name">Full Body Reset<br>+ Mesoterapia Corporal</h3>
+        <p class="tr-desc">Tratamiento completo para potenciar la reducción de medidas y reafirmación corporal.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <span class="cta-banner-tag">Tu piel merece lo mejor</span>
+    <h2 class="cta-banner-title">¿No sabes qué tratamiento<br>es el <em>ideal para ti?</em></h2>
+    <p class="cta-banner-sub">Agenda una evaluación gratuita con nuestros especialistas y te guiaremos hacia el protocolo perfecto para tu piel.</p>
+    <div class="cta-banner-actions">
+      <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="btn-primary">Agendar Evaluación Gratuita</a>
+      <a href="index.html#contacto" class="btn-ghost">Contáctanos</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">PielBy</div>
+      <p class="footer-tagline">Cosmetología y estética avanzada. Representantes exclusivos de las más prestigiosas marcas europeas de medicina estética en Chile.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+        <a href="#" class="social-btn" aria-label="Facebook">fb</a>
+        <a href="https://wa.me/56966266742" class="social-btn" aria-label="WhatsApp">wa</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Tratamientos</div>
+      <ul class="footer-links">
+        <li><a href="#faciales">Faciales</a></li>
+        <li><a href="#avanzados">Faciales Avanzados</a></li>
+        <li><a href="#corporales">Corporales</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Marcas</div>
+      <ul class="footer-links">
+        <li><a href="#">Innoaesthetics</a></li>
+        <li><a href="#">Croma</a></li>
+        <li><a href="#">Meline</a></li>
+        <li><a href="index.html#productos">Productos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <ul class="footer-links">
+        <li><a href="#">+56 9 6626 6742</a></li>
+        <li><a href="#">contacto@pielby.cl</a></li>
+        <li><a href="#">Apoquindo 4501, Las Condes</a></li>
+        <li><a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su">Reservar Hora</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 PielBy Cosmetología. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/56966266742" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l =>
+    l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+  // Scroll reveal — category headers
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Scroll reveal — treatment rows (staggered)
+  const rowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const rows = Array.from(e.target.closest('.treatment-list').querySelectorAll('.tr-row'));
+        const idx = rows.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), idx * 60);
+        rowObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.tr-row').forEach(el => rowObserver.observe(el));
+
+  // Active cat-nav highlight
+  const sectionIds = ['faciales', 'avanzados', 'corporales'];
+  const catLinks = document.querySelectorAll('.cat-nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sectionIds.forEach(id => {
+      const sec = document.getElementById(id);
+      if (sec && window.scrollY >= sec.offsetTop - 130) current = id;
+    });
+    catLinks.forEach(link =>
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+  });
+</script>
+
+</body>
+</html>
