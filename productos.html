@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -102,45 +102,46 @@
     
     .shop-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
     }
 
-    /* Estructura Individual del Producto */
+    /* Estructura Individual del Producto (Cuadritos separados estilo Santum) */
     .shop-card {
       background: var(--white);
       border: 1px solid rgba(184,149,90,0.15);
-      border-radius: 4px;
+      border-radius: 0px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
       text-decoration: none;
     }
     .shop-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(74,55,40,0.08);
+      box-shadow: 0 20px 40px rgba(74,55,40,0.06);
       border-color: rgba(184,149,90,0.4);
     }
     .shop-img-container {
       position: relative;
       width: 100%;
-      padding-top: 100%; /* Cuadrado perfecto 1:1 */
+      padding-top: 100%; /* Proporción cuadrada 1:1 */
       background: var(--cream-dark);
       overflow: hidden;
+      border-bottom: 1px solid rgba(184,149,90,0.08);
     }
     .shop-img-container img {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.7s ease;
+      transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     .shop-card:hover .shop-img-container img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
     .shop-content {
-      padding: 1.5rem;
+      padding: 1.8rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -151,69 +152,72 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
     .shop-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 500;
       color: var(--text-dark);
-      line-height: 1.2;
+      line-height: 1.25;
       margin-bottom: 0.8rem;
     }
     .shop-desc {
-      font-size: 0.85rem;
-      font-weight: 400;
-      color: var(--text-light);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      flex-grow: 1; /* Empuja el footer hacia abajo */
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+      flex-grow: 1;
     }
     .shop-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 1rem;
+      padding-top: 1.2rem;
       border-top: 1px solid rgba(184,149,90,0.1);
     }
     .shop-price {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.35rem;
+      font-weight: 500;
       color: var(--brown);
     }
     .shop-btn {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      background: var(--gold);
-      color: var(--white);
+      background: transparent;
+      color: var(--gold);
       border: 1px solid var(--gold);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
     .shop-btn:hover {
-      background: var(--brown);
-      border-color: var(--brown);
+      background: var(--gold);
+      color: var(--white);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1200px) {
-      .shop-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1024px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     }
-    @media (max-width: 900px) {
-      .shop-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 768px) {
       .page-hero-content { padding: 0 6vw; }
       .cat-nav { padding: 0 4vw; }
-    }
-    @media (max-width: 600px) {
-      .shop-grid { grid-template-columns: 1fr; }
-      .shop-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .shop-section { padding: 4rem 6vw; }
+    }
+    @media (max-width: 550px) {
+      .shop-grid { grid-template-columns: 1fr; }
+      .shop-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
   </style>
 </head>
@@ -250,7 +254,7 @@
   <div class="page-hero-content">
     <p class="page-hero-eyebrow">Dermocosmética Avanzada</p>
     <h1 class="page-hero-title">Nuestros<br><em>Productos</em></h1>
-    <p class="page-hero-sub">Líneas exclusivas para el cuidado de tu piel. Distribuidores oficiales de las marcas europeas más prestigiosas en medicina estética.</p>
+    <p class="page-hero-sub">Líneas exclusivas para el cuidado e hidratación de tu piel. Distribuidores oficiales de las marcas europeas más prestigiosas en medicina estética.</p>
   </div>
 </section>
 
@@ -258,7 +262,6 @@
   <a href="#innoaesthetics" class="cat-nav-link active">Innoaesthetics</a>
   <a href="#meline" class="cat-nav-link">Meline</a>
   <a href="#croma" class="cat-nav-link">Croma</a>
-  <a href="#accesorios" class="cat-nav-link">Cuidado Diario</a>
 </nav>
 
 <section class="shop-section" id="innoaesthetics">
@@ -274,55 +277,40 @@
       <div class="shop-content">
         <span class="shop-brand">Innoaesthetics</span>
         <h3 class="shop-name">Sérum Vitamina C 20%</h3>
-        <p class="shop-desc">Antioxidante de alta concentración para iluminación y uniformidad del tono. Previene el fotoenvejecimiento.</p>
+        <p class="shop-desc">Antioxidante de alta concentración para iluminación y uniformidad del tono. Previene con éxito el fotoenvejecimiento celular.</p>
         <div class="shop-footer">
           <span class="shop-price">$48.900</span>
-          <button class="shop-btn" onclick="addToCart('Sérum Vitamina C 20%')">+ Añadir</button>
+          <button class="shop-btn" onclick="solicitarProducto('Sérum Vitamina C 20%', 'Innoaesthetics')">Me Interesa</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-card reveal" style="transition-delay: 0.05s;">
+      <div class="shop-img-container">
+        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=600&auto=format&fit=crop&q=80" alt="Ultimate Eye Corrector" loading="lazy">
+      </div>
+      <div class="shop-content">
+        <span class="shop-brand">Innoaesthetics</span>
+        <h3 class="shop-name">Ultimate Eye Corrector</h3>
+        <p class="shop-desc">Tratamiento intensivo específico para el contorno de ojos. Reduce visiblemente bolsas, ojeras y líneas de expresión.</p>
+        <div class="shop-footer">
+          <span class="shop-price">$55.000</span>
+          <button class="shop-btn" onclick="solicitarProducto('Ultimate Eye Corrector', 'Innoaesthetics')">Me Interesa</button>
         </div>
       </div>
     </div>
 
     <div class="shop-card reveal" style="transition-delay: 0.1s;">
       <div class="shop-img-container">
-        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=600&auto=format&fit=crop&q=80" alt="Crema Hidratante" loading="lazy">
-      </div>
-      <div class="shop-content">
-        <span class="shop-brand">Innoaesthetics</span>
-        <h3 class="shop-name">Ultimate Eye Corrector</h3>
-        <p class="shop-desc">Tratamiento intensivo para contorno de ojos. Reduce visiblemente bolsas, ojeras y líneas de expresión.</p>
-        <div class="shop-footer">
-          <span class="shop-price">$55.000</span>
-          <button class="shop-btn" onclick="addToCart('Ultimate Eye Corrector')">+ Añadir</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="shop-card reveal" style="transition-delay: 0.2s;">
-      <div class="shop-img-container">
-        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop&q=80" alt="Protector Solar" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop&q=80" alt="Sunblock SPF 50+" loading="lazy">
       </div>
       <div class="shop-content">
         <span class="shop-brand">Innoaesthetics</span>
         <h3 class="shop-name">Sunblock SPF 50+</h3>
-        <p class="shop-desc">Protección solar de amplio espectro con textura ligera y rápida absorción. Ideal post-tratamiento.</p>
+        <p class="shop-desc">Protección solar extrema de amplio espectro con textura ligera y rápida absorción. Ideal para cuidados post-tratamiento clínico.</p>
         <div class="shop-footer">
           <span class="shop-price">$32.500</span>
-          <button class="shop-btn" onclick="addToCart('Sunblock SPF 50+')">+ Añadir</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="shop-card reveal" style="transition-delay: 0.3s;">
-      <div class="shop-img-container">
-        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop&q=80" alt="Limpiador" loading="lazy">
-      </div>
-      <div class="shop-content">
-        <span class="shop-brand">Innoaesthetics</span>
-        <h3 class="shop-name">Soft Cleanser</h3>
-        <p class="shop-desc">Limpiador facial suave que elimina impurezas respetando el manto hidrolipídico de la piel.</p>
-        <div class="shop-footer">
-          <span class="shop-price">$28.900</span>
-          <button class="shop-btn" onclick="addToCart('Soft Cleanser')">+ Añadir</button>
+          <button class="shop-btn" onclick="solicitarProducto('Sunblock SPF 50+', 'Innoaesthetics')">Me Interesa</button>
         </div>
       </div>
     </div>
@@ -342,25 +330,48 @@
       <div class="shop-content">
         <span class="shop-brand">Meline</span>
         <h3 class="shop-name">Crema Despigmentante PM</h3>
-        <p class="shop-desc">Protocolo nocturno de alta eficacia para manchas y melasma. La solución definitiva en despigmentación.</p>
+        <p class="shop-desc">Protocolo nocturno de alta eficacia para manchas melánicas y melasma. La solución de vanguardia definitiva en despigmentación.</p>
         <div class="shop-footer">
           <span class="shop-price">$62.500</span>
-          <button class="shop-btn" onclick="addToCart('Crema Despigmentante PM')">+ Añadir</button>
+          <button class="shop-btn" onclick="solicitarProducto('Crema Despigmentante PM', 'Meline')">Me Interesa</button>
         </div>
       </div>
     </div>
 
-    <div class="shop-card reveal" style="transition-delay: 0.1s;">
+    <div class="shop-card reveal" style="transition-delay: 0.05s;">
       <div class="shop-img-container">
-        <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&auto=format&fit=crop&q=80" alt="Daylight" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&auto=format&fit=crop&q=80" alt="Pigment Home Mask" loading="lazy">
       </div>
       <div class="shop-content">
         <span class="shop-brand">Meline</span>
         <h3 class="shop-name">Pigment Home Mask</h3>
-        <p class="shop-desc">Mascarilla despigmentante intensiva para uso en casa. Potencia los resultados de los tratamientos clínicos.</p>
+        <p class="shop-desc">Mascarilla despigmentante potente para mantención en el hogar. Potencia y prolonga los resultados obtenidos en clínica.</p>
         <div class="shop-footer">
           <span class="shop-price">$45.000</span>
-          <button class="shop-btn" onclick="addToCart('Pigment Home Mask')">+ Añadir</button>
+          <button class="shop-btn" onclick="solicitarProducto('Pigment Home Mask', 'Meline')">Me Interesa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-section" id="croma">
+  <div class="shop-header reveal">
+    <h2 class="shop-title">Línea <em>Croma</em></h2>
+  </div>
+
+  <div class="shop-grid">
+    <div class="shop-card reveal">
+      <div class="shop-img-container">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&auto=format&fit=crop&q=80" alt="Fillmed Art Filler Universal" loading="lazy">
+      </div>
+      <div class="shop-content">
+        <span class="shop-brand">Croma</span>
+        <h3 class="shop-name">Fillmed Art Filler Universal</h3>
+        <p class="shop-desc">Relleno de ácido hialurónico de alta cohesividad optimizado para corrección de arrugas profundas y restauración de volúmenes.</p>
+        <div class="shop-footer">
+          <span class="shop-price">Consultar</span>
+          <button class="shop-btn" onclick="solicitarProducto('Fillmed Art Filler Universal', 'Croma')">Me Interesa</button>
         </div>
       </div>
     </div>
@@ -420,8 +431,6 @@
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<div class="notification" id="notification">✓ Acción completada correctamente</div>
-
 <script>
   // Nav scroll
   const nav = document.getElementById('navbar');
@@ -444,7 +453,7 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // Active cat-nav highlight
-  const sectionIds = ['innoaesthetics', 'meline', 'croma', 'accesorios'];
+  const sectionIds = ['innoaesthetics', 'meline', 'croma'];
   const catLinks = document.querySelectorAll('.cat-nav-link');
   window.addEventListener('scroll', () => {
     let current = '';
@@ -456,14 +465,15 @@
       link.classList.toggle('active', link.getAttribute('href') === '#' + current));
   });
 
-  // Add to cart notification
-  function addToCart(name) {
-    const notif = document.getElementById('notification');
-    notif.textContent = '✓ ' + name + ' agregado al carrito';
-    notif.classList.add('show');
-    setTimeout(() => notif.classList.remove('show'), 3000);
+  // Redirección dinámica a WhatsApp con mensaje personalizado del producto
+  function solicitarProducto(nombreProducto, marcaProducto) {
+    const telefono = '56966266742';
+    const mensaje = `Hola, me interesa el producto "${nombreProducto}" de la línea ${marcaProducto} que vi en su sitio web.`;
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   }
 </script>
 
 </body>
 </html>
+
