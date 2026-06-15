@@ -58,40 +58,70 @@
       color: rgba(255,255,255,0.55); max-width: 50ch; line-height: 1.8; margin-top: 1.2rem;
     }
 
-    /* ── BREADCRUMB ── */
-    .breadcrumb {
-      background: var(--cream-dark); padding: 1rem 10vw;
-      border-bottom: 1px solid rgba(184,149,90,0.15);
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .breadcrumb a {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.3s;
-    }
-    .breadcrumb a:hover { color: var(--gold); }
-    .breadcrumb-sep { color: var(--gold); font-size: 0.65rem; opacity: 0.6; }
-    .breadcrumb-current {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-    }
-
-    /* ── INTRO ── */
-    .services-intro {
-      background: var(--cream); padding: 4rem 10vw 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 3rem; flex-wrap: wrap;
+    /* ── RESUMEN DE CATEGORÍAS ── */
+    .cat-overview {
+      background: var(--cream);
+      padding: 5rem 10vw 4rem;
       border-bottom: 1px solid rgba(184,149,90,0.12);
     }
-    .services-intro-text .section-tag {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: block;
+    .cat-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .services-intro-text h2 {
+    .cat-overview-card {
+      background: var(--white);
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .cat-overview-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .cat-overview-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(74,55,40,0.12); }
+    .cat-overview-card:hover::before { transform: scaleX(1); }
+    .cat-overview-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 300; color: var(--text-dark); line-height: 1.15;
+      font-size: 3.5rem; font-weight: 300; color: rgba(184,149,90,0.12);
+      position: absolute; top: 1rem; right: 1.5rem;
+      line-height: 1; user-select: none;
     }
-    .services-intro-text h2 em { font-style: italic; color: var(--brown-mid); }
+    .cat-overview-icon { font-size: 1.6rem; margin-bottom: 1.2rem; color: var(--gold); }
+    .cat-overview-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--text-dark);
+      margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .cat-overview-desc {
+      font-size: 1.05rem; font-weight: 400; line-height: 1.8; color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    .cat-overview-tag {
+      display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 0.3rem 0.8rem;
+      background: var(--gold-pale); color: var(--brown-mid);
+      border: 1px solid rgba(184,149,90,0.3);
+      margin-bottom: 1.8rem;
+    }
+    .cat-overview-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.75rem 1.6rem;
+      background: transparent; color: var(--brown);
+      border: 1px solid var(--brown);
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .cat-overview-btn::after { content: ' →'; }
+    .cat-overview-btn:hover {
+      background: var(--gold); border-color: var(--gold); color: var(--white);
+      transform: translateY(-2px);
+    }
 
     /* ── CATEGORY NAV ── */
     .cat-nav {
@@ -113,14 +143,9 @@
     /* ══════════════════════════════════════
        CATEGORY BLOCK
     ══════════════════════════════════════ */
-    .cat-block {
-      background: var(--cream);
-    }
-    .cat-block:nth-child(even) {
-      background: var(--white);
-    }
+    .cat-block { background: var(--cream); }
+    .cat-block:nth-child(even) { background: var(--white); }
 
-    /* Category heading row */
     .cat-heading {
       padding: 5rem 10vw 0;
       display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
@@ -143,19 +168,47 @@
       font-size: 6rem; font-weight: 300; line-height: 1;
       color: rgba(184,149,90,0.1); user-select: none; flex-shrink: 0;
     }
-
-    /* Divider */
     .cat-divider {
       margin: 2.5rem 10vw 0;
       height: 1px; background: rgba(184,149,90,0.18);
     }
 
-    /* ══════════════════════════════════════
-       SUBCATEGORY BLOCK (solo en Patologías)
-    ══════════════════════════════════════ */
-    .subcat-block {
-      padding: 0 10vw;
+    /* ── CATEGORY DESCRIPTION ── */
+    .cat-desc {
+      padding: 3rem 10vw 0;
+      display: flex; gap: 4rem; align-items: flex-start; flex-wrap: wrap;
+      justify-content: center; text-align: center;
     }
+    .cat-desc-text { flex: 1; min-width: 260px; }
+    .cat-desc-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      font-weight: 300; color: var(--text-mid);
+      line-height: 1.9; max-width: 62ch; margin: 0 auto;
+    }
+    .cat-desc-intro a {
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid rgba(184,149,90,0.35);
+      transition: color 0.25s, border-color 0.25s; font-style: italic;
+    }
+    .cat-desc-intro a:hover { color: var(--brown); border-color: var(--brown); }
+    .cat-desc-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.6rem; justify-content: center;
+    }
+    .cat-desc-tag {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(184,149,90,0.35);
+      padding: 0.4rem 0.9rem; text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .cat-desc-tag:hover { background: var(--gold); color: var(--white); }
+
+    /* ══════════════════════════════════════
+       SUBCATEGORY BLOCK
+    ══════════════════════════════════════ */
+    .subcat-block { padding: 0 10vw; }
     .subcat-header {
       padding-top: 4rem;
       display: flex; align-items: center; gap: 1.5rem;
@@ -168,7 +221,6 @@
       font-size: 3.5rem; font-weight: 300; line-height: 1;
       color: rgba(184,149,90,0.18); flex-shrink: 0; user-select: none;
     }
-    .subcat-info {}
     .subcat-label {
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block;
@@ -176,30 +228,17 @@
     .subcat-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 400; color: var(--text-dark); line-height: 1.1;
-      letter-spacing: 0.04em;
+      font-weight: 400; color: var(--text-dark); line-height: 1.1; letter-spacing: 0.04em;
     }
     .subcat-title em { font-style: italic; color: var(--brown-mid); }
-    .subcat-divider {
-      margin: 1.5rem 0 0;
-      height: 1px; background: rgba(184,149,90,0.12);
-    }
-
-    /* Tratamientos dentro de subcategorías: sin padding horizontal (ya lo da .subcat-block) */
-    .subcat-block .treatment-list {
-      padding-left: 0; padding-right: 0;
-    }
-    /* Ajuste para que los tr-row dentro de subcat-block no tengan el padding lateral propio */
-    .subcat-block .tr-body {
-      padding-left: 4vw;
-      padding-right: 4vw;
-    }
+    .subcat-divider { margin: 1.5rem 0 0; height: 1px; background: rgba(184,149,90,0.12); }
+    .subcat-block .treatment-list { padding-left: 0; padding-right: 0; }
+    .subcat-block .tr-body { padding-left: 4vw; padding-right: 4vw; }
 
     /* ══════════════════════════════════════
-       TREATMENT ROW 
+       TREATMENT ROW
     ══════════════════════════════════════ */
     .treatment-list { padding-bottom: 4rem; }
-
     .tr-row {
       display: grid; grid-template-columns: 1fr 1fr;
       min-height: 420px;
@@ -208,20 +247,11 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .tr-row.visible { opacity:1; transform:translateY(0); }
-
     .tr-row:nth-child(even) { direction: rtl; }
     .tr-row:nth-child(even) > * { direction: ltr; }
-
-    .tr-img {
-      position: relative; overflow: hidden;
-      background: var(--cream-dark);
-    }
-    .tr-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.7s ease;
-    }
+    .tr-img { position: relative; overflow: hidden; background: var(--cream-dark); }
+    .tr-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
     .tr-row:hover .tr-img img { transform: scale(1.04); }
-
     .tr-num {
       position: absolute; bottom: 1.8rem; right: 2rem;
       font-family: 'Cormorant Garamond', serif;
@@ -229,22 +259,17 @@
       color: rgba(255,255,255,0.15); user-select: none; pointer-events: none;
     }
     .tr-row:nth-child(even) .tr-num { right: auto; left: 2rem; }
-
     .tr-body {
       padding: 4rem 5vw;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative;
+      display: flex; flex-direction: column; justify-content: center; position: relative;
     }
-
     .tr-body::before {
-      content: '';
-      position: absolute; top: 3rem; bottom: 3rem; left: 0;
+      content: ''; position: absolute; top: 3rem; bottom: 3rem; left: 0;
       width: 2px;
       background: linear-gradient(to bottom, transparent, var(--gold), transparent);
       opacity: 0.5;
     }
     .tr-row:nth-child(even) .tr-body::before { left: auto; right: 0; }
-
     .tr-tag {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
@@ -267,8 +292,7 @@
       text-transform: uppercase; color: var(--white);
       background: var(--gold); padding: 0.85rem 2rem;
       text-decoration: none; border: 1px solid var(--gold);
-      align-self: flex-start;
-      transition: background 0.3s, transform 0.3s;
+      align-self: flex-start; transition: background 0.3s, transform 0.3s;
     }
     .tr-cta:hover { background: var(--brown); border-color: var(--brown); transform: translateY(-2px); }
 
@@ -298,51 +322,11 @@
     }
     .cta-banner-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 
-    /* ── CATEGORY DESCRIPTION ── */
-    .cat-desc {
-      padding: 3rem 10vw 0;
-      display: flex; gap: 4rem; align-items: flex-start; flex-wrap: wrap; justify-content: center; text-align: center;
-    }
-    .cat-desc-text {
-      flex: 1; min-width: 260px;
-    }
-    .cat-desc-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
-      font-weight: 300; color: var(--text-mid);
-      line-height: 1.9; max-width: 62ch; margin: 0 auto;
-    }
-    .cat-desc-intro a {
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(184,149,90,0.35);
-      transition: color 0.25s, border-color 0.25s;
-      font-style: italic;
-    }
-    .cat-desc-intro a:hover {
-      color: var(--brown);
-      border-color: var(--brown);
-    }
-    .cat-desc-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.6rem; justify-content: center;
-    }
-    .cat-desc-tag {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(184,149,90,0.35);
-      padding: 0.4rem 0.9rem;
-      text-decoration: none;
-      transition: background 0.25s, color 0.25s;
-    }
-    .cat-desc-tag:hover {
-      background: var(--gold); color: var(--white);
-    }
-    .cat-desc-tag.plain {
-      pointer-events: none; color: var(--text-light); border-color: rgba(100,80,60,0.2);
-    }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      .cat-overview { padding: 4rem 6vw 3rem; }
+      .cat-overview-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .cat-overview-card { padding: 2rem 1.8rem 1.8rem; }
       .tr-row { grid-template-columns: 1fr; min-height: auto; }
       .tr-row:nth-child(even) { direction: ltr; }
       .tr-img { height: 300px; }
@@ -352,12 +336,11 @@
       .cat-heading { padding: 4rem 6vw 0; }
       .cat-divider { margin: 2rem 6vw 0; }
       .cat-total { display: none; }
-      .services-intro { padding: 3rem 6vw 2.5rem; flex-direction: column; }
       .page-hero-content { padding: 0 6vw; }
-      .breadcrumb { padding: 1rem 6vw; }
       .cat-nav { padding: 0 4vw; }
       .cta-banner { padding: 4.5rem 6vw; }
       .cat-desc { padding: 2rem 6vw 0; gap: 2rem; }
+      .subcat-block { padding: 0 6vw; }
       .subcat-block .tr-body { padding-left: 5vw; padding-right: 5vw; }
     }
     @media (max-width: 600px) {
@@ -409,12 +392,47 @@
   </div>
 </section>
 
+<!-- RESUMEN DE CATEGORÍAS -->
+<div class="cat-overview">
+  <div class="cat-overview-grid">
+
+    <div class="cat-overview-card reveal">
+      <div class="cat-overview-num">01</div>
+      <div class="cat-overview-icon">◈</div>
+      <h3 class="cat-overview-name">Patologías</h3>
+      <p class="cat-overview-desc">Protocolos clínicos personalizados para acné, rosácea, manchas, rejuvenecimiento y piel deshidratada.</p>
+      <div class="cat-overview-tags">
+        <span class="cat-overview-tag">Acné · Rosácea · Manchas</span>
+      </div>
+      <a href="#patologias" class="cat-overview-btn">Ver tratamientos</a>
+    </div>
+
+    <div class="cat-overview-card reveal" style="transition-delay:0.1s">
+      <div class="cat-overview-num">02</div>
+      <div class="cat-overview-icon">✦</div>
+      <h3 class="cat-overview-name">Cosmetología</h3>
+      <p class="cat-overview-desc">Tratamientos orientados a mejorar la apariencia y el bienestar de la piel con tecnología y activos cosméticos.</p>
+      <div class="cat-overview-tags">
+        <span class="cat-overview-tag">Microneedling · Corporal · Moldeo</span>
+      </div>
+      <a href="#cosmetologia" class="cat-overview-btn">Ver tratamientos</a>
+    </div>
+
+    <div class="cat-overview-card reveal" style="transition-delay:0.2s">
+      <div class="cat-overview-num">03</div>
+      <div class="cat-overview-icon">◐</div>
+      <h3 class="cat-overview-name">Dermocosmiátria</h3>
+      <p class="cat-overview-desc">Ciencia dermatológica con cosmética de alta tecnología. Activos de última generación para resultados en profundidad.</p>
+      <div class="cat-overview-tags">
+        <span class="cat-overview-tag">Mesoterapia · Exosomas · Dermapen</span>
+      </div>
+      <a href="#dermocosmiatria" class="cat-overview-btn">Ver tratamientos</a>
+    </div>
+
+  </div>
+</div>
+
 <!-- CATEGORY NAV -->
-<nav class="cat-nav" id="catNav" aria-label="Categorías de tratamientos">
-  <a href="#patologias" class="cat-nav-link">Patologías</a>
-  <a href="#cosmetologia" class="cat-nav-link">Cosmetología</a>
-  <a href="#dermocosmiatria" class="cat-nav-link">Dermocosmiátria</a>
-</nav>
 
 
 <!-- ══════════════════════════════════════════
@@ -431,7 +449,6 @@
   </div>
   <div class="cat-divider"></div>
 
-  <!-- ── Descripción de categoría: Patologías ── -->
   <div class="cat-desc reveal">
     <div class="cat-desc-text">
       <p class="cat-desc-intro">
@@ -455,7 +472,7 @@
 
   <!-- ── Subcategoría: Acné ── -->
   <div class="subcat-block" id="pat-acne">
-    <div class="subcat-header reveal">
+    <div class="subcat-header">
       <div class="subcat-num">01</div>
       <div class="subcat-info">
         <span class="subcat-label">Subcategoría</span>
@@ -464,7 +481,6 @@
     </div>
     <div class="subcat-divider"></div>
     <div class="treatment-list">
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
@@ -477,7 +493,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar evaluación</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=900&auto=format&fit=crop&q=80" alt="Peeling Químico Acné" loading="lazy">
@@ -490,7 +505,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Comedogénica" loading="lazy">
@@ -503,13 +517,12 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ── Subcategoría: Rosácea ── -->
   <div class="subcat-block" id="pat-rosacea">
-    <div class="subcat-header reveal">
+    <div class="subcat-header">
       <div class="subcat-num">02</div>
       <div class="subcat-info">
         <span class="subcat-label">Subcategoría</span>
@@ -518,7 +531,6 @@
     </div>
     <div class="subcat-divider"></div>
     <div class="treatment-list">
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
@@ -531,7 +543,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=900&auto=format&fit=crop&q=80" alt="Plenhyage Rosácea" loading="lazy">
@@ -544,13 +555,12 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ── Subcategoría: Rejuvenecimiento ── -->
   <div class="subcat-block" id="pat-rejuvenecimiento">
-    <div class="subcat-header reveal">
+    <div class="subcat-header">
       <div class="subcat-num">03</div>
       <div class="subcat-info">
         <span class="subcat-label">Subcategoría</span>
@@ -559,7 +569,6 @@
     </div>
     <div class="subcat-divider"></div>
     <div class="treatment-list">
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=900&auto=format&fit=crop&q=80" alt="PDRN + Dermofacial" loading="lazy">
@@ -572,7 +581,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas" loading="lazy">
@@ -585,7 +593,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=900&auto=format&fit=crop&q=80" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
@@ -598,7 +605,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1644982647869-95f09eb3e89e?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Facial" loading="lazy">
@@ -611,13 +617,12 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ── Subcategoría: Manchas ── -->
   <div class="subcat-block" id="pat-manchas">
-    <div class="subcat-header reveal">
+    <div class="subcat-header">
       <div class="subcat-num">04</div>
       <div class="subcat-info">
         <span class="subcat-label">Subcategoría</span>
@@ -626,7 +631,6 @@
     </div>
     <div class="subcat-divider"></div>
     <div class="treatment-list">
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&auto=format&fit=crop&q=80" alt="Hollywood Black Peel" loading="lazy">
@@ -639,7 +643,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" alt="Dark Circles" loading="lazy">
@@ -652,7 +655,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=80" alt="Zona Íntima" loading="lazy">
@@ -665,13 +667,12 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ── Subcategoría: Piel Deshidratada ── -->
   <div class="subcat-block" id="pat-deshidratada">
-    <div class="subcat-header reveal">
+    <div class="subcat-header">
       <div class="subcat-num">05</div>
       <div class="subcat-info">
         <span class="subcat-label">Subcategoría</span>
@@ -680,7 +681,6 @@
     </div>
     <div class="subcat-divider"></div>
     <div class="treatment-list">
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Oxígeno" loading="lazy">
@@ -693,7 +693,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
@@ -706,7 +705,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
       <div class="tr-row">
         <div class="tr-img">
           <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop&q=80" alt="Drenaje Manual Facial" loading="lazy">
@@ -719,7 +717,6 @@
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -740,7 +737,6 @@
   </div>
   <div class="cat-divider"></div>
 
-  <!-- ── Descripción de categoría: Cosmetología ── -->
   <div class="cat-desc reveal">
     <div class="cat-desc-text">
       <p class="cat-desc-intro">
@@ -751,13 +747,10 @@
         protocolos que combinan tecnología y activos cosméticos para moldear, reafirmar y revitalizar
         tu piel de manera global.
       </p>
-    
     </div>
   </div>
-<div class="espacios-grande"> </div>
-  <div class="treatment-list">
 
-    <!-- 01 Microneedling -->
+  <div class="treatment-list" style="margin-top:3rem;">
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Microneedling" loading="lazy">
@@ -770,8 +763,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 02 Pack Papada -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=900&auto=format&fit=crop&q=80" alt="Pack Papada" loading="lazy">
@@ -784,8 +775,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 03 Moldeo Corporal 360 -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80" alt="Moldeo Corporal 360" loading="lazy">
@@ -798,8 +787,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 04 Pack Antiinflamatorio -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&auto=format&fit=crop&q=80" alt="Pack Antiinflamatorio" loading="lazy">
@@ -812,8 +799,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 05 Crioradiofrecuencia Corporal -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1593476550610-87baa860004a?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Corporal" loading="lazy">
@@ -826,8 +811,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 06 Full Body Reset -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset" loading="lazy">
@@ -840,7 +823,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -859,7 +841,6 @@
   </div>
   <div class="cat-divider"></div>
 
-  <!-- ── Descripción de categoría: Dermocosmiátria ── -->
   <div class="cat-desc reveal">
     <div class="cat-desc-text">
       <p class="cat-desc-intro">
@@ -874,12 +855,7 @@
     </div>
   </div>
 
-  <div class="espacios-grande">
-
-  </div>
-  <div class="treatment-list">
-
-    <!-- 01 Mesoterapia Corporal -->
+  <div class="treatment-list" style="margin-top:3rem;">
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&auto=format&fit=crop&q=80" alt="Mesoterapia Corporal" loading="lazy">
@@ -892,8 +868,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 02 Full Body Reset + Mesoterapia Corporal -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset + Mesoterapia Corporal" loading="lazy">
@@ -906,8 +880,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 03 Dermapen + Hydrafacial + Electroporador (avanzado) -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen Avanzado" loading="lazy">
@@ -920,8 +892,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
-    <!-- 04 Exosomas Avanzado -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas Avanzado" loading="lazy">
@@ -934,7 +904,6 @@
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -952,7 +921,7 @@
   </div>
 </div>
 
-<!-- FOOTER STANDARDIZADO -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -1008,13 +977,9 @@
 </a>
 
 <script>
-  // Nav scroll
   const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-  // Mobile menu
   document.getElementById('hamburger').addEventListener('click', () =>
     document.getElementById('mobileMenu').classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', () =>
@@ -1022,13 +987,11 @@
   document.querySelectorAll('.mobile-link').forEach(l =>
     l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
 
-  // Scroll reveal — category headers & subcat headers
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal, .subcat-header').forEach(el => revealObserver.observe(el));
 
-  // Scroll reveal — treatment rows (staggered)
   const rowObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1041,7 +1004,6 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.tr-row').forEach(el => rowObserver.observe(el));
 
-  // Active cat-nav highlight
   const sectionIds = ['patologias', 'cosmetologia', 'dermocosmiatria'];
   const catLinks = document.querySelectorAll('.cat-nav-link');
   window.addEventListener('scroll', () => {
