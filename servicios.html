@@ -14,7 +14,7 @@
     .page-hero {
       height: 52vh; min-height: 400px;
       position: relative; display: flex; align-items: flex-end;
-      overflow: hidden; padding-bottom: 5rem;
+      overflow: hidden; padding-top: 80px; padding-bottom: 5rem;
     }
     .page-hero-bg {
       position: absolute; inset: 0;
@@ -60,62 +60,58 @@
 
     /* ── RESUMEN DE CATEGORÍAS ── */
     .cat-overview {
-      background: var(--cream);
+      background: var(--cream-dark);
       padding: 5rem 10vw 4rem;
       border-bottom: 1px solid rgba(184,149,90,0.12);
     }
     .cat-overview-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
     }
     .cat-overview-card {
-      background: var(--white);
+      background: #f4f4f2;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 8px;
       padding: 2.5rem 2rem 2rem;
       position: relative;
-      overflow: hidden;
-      transition: transform 0.4s, box-shadow 0.4s;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
     }
-    .cat-overview-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: var(--gold); transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s;
+    .cat-overview-card:hover {
+      background: #eeeeec;
+      border-color: rgba(184,149,90,0.35);
+      box-shadow: 0 10px 35px rgba(74,55,40,0.08);
     }
-    .cat-overview-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(74,55,40,0.12); }
-    .cat-overview-card:hover::before { transform: scaleX(1); }
-    .cat-overview-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem; font-weight: 300; color: rgba(184,149,90,0.12);
-      position: absolute; top: 1rem; right: 1.5rem;
-      line-height: 1; user-select: none;
-    }
-    .cat-overview-icon { font-size: 1.6rem; margin-bottom: 1.2rem; color: var(--gold); }
+    .cat-overview-num { display: none; }
     .cat-overview-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 400; color: var(--text-dark);
+      font-size: 1.7rem; font-weight: 400; color: var(--gold);
       margin-bottom: 0.8rem; line-height: 1.2;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .cat-overview-name::before {
+      content: '✦';
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      flex-shrink: 0;
     }
     .cat-overview-desc {
-      font-size: 1.05rem; font-weight: 400; line-height: 1.8; color: var(--text-light);
-      margin-bottom: 1.5rem;
+      font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--text-mid);
+      margin-bottom: 1.8rem; flex-grow: 1;
     }
-    .cat-overview-tag {
-      display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 0.3rem 0.8rem;
-      background: var(--gold-pale); color: var(--brown-mid);
-      border: 1px solid rgba(184,149,90,0.3);
-      margin-bottom: 1.8rem;
-    }
+    .cat-overview-tag { display: none; }
     .cat-overview-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      display: inline-flex; align-items: center;
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
       text-transform: uppercase; text-decoration: none;
-      padding: 0.75rem 1.6rem;
+      padding: 0.75rem 1.6rem; align-self: flex-start;
       background: transparent; color: var(--brown);
-      border: 1px solid var(--brown);
-      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+      border: 1px solid rgba(74,55,40,0.4);
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
     }
     .cat-overview-btn::after { content: ' →'; }
     .cat-overview-btn:hover {
@@ -163,11 +159,7 @@
       font-weight: 300; color: var(--text-dark); line-height: 1.1;
     }
     .cat-title em { font-style: italic; color: var(--brown-mid); }
-    .cat-total {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 6rem; font-weight: 300; line-height: 1;
-      color: rgba(184,149,90,0.1); user-select: none; flex-shrink: 0;
-    }
+    .cat-total { display: none; }
     .cat-divider {
       margin: 2.5rem 10vw 0;
       height: 1px; background: rgba(184,149,90,0.18);
@@ -216,11 +208,7 @@
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .subcat-header.visible { opacity: 1; transform: translateY(0); }
-    .subcat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem; font-weight: 300; line-height: 1;
-      color: rgba(184,149,90,0.18); flex-shrink: 0; user-select: none;
-    }
+    .subcat-num { display: none; }
     .subcat-label {
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block;
@@ -252,13 +240,7 @@
     .tr-img { position: relative; overflow: hidden; background: var(--cream-dark); }
     .tr-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
     .tr-row:hover .tr-img img { transform: scale(1.04); }
-    .tr-num {
-      position: absolute; bottom: 1.8rem; right: 2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5.5rem; font-weight: 300; line-height: 1;
-      color: rgba(255,255,255,0.15); user-select: none; pointer-events: none;
-    }
-    .tr-row:nth-child(even) .tr-num { right: auto; left: 2rem; }
+    .tr-num { display: none; }
     .tr-body {
       padding: 4rem 5vw;
       display: flex; flex-direction: column; justify-content: center; position: relative;
@@ -398,34 +380,25 @@
 
     <div class="cat-overview-card reveal">
       <div class="cat-overview-num">01</div>
-      <div class="cat-overview-icon">◈</div>
       <h3 class="cat-overview-name">Patologías</h3>
       <p class="cat-overview-desc">Protocolos clínicos personalizados para acné, rosácea, manchas, rejuvenecimiento y piel deshidratada.</p>
-      <div class="cat-overview-tags">
-        <span class="cat-overview-tag">Acné · Rosácea · Manchas</span>
-      </div>
+      <span class="cat-overview-tag">Acné · Rosácea · Manchas</span>
       <a href="#patologias" class="cat-overview-btn">Ver tratamientos</a>
     </div>
 
     <div class="cat-overview-card reveal" style="transition-delay:0.1s">
       <div class="cat-overview-num">02</div>
-      <div class="cat-overview-icon">✦</div>
       <h3 class="cat-overview-name">Cosmetología</h3>
       <p class="cat-overview-desc">Tratamientos orientados a mejorar la apariencia y el bienestar de la piel con tecnología y activos cosméticos.</p>
-      <div class="cat-overview-tags">
-        <span class="cat-overview-tag">Microneedling · Corporal · Moldeo</span>
-      </div>
+      <span class="cat-overview-tag">Microneedling · Corporal · Moldeo</span>
       <a href="#cosmetologia" class="cat-overview-btn">Ver tratamientos</a>
     </div>
 
     <div class="cat-overview-card reveal" style="transition-delay:0.2s">
       <div class="cat-overview-num">03</div>
-      <div class="cat-overview-icon">◐</div>
       <h3 class="cat-overview-name">Dermocosmiátria</h3>
       <p class="cat-overview-desc">Ciencia dermatológica con cosmética de alta tecnología. Activos de última generación para resultados en profundidad.</p>
-      <div class="cat-overview-tags">
-        <span class="cat-overview-tag">Mesoterapia · Exosomas · Dermapen</span>
-      </div>
+      <span class="cat-overview-tag">Mesoterapia · Exosomas · Dermapen</span>
       <a href="#dermocosmiatria" class="cat-overview-btn">Ver tratamientos</a>
     </div>
 
@@ -442,7 +415,6 @@
 
   <div class="cat-heading reveal">
     <div>
-      <p class="cat-label">Categoría 01</p>
       <h2 class="cat-title">Pato<em>logías</em></h2>
     </div>
     <div class="cat-total">01</div>
@@ -475,7 +447,6 @@
     <div class="subcat-header">
       <div class="subcat-num">01</div>
       <div class="subcat-info">
-        <span class="subcat-label">Subcategoría</span>
         <h3 class="subcat-title"><em>Acné</em></h3>
       </div>
     </div>
@@ -525,7 +496,6 @@
     <div class="subcat-header">
       <div class="subcat-num">02</div>
       <div class="subcat-info">
-        <span class="subcat-label">Subcategoría</span>
         <h3 class="subcat-title"><em>Rosácea</em></h3>
       </div>
     </div>
@@ -563,7 +533,6 @@
     <div class="subcat-header">
       <div class="subcat-num">03</div>
       <div class="subcat-info">
-        <span class="subcat-label">Subcategoría</span>
         <h3 class="subcat-title"><em>Rejuvenecimiento</em></h3>
       </div>
     </div>
@@ -625,7 +594,6 @@
     <div class="subcat-header">
       <div class="subcat-num">04</div>
       <div class="subcat-info">
-        <span class="subcat-label">Subcategoría</span>
         <h3 class="subcat-title"><em>Manchas</em></h3>
       </div>
     </div>
@@ -675,7 +643,6 @@
     <div class="subcat-header">
       <div class="subcat-num">05</div>
       <div class="subcat-info">
-        <span class="subcat-label">Subcategoría</span>
         <h3 class="subcat-title">Piel <em>Deshidratada</em></h3>
       </div>
     </div>
@@ -730,7 +697,6 @@
 
   <div class="cat-heading reveal">
     <div>
-      <p class="cat-label">Categoría 02</p>
       <h2 class="cat-title">Cosme<em>tología</em></h2>
     </div>
     <div class="cat-total">02</div>
@@ -834,7 +800,6 @@
 
   <div class="cat-heading reveal">
     <div>
-      <p class="cat-label">Categoría 03</p>
       <h2 class="cat-title">Dermocos<em>miátria</em></h2>
     </div>
     <div class="cat-total">03</div>
