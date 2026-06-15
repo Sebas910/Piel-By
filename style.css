@@ -846,41 +846,82 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 }
 
 @media (max-width: 768px) {
+  /* Reducir la base tipográfica para que el texto no se vea sobredimensionado en el teléfono */
+  html { font-size: 100%; }
+  p { font-size: 1.05rem; }
+
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  section { padding: 5rem 5vw; }
+  /* El logo y la hamburguesa siempre legibles sobre el hero oscuro */
+  nav { padding: 1.2rem 6vw; }
+  .nav-logo { color: var(--white); }
+  .hamburger span { background: var(--white); }
+  section { padding: 5rem 6vw; }
   .services-grid { grid-template-columns: 1fr; }
   .treatments-grid { grid-template-columns: 1fr 1fr; }
   .products-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  
+
   .services-desc { text-align: left; }
   .services-header { flex-direction: column; align-items: flex-start; }
-  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .about-badge { right: 0; bottom: -1rem; }
-  
+
   /* AQUÍ ESTÁ LA CORRECCIÓN DEL HERO PARA MÓVILES */
   .hero { height: auto; min-height: 100vh; padding: 130px 0 60px; }
   .hero-content { flex-direction: column; padding: 0 6vw; gap: 3rem; }
-  
+
   .hero-text {
     width: 100%;
     display: block;
     margin-bottom: 2rem;
   }
-  
+
   .hero-image {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  
+
+  /* Botones del hero alineados a la izquierda y que ocupen el ancho disponible */
+  .hero-actions { justify-content: flex-start; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost { flex: 1 1 12rem; text-align: center; }
+
   .hero-scroll { display: none; }
 }
 
 @media (max-width: 480px) {
+  /* Un punto más pequeña en pantallas muy estrechas */
+  html { font-size: 93.75%; }
+  section { padding: 4rem 6vw; }
+
   .treatments-grid { grid-template-columns: 1fr; }
   .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 1rem; width: 100%; }
   .stat-item:last-child { border-bottom: none; }
+
+  /* Features de "Nosotros" en una sola columna para que respiren */
+  .about-features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+
+  /* Botones a ancho completo y apilados (hero y CTA).
+     flex:0 0 auto evita que el flex-basis se interprete como ALTURA
+     al cambiar a dirección columna (cajas gigantes). */
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost { flex: 0 0 auto; width: 100%; }
+  .cta-actions { flex-direction: column; }
+  .cta-actions .btn-primary,
+  .cta-actions .btn-ghost { width: 100%; text-align: center; }
+
+  /* Botón flotante de WhatsApp más cerca del borde */
+  .wa-float { bottom: 1.2rem; right: 1.2rem; }
+}
+
+/* COGIDO A MANO PARA ARREGLAR PROBLEMAS */
+
+.espacios-grande {
+
+  margin-bottom: 100px;
 }

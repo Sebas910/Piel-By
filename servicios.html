@@ -151,6 +151,51 @@
     }
 
     /* ══════════════════════════════════════
+       SUBCATEGORY BLOCK (solo en Patologías)
+    ══════════════════════════════════════ */
+    .subcat-block {
+      padding: 0 10vw;
+    }
+    .subcat-header {
+      padding-top: 4rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .subcat-header.visible { opacity: 1; transform: translateY(0); }
+    .subcat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; line-height: 1;
+      color: rgba(184,149,90,0.18); flex-shrink: 0; user-select: none;
+    }
+    .subcat-info {}
+    .subcat-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block;
+    }
+    .subcat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400; color: var(--text-dark); line-height: 1.1;
+      letter-spacing: 0.04em;
+    }
+    .subcat-title em { font-style: italic; color: var(--brown-mid); }
+    .subcat-divider {
+      margin: 1.5rem 0 0;
+      height: 1px; background: rgba(184,149,90,0.12);
+    }
+
+    /* Tratamientos dentro de subcategorías: sin padding horizontal (ya lo da .subcat-block) */
+    .subcat-block .treatment-list {
+      padding-left: 0; padding-right: 0;
+    }
+    /* Ajuste para que los tr-row dentro de subcat-block no tengan el padding lateral propio */
+    .subcat-block .tr-body {
+      padding-left: 4vw;
+      padding-right: 4vw;
+    }
+
+    /* ══════════════════════════════════════
        TREATMENT ROW 
     ══════════════════════════════════════ */
     .treatment-list { padding-bottom: 4rem; }
@@ -253,6 +298,49 @@
     }
     .cta-banner-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 
+    /* ── CATEGORY DESCRIPTION ── */
+    .cat-desc {
+      padding: 3rem 10vw 0;
+      display: flex; gap: 4rem; align-items: flex-start; flex-wrap: wrap; justify-content: center; text-align: center;
+    }
+    .cat-desc-text {
+      flex: 1; min-width: 260px;
+    }
+    .cat-desc-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      font-weight: 300; color: var(--text-mid);
+      line-height: 1.9; max-width: 62ch; margin: 0 auto;
+    }
+    .cat-desc-intro a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,149,90,0.35);
+      transition: color 0.25s, border-color 0.25s;
+      font-style: italic;
+    }
+    .cat-desc-intro a:hover {
+      color: var(--brown);
+      border-color: var(--brown);
+    }
+    .cat-desc-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.6rem; justify-content: center;
+    }
+    .cat-desc-tag {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(184,149,90,0.35);
+      padding: 0.4rem 0.9rem;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .cat-desc-tag:hover {
+      background: var(--gold); color: var(--white);
+    }
+    .cat-desc-tag.plain {
+      pointer-events: none; color: var(--text-light); border-color: rgba(100,80,60,0.2);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .tr-row { grid-template-columns: 1fr; min-height: auto; }
@@ -269,10 +357,13 @@
       .breadcrumb { padding: 1rem 6vw; }
       .cat-nav { padding: 0 4vw; }
       .cta-banner { padding: 4.5rem 6vw; }
+      .cat-desc { padding: 2rem 6vw 0; gap: 2rem; }
+      .subcat-block .tr-body { padding-left: 5vw; padding-right: 5vw; }
     }
     @media (max-width: 600px) {
       .tr-body { padding: 2.5rem 5vw; }
       .tr-img { height: 240px; }
+      .subcat-block { padding: 0 4vw; }
     }
   </style>
 </head>
@@ -297,6 +388,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+  <a href="index.html#inicio" class="mobile-link">Inicio</a>
   <a href="index.html#nosotros" class="mobile-link">Nosotros</a>
   <a href="servicios.html" class="mobile-link" style="color:var(--gold)">Servicios</a>
   <a href="productos.html" class="mobile-link">Productos</a>
@@ -319,267 +411,432 @@
 
 <!-- CATEGORY NAV -->
 <nav class="cat-nav" id="catNav" aria-label="Categorías de tratamientos">
-  <a href="#faciales" class="cat-nav-link">Tratamientos Faciales</a>
-  <a href="#avanzados" class="cat-nav-link">Faciales Avanzados</a>
-  <a href="#corporales" class="cat-nav-link">Tratamientos Corporales</a>
+  <a href="#patologias" class="cat-nav-link">Patologías</a>
+  <a href="#cosmetologia" class="cat-nav-link">Cosmetología</a>
+  <a href="#dermocosmiatria" class="cat-nav-link">Dermocosmiátria</a>
 </nav>
 
+
 <!-- ══════════════════════════════════════════
-     CATEGORÍA 1 — TRATAMIENTOS FACIALES
+     CATEGORÍA 1 — PATOLOGÍAS
 ══════════════════════════════════════════ -->
-<section class="cat-block" id="faciales">
+<section class="cat-block" id="patologias">
 
   <div class="cat-heading reveal">
     <div>
       <p class="cat-label">Categoría 01</p>
-      <h2 class="cat-title">Tratamientos<br><em>Faciales</em></h2>
+      <h2 class="cat-title">Pato<em>logías</em></h2>
     </div>
-    <div class="cat-total">09</div>
+    <div class="cat-total">01</div>
   </div>
   <div class="cat-divider"></div>
 
-  <div class="treatment-list">
-
-    <!-- 01 Limpieza Facial Comedogénica -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Comedogénica" loading="lazy">
-        <div class="tr-num">01</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Limpieza · Piel Grasa</span>
-        <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
-        <p class="tr-desc">Elimina puntos negros, impurezas y exceso de grasa, dejando la piel limpia y equilibrada.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 02 Limpieza con Oxígeno -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Oxígeno" loading="lazy">
-        <div class="tr-num">02</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Oxigenación · Luminosidad</span>
-        <h3 class="tr-name">Limpieza<br>con Oxígeno</h3>
-        <p class="tr-desc">Oxigena e hidrata la piel en profundidad, aportando frescura y luminosidad inmediata.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+  <!-- ── Descripción de categoría: Patologías ── -->
+  <div class="cat-desc reveal">
+    <div class="cat-desc-text">
+      <p class="cat-desc-intro">
+        Abordamos las condiciones dermatológicas más frecuentes con protocolos clínicos personalizados.
+        Nuestros tratamientos están organizados por patología para ofrecerte una solución precisa:
+        si buscas controlar el <a href="#pat-acne">Acné</a>, calmar la rojez de la <a href="#pat-rosacea">Rosácea</a>,
+        recuperar la firmeza con <a href="#pat-rejuvenecimiento">Rejuvenecimiento</a>,
+        tratar <a href="#pat-manchas">Manchas</a> e hiperpigmentación,
+        o restaurar la barrera cutánea en <a href="#pat-deshidratada">Piel Deshidratada</a> —
+        cada subcategoría tiene su propio protocolo especializado.
+      </p>
+      <div class="cat-desc-tags">
+        <a href="#pat-acne" class="cat-desc-tag">Acné</a>
+        <a href="#pat-rosacea" class="cat-desc-tag">Rosácea</a>
+        <a href="#pat-rejuvenecimiento" class="cat-desc-tag">Rejuvenecimiento</a>
+        <a href="#pat-manchas" class="cat-desc-tag">Manchas</a>
+        <a href="#pat-deshidratada" class="cat-desc-tag">Piel Deshidratada</a>
       </div>
     </div>
-
-    <!-- 03 Limpieza con Hydrafacial -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Hydrafacial" loading="lazy">
-        <div class="tr-num">03</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Hidratación · Exfoliación</span>
-        <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
-        <p class="tr-desc">Limpieza avanzada que exfolia, hidrata y revitaliza la piel para un aspecto saludable.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 04 Limpieza Facial Clínica y Patológica -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
-        <div class="tr-num">04</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Clínico · Rosácea · Acné</span>
-        <h3 class="tr-name">Limpieza Facial<br>Clínica y Patológica</h3>
-        <p class="tr-desc">Tratamiento especializado para rosácea, acné, piel sensible o deshidratada. Protocolo personalizado según las necesidades específicas de cada paciente.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar evaluación</a>
-      </div>
-    </div>
-
-    <!-- 05 Hollywood Black Peel -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&auto=format&fit=crop&q=80" alt="Hollywood Black Peel" loading="lazy">
-        <div class="tr-num">05</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Textura · Luminosidad · Poros</span>
-        <h3 class="tr-name">Hollywood<br>Black Peel</h3>
-        <p class="tr-desc">Ayuda a mejorar la textura, luminosidad y apariencia de los poros de la piel.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 06 Microneedling -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Microneedling" loading="lazy">
-        <div class="tr-num">06</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Colágeno · Cicatrices · Anti-aging</span>
-        <h3 class="tr-name">Microneedling</h3>
-        <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 07 Peeling Químico -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=900&auto=format&fit=crop&q=80" alt="Peeling Químico" loading="lazy">
-        <div class="tr-num">07</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Manchas · Acné · Envejecimiento</span>
-        <h3 class="tr-name">Peeling<br>Químico</h3>
-        <p class="tr-desc">Renueva la piel, mejora manchas, marcas de acné y signos de envejecimiento.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 09 Dark Circles -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" alt="Dark Circles" loading="lazy">
-        <div class="tr-num">09</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Ojeras · Luminosidad</span>
-        <h3 class="tr-name">Dark<br>Circles</h3>
-        <p class="tr-desc">Tratamiento enfocado en mejorar la apariencia de ojeras y aportar luminosidad.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ── Subcategoría: Acné ── -->
+  <div class="subcat-block" id="pat-acne">
+    <div class="subcat-header reveal">
+      <div class="subcat-num">01</div>
+      <div class="subcat-info">
+        <span class="subcat-label">Subcategoría</span>
+        <h3 class="subcat-title"><em>Acné</em></h3>
+      </div>
+    </div>
+    <div class="subcat-divider"></div>
+    <div class="treatment-list">
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
+          <div class="tr-num">01</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Clínico · Rosácea · Acné</span>
+          <h3 class="tr-name">Limpieza Facial<br>Clínica y Patológica</h3>
+          <p class="tr-desc">Tratamiento especializado para acné activo, piel sensible y congestionada. Protocolo personalizado según las necesidades específicas de cada paciente.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar evaluación</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=900&auto=format&fit=crop&q=80" alt="Peeling Químico Acné" loading="lazy">
+          <div class="tr-num">02</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Manchas · Acné · Renovación</span>
+          <h3 class="tr-name">Peeling<br>Químico</h3>
+          <p class="tr-desc">Renueva la piel, mejora manchas post-acné y regula la producción de sebo.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Comedogénica" loading="lazy">
+          <div class="tr-num">03</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Limpieza · Piel Grasa · Poros</span>
+          <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
+          <p class="tr-desc">Elimina puntos negros, impurezas y exceso de grasa, dejando la piel limpia y equilibrada.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Subcategoría: Rosácea ── -->
+  <div class="subcat-block" id="pat-rosacea">
+    <div class="subcat-header reveal">
+      <div class="subcat-num">02</div>
+      <div class="subcat-info">
+        <span class="subcat-label">Subcategoría</span>
+        <h3 class="subcat-title"><em>Rosácea</em></h3>
+      </div>
+    </div>
+    <div class="subcat-divider"></div>
+    <div class="treatment-list">
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
+          <div class="tr-num">01</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Hidratación · Calmante · Rosácea</span>
+          <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
+          <p class="tr-desc">Limpieza avanzada, sin irritación, que calma la piel reactiva y reduce la rojez característica de la rosácea.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=900&auto=format&fit=crop&q=80" alt="Plenhyage Rosácea" loading="lazy">
+          <div class="tr-num">02</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Bioregeneración · Calmante · Vascular</span>
+          <h3 class="tr-name">Plenhyage<br>+ Dermofacial</h3>
+          <p class="tr-desc">Bioestimula la regeneración cutánea y reduce la inflamación vascular asociada a la rosácea.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Subcategoría: Rejuvenecimiento ── -->
+  <div class="subcat-block" id="pat-rejuvenecimiento">
+    <div class="subcat-header reveal">
+      <div class="subcat-num">03</div>
+      <div class="subcat-info">
+        <span class="subcat-label">Subcategoría</span>
+        <h3 class="subcat-title"><em>Rejuvenecimiento</em></h3>
+      </div>
+    </div>
+    <div class="subcat-divider"></div>
+    <div class="treatment-list">
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=900&auto=format&fit=crop&q=80" alt="PDRN + Dermofacial" loading="lazy">
+          <div class="tr-num">01</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Regeneración celular · Revitalización</span>
+          <h3 class="tr-name">PDRN<br>+ Dermofacial</h3>
+          <p class="tr-desc">Estimula la regeneración celular, aportando luminosidad, firmeza y revitalización profunda.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas" loading="lazy">
+          <div class="tr-num">02</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Bioregeneración · Anti-arrugas</span>
+          <h3 class="tr-name">Exosomas</h3>
+          <p class="tr-desc">Favorecen la regeneración celular, ayudando a disminuir arrugas, líneas de expresión y flacidez.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=900&auto=format&fit=crop&q=80" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
+          <div class="tr-num">03</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Firmeza · Hidratación · Luminosidad</span>
+          <h3 class="tr-name">Pack Rejuvenecimiento<br>y Nutrición</h3>
+          <p class="tr-desc">Combina activos y tecnología para una piel más firme, hidratada y luminosa.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1644982647869-95f09eb3e89e?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Facial" loading="lazy">
+          <div class="tr-num">04</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Firmeza · Anti-flacidez · Reafirmación</span>
+          <h3 class="tr-name">Crioradiofrecuencia<br>Facial</h3>
+          <p class="tr-desc">Ayuda a reafirmar la piel y mejorar la flacidez facial mediante tecnología de frío y radiofrecuencia.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Subcategoría: Manchas ── -->
+  <div class="subcat-block" id="pat-manchas">
+    <div class="subcat-header reveal">
+      <div class="subcat-num">04</div>
+      <div class="subcat-info">
+        <span class="subcat-label">Subcategoría</span>
+        <h3 class="subcat-title"><em>Manchas</em></h3>
+      </div>
+    </div>
+    <div class="subcat-divider"></div>
+    <div class="treatment-list">
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&auto=format&fit=crop&q=80" alt="Hollywood Black Peel" loading="lazy">
+          <div class="tr-num">01</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Textura · Luminosidad · Manchas</span>
+          <h3 class="tr-name">Hollywood<br>Black Peel</h3>
+          <p class="tr-desc">Ayuda a mejorar la textura, luminosidad y apariencia de manchas y poros de la piel.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" alt="Dark Circles" loading="lazy">
+          <div class="tr-num">02</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Ojeras · Manchas · Luminosidad</span>
+          <h3 class="tr-name">Dark<br>Circles</h3>
+          <p class="tr-desc">Tratamiento enfocado en mejorar la apariencia de ojeras y manchas periorbitarias, aportando luminosidad.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=80" alt="Zona Íntima" loading="lazy">
+          <div class="tr-num">03</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Hiperpigmentación · Tono uniforme</span>
+          <h3 class="tr-name">Zona<br>Íntima</h3>
+          <p class="tr-desc">Ayuda a disminuir la hiperpigmentación y unificar el tono de la piel en zonas sensibles.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Subcategoría: Piel Deshidratada ── -->
+  <div class="subcat-block" id="pat-deshidratada">
+    <div class="subcat-header reveal">
+      <div class="subcat-num">05</div>
+      <div class="subcat-info">
+        <span class="subcat-label">Subcategoría</span>
+        <h3 class="subcat-title">Piel <em>Deshidratada</em></h3>
+      </div>
+    </div>
+    <div class="subcat-divider"></div>
+    <div class="treatment-list">
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Oxígeno" loading="lazy">
+          <div class="tr-num">01</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Oxigenación · Luminosidad · Hidratación</span>
+          <h3 class="tr-name">Limpieza<br>con Oxígeno</h3>
+          <p class="tr-desc">Oxigena e hidrata la piel en profundidad, aportando frescura y luminosidad inmediata en pieles deshidratadas.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
+          <div class="tr-num">02</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Renovación intensiva · Hidratación profunda</span>
+          <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
+          <p class="tr-desc">Renovación intensiva que hidrata, revitaliza y restaura la barrera cutánea en pieles deshidratadas.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+      <div class="tr-row">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop&q=80" alt="Drenaje Manual Facial" loading="lazy">
+          <div class="tr-num">03</div>
+        </div>
+        <div class="tr-body">
+          <span class="tr-tag">Circulación · Drenaje · Desinflamación</span>
+          <h3 class="tr-name">Drenaje Manual<br>Facial</h3>
+          <p class="tr-desc">Activa la circulación linfática, reduce la retención de líquidos y mejora la absorción de activos hidratantes.</p>
+          <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 
 <!-- ══════════════════════════════════════════
-     CATEGORÍA 2 — FACIALES AVANZADOS
+     CATEGORÍA 2 — COSMETOLOGÍA
 ══════════════════════════════════════════ -->
-<section class="cat-block" id="avanzados">
+<section class="cat-block" id="cosmetologia">
 
   <div class="cat-heading reveal">
     <div>
       <p class="cat-label">Categoría 02</p>
-      <h2 class="cat-title">Faciales<br><em>Avanzados</em></h2>
+      <h2 class="cat-title">Cosme<em>tología</em></h2>
     </div>
-    <div class="cat-total">08</div>
+    <div class="cat-total">02</div>
   </div>
   <div class="cat-divider"></div>
 
+  <!-- ── Descripción de categoría: Cosmetología ── -->
+  <div class="cat-desc reveal">
+    <div class="cat-desc-text">
+      <p class="cat-desc-intro">
+        La cosmetología engloba todos los tratamientos orientados a mejorar la apariencia y el bienestar
+        de la piel y el cuerpo desde un enfoque estético integral. En esta categoría encontrarás procedimientos
+        como <em>Microneedling</em>, <em>Pack Papada</em>, <em>Moldeo Corporal 360</em>,
+        <em>Pack Antiinflamatorio</em>, <em>Crioradiofrecuencia Corporal</em> y <em>Full Body Reset</em> —
+        protocolos que combinan tecnología y activos cosméticos para moldear, reafirmar y revitalizar
+        tu piel de manera global.
+      </p>
+    
+    </div>
+  </div>
+<div class="espacios-grande"> </div>
   <div class="treatment-list">
 
-    <!-- 01 Plenhyage + Dermofacial -->
+    <!-- 01 Microneedling -->
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=900&auto=format&fit=crop&q=80" alt="Plenhyage + Dermofacial" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Microneedling" loading="lazy">
         <div class="tr-num">01</div>
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Rejuvenecimiento · Nutrición profunda</span>
-        <h3 class="tr-name">Plenhyage<br>+ Dermofacial</h3>
-        <p class="tr-desc">Rejuvenece, nutre profundamente y mejora la calidad de la piel.</p>
+        <span class="tr-tag">Colágeno · Cicatrices · Anti-aging</span>
+        <h3 class="tr-name">Microneedling</h3>
+        <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura de la piel.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
 
-    <!-- 02 PDRN + Dermofacial -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=900&auto=format&fit=crop&q=80" alt="PDRN + Dermofacial" loading="lazy">
-        <div class="tr-num">02</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Regeneración celular · Revitalización</span>
-        <h3 class="tr-name">PDRN<br>+ Dermofacial</h3>
-        <p class="tr-desc">Estimula la regeneración celular, aportando luminosidad y revitalización.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 03 Dermapen + Hydrafacial + Electroporador -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
-        <div class="tr-num">03</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Renovación intensiva · Textura</span>
-        <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
-        <p class="tr-desc">Renovación intensiva que hidrata, revitaliza y mejora la textura de la piel.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 04 Crioradiofrecuencia Facial -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1644982647869-95f09eb3e89e?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Facial" loading="lazy">
-        <div class="tr-num">04</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Firmeza · Anti-flacidez</span>
-        <h3 class="tr-name">Crioradiofrecuencia<br>Facial</h3>
-        <p class="tr-desc">Ayuda a reafirmar la piel y mejorar la flacidez facial.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 05 Pack Papada -->
+    <!-- 02 Pack Papada -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=900&auto=format&fit=crop&q=80" alt="Pack Papada" loading="lazy">
-        <div class="tr-num">05</div>
+        <div class="tr-num">02</div>
       </div>
       <div class="tr-body">
         <span class="tr-tag">Contorno facial · Reafirmación</span>
         <h3 class="tr-name">Pack<br>Papada</h3>
-        <p class="tr-desc">Tratamiento diseñado para reducir y reafirmar la zona de la papada.</p>
+        <p class="tr-desc">Tratamiento diseñado para reducir y reafirmar la zona de la papada y mejorar el contorno facial.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
 
-    <!-- 06 Pack Rejuvenecimiento y Nutrición -->
+    <!-- 03 Moldeo Corporal 360 -->
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=900&auto=format&fit=crop&q=80" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80" alt="Moldeo Corporal 360" loading="lazy">
+        <div class="tr-num">03</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Silueta · Circulación · Reducción</span>
+        <h3 class="tr-name">Moldeo<br>Corporal 360</h3>
+        <p class="tr-desc">Ayuda a reducir medidas, mejorar la circulación y modelar la silueta corporal.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 04 Pack Antiinflamatorio -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&auto=format&fit=crop&q=80" alt="Pack Antiinflamatorio" loading="lazy">
+        <div class="tr-num">04</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Retención de líquidos · Desinflamación</span>
+        <h3 class="tr-name">Pack<br>Antiinflamatorio</h3>
+        <p class="tr-desc">Disminuye la retención de líquidos y ayuda a desinflamar el cuerpo de forma integral.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 05 Crioradiofrecuencia Corporal -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1593476550610-87baa860004a?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Corporal" loading="lazy">
+        <div class="tr-num">05</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Reafirmación · Flacidez corporal</span>
+        <h3 class="tr-name">Crioradiofrecuencia<br>Corporal</h3>
+        <p class="tr-desc">Reafirma la piel y mejora la apariencia de la flacidez corporal mediante tecnología avanzada.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 06 Full Body Reset -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset" loading="lazy">
         <div class="tr-num">06</div>
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Firmeza · Hidratación · Luminosidad</span>
-        <h3 class="tr-name">Pack Rejuvenecimiento<br>y Nutrición</h3>
-        <p class="tr-desc">Combina activos y tecnología para una piel más firme, hidratada y luminosa.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 07 Exosomas -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas" loading="lazy">
-        <div class="tr-num">07</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Bioregeneración · Anti-arrugas</span>
-        <h3 class="tr-name">Exosomas</h3>
-        <p class="tr-desc">Favorecen la regeneración celular, ayudando a disminuir arrugas y flacidez.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 08 Drenaje Manual Facial -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop&q=80" alt="Drenaje Manual Facial" loading="lazy">
-        <div class="tr-num">08</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Circulación · Drenaje · Desinflamación</span>
-        <h3 class="tr-name">Drenaje Manual<br>Facial</h3>
-        <p class="tr-desc">Reduce la retención de líquidos, desinflama y mejora la circulación facial.</p>
+        <span class="tr-tag">Remodelación · Tonificación · Integral</span>
+        <h3 class="tr-name">Full Body<br>Reset</h3>
+        <p class="tr-desc">Protocolo integral para remodelar, tonificar y mejorar la apariencia corporal de forma completa.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -589,115 +846,91 @@
 
 
 <!-- ══════════════════════════════════════════
-     CATEGORÍA 3 — TRATAMIENTOS CORPORALES
+     CATEGORÍA 3 — DERMOCOSMIÁTRIA
 ══════════════════════════════════════════ -->
-<section class="cat-block" id="corporales">
+<section class="cat-block" id="dermocosmiatria">
 
   <div class="cat-heading reveal">
     <div>
       <p class="cat-label">Categoría 03</p>
-      <h2 class="cat-title">Tratamientos<br><em>Corporales</em></h2>
+      <h2 class="cat-title">Dermocos<em>miátria</em></h2>
     </div>
-    <div class="cat-total">06</div>
+    <div class="cat-total">03</div>
   </div>
   <div class="cat-divider"></div>
 
+  <!-- ── Descripción de categoría: Dermocosmiátria ── -->
+  <div class="cat-desc reveal">
+    <div class="cat-desc-text">
+      <p class="cat-desc-intro">
+        La dermocosmiátria integra la ciencia dermatológica con la cosmética de alta tecnología,
+        utilizando activos de última generación y equipamiento médico-estético avanzado.
+        En esta categoría encontrarás protocolos de alto rendimiento como
+        <em>Mesoterapia Corporal</em>, <em>Full Body Reset + Mesoterapia</em>,
+        <em>Dermapen + Hydrafacial + Electroporador</em> y <em>Exosomas Avanzados</em> —
+        tratamientos que van más allá de la superficie para actuar en profundidad
+        sobre la estructura y calidad de la piel.
+      </p>
+    </div>
+  </div>
+
+  <div class="espacios-grande">
+
+  </div>
   <div class="treatment-list">
 
-    <!-- 01 Moldeo Corporal 360 -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80" alt="Moldeo Corporal 360" loading="lazy">
-        <div class="tr-num">01</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Silueta · Circulación · Reducción</span>
-        <h3 class="tr-name">Moldeo<br>Corporal 360</h3>
-        <p class="tr-desc">Ayuda a reducir medidas, mejorar la circulación y modelar la silueta.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 02 Mesoterapia Corporal -->
+    <!-- 01 Mesoterapia Corporal -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&auto=format&fit=crop&q=80" alt="Mesoterapia Corporal" loading="lazy">
-        <div class="tr-num">02</div>
+        <div class="tr-num">01</div>
       </div>
       <div class="tr-body">
         <span class="tr-tag">Grasa localizada · Anti-flacidez</span>
         <h3 class="tr-name">Mesoterapia<br>Corporal</h3>
-        <p class="tr-desc">Aplicación de activos que ayudan a combatir grasa localizada y flacidez.</p>
+        <p class="tr-desc">Aplicación de activos que ayudan a combatir grasa localizada y flacidez con resultados precisos y duraderos.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
 
-    <!-- 03 Pack Antiinflamatorio -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&auto=format&fit=crop&q=80" alt="Pack Antiinflamatorio" loading="lazy">
-        <div class="tr-num">03</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Retención de líquidos · Desinflamación</span>
-        <h3 class="tr-name">Pack<br>Antiinflamatorio</h3>
-        <p class="tr-desc">Disminuye la retención de líquidos y ayuda a desinflamar el cuerpo.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 04 Crioradiofrecuencia Corporal -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1593476550610-87baa860004a?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Corporal" loading="lazy">
-        <div class="tr-num">04</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Reafirmación · Flacidez corporal</span>
-        <h3 class="tr-name">Crioradiofrecuencia<br>Corporal</h3>
-        <p class="tr-desc">Reafirma la piel y mejora la apariencia de la flacidez corporal.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 05 Full Body Reset -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset" loading="lazy">
-        <div class="tr-num">05</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Remodelación · Tonificación · Integral</span>
-        <h3 class="tr-name">Full Body<br>Reset</h3>
-        <p class="tr-desc">Protocolo integral para remodelar, tonificar y mejorar la apariencia corporal.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 08 Zona Íntima -->
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=80" alt="Zona Íntima" loading="lazy">
-        <div class="tr-num">08</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Hiperpigmentación · Tono uniforme</span>
-        <h3 class="tr-name">Zona<br>Íntima</h3>
-        <p class="tr-desc">Ayuda a disminuir la hiperpigmentación y unificar el tono de la piel.</p>
-        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-
-    <!-- 06 Full Body Reset + Mesoterapia Corporal -->
+    <!-- 02 Full Body Reset + Mesoterapia Corporal -->
     <div class="tr-row">
       <div class="tr-img">
         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset + Mesoterapia Corporal" loading="lazy">
-        <div class="tr-num">06</div>
+        <div class="tr-num">02</div>
       </div>
       <div class="tr-body">
         <span class="tr-tag">Reducción · Reafirmación · Premium</span>
         <h3 class="tr-name">Full Body Reset<br>+ Mesoterapia Corporal</h3>
-        <p class="tr-desc">Tratamiento completo para potenciar la reducción de medidas y reafirmación corporal.</p>
+        <p class="tr-desc">Tratamiento completo para potenciar la reducción de medidas y reafirmación corporal en un solo protocolo.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 03 Dermapen + Hydrafacial + Electroporador (avanzado) -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen Avanzado" loading="lazy">
+        <div class="tr-num">03</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Renovación intensiva · Textura · Activos</span>
+        <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
+        <p class="tr-desc">Protocolo avanzado de dermocosmiátria que combina microperforación, hidratación y electroporación para resultados óptimos.</p>
+        <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
+      </div>
+    </div>
+
+    <!-- 04 Exosomas Avanzado -->
+    <div class="tr-row">
+      <div class="tr-img">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas Avanzado" loading="lazy">
+        <div class="tr-num">04</div>
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Bioregeneración · Células madre · Premium</span>
+        <h3 class="tr-name">Exosomas<br>Avanzados</h3>
+        <p class="tr-desc">Tecnología de punta en regeneración cutánea mediante vesículas extracelulares para una reparación profunda y duradera.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -740,9 +973,9 @@
     <div>
       <div class="footer-col-title">Tratamientos</div>
       <ul class="footer-links">
-        <li><a href="servicios.html#faciales">Faciales</a></li>
-        <li><a href="servicios.html#avanzados">Faciales Avanzados</a></li>
-        <li><a href="servicios.html#corporales">Corporales</a></li>
+        <li><a href="servicios.html#patologias">Patologías</a></li>
+        <li><a href="servicios.html#cosmetologia">Cosmetología</a></li>
+        <li><a href="servicios.html#dermocosmiatria">Dermocosmiátria</a></li>
       </ul>
     </div>
     <div>
@@ -789,11 +1022,11 @@
   document.querySelectorAll('.mobile-link').forEach(l =>
     l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
 
-  // Scroll reveal — category headers
+  // Scroll reveal — category headers & subcat headers
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal, .subcat-header').forEach(el => revealObserver.observe(el));
 
   // Scroll reveal — treatment rows (staggered)
   const rowObserver = new IntersectionObserver((entries) => {
@@ -809,7 +1042,7 @@
   document.querySelectorAll('.tr-row').forEach(el => rowObserver.observe(el));
 
   // Active cat-nav highlight
-  const sectionIds = ['faciales', 'avanzados', 'corporales'];
+  const sectionIds = ['patologias', 'cosmetologia', 'dermocosmiatria'];
   const catLinks = document.querySelectorAll('.cat-nav-link');
   window.addEventListener('scroll', () => {
     let current = '';
