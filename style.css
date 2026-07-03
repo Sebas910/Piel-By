@@ -24,6 +24,9 @@ p {
 }
 html { scroll-behavior: smooth; font-size: 112.5%; }
 
+/* Evita que las secciones queden ocultas bajo el navbar fijo al navegar con anclas */
+[id] { scroll-margin-top: 110px; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
@@ -176,22 +179,17 @@ nav.scrolled .hamburger span { background: var(--brown); }
   width: 40%;
   display: flex;
   justify-content: center;
-  height: 450px;
-
-}
-
-.contenedor {
-  width: 300px;
-  height: 200px;
+  align-items: center;
 }
 
 .hero-image img {
   width: 100%;
-  max-width: 500px; 
-  height: auto; 
-  border-radius: 12px; 
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+  max-width: 420px;
+  height: 520px;
+  border-radius: 20px;
+  box-shadow: 0 24px 50px rgba(0,0,0,0.35);
   object-fit: cover;
+  object-position: center top;
 }
 
 @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
@@ -812,9 +810,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .footer-links a:hover { color: var(--gold-light); }
 .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-copy { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
-.footer-legal { display: flex; gap: 1.5rem; }
-.footer-legal a { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.3s; }
-.footer-legal a:hover { color: var(--gold); }
 
 /* ── FLOATING WA ── */
 .wa-float {
@@ -829,7 +824,7 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .wa-float::before {
   content: 'Escríbenos';
   position: absolute; right: 60px; white-space: nowrap;
-  font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
+  font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
   background: var(--black); color: var(--white); padding: 0.35rem 0.8rem;
   opacity: 0; transform: translateX(5px); transition: opacity 0.3s, transform 0.3s;
   pointer-events: none;
@@ -843,15 +838,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .reveal-left.visible { opacity: 1; transform: translateX(0); }
 .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-/* ── NOTIFICATION ── */
-.notification {
-  position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px);
-  background: var(--brown); color: var(--white); padding: 0.8rem 2rem;
-  font-size: 0.8rem; letter-spacing: 0.05em; opacity: 0;
-  transition: opacity 0.3s, transform 0.3s; z-index: 600;
-}
-.notification.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ── RESPONSIVE PARA MÓVILES Y TABLETAS ── */
 @media (max-width: 1024px) {
@@ -882,7 +868,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
   .services-grid { grid-template-columns: 1fr; }
   .treatments-grid { grid-template-columns: 1fr 1fr; }
   .products-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
 
   .services-desc { text-align: left; }
@@ -904,6 +889,13 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  .hero-image img {
+    max-width: 85%;
+    height: 340px;
+    border-radius: 16px;
+    object-fit: cover;
+    object-position: center top;
   }
 
   /* Botones del hero alineados a la izquierda y que ocupen el ancho disponible */
@@ -939,11 +931,4 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 
   /* Botón flotante de WhatsApp más cerca del borde */
   .wa-float { bottom: 1.2rem; right: 1.2rem; }
-}
-
-/* COGIDO A MANO PARA ARREGLAR PROBLEMAS */
-
-.espacios-grande {
-
-  margin-bottom: 100px;
 }

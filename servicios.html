@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="Recursos/favicon.svg">
   <style>
 
     /* ── PAGE HERO ── */
@@ -118,23 +119,6 @@
       background: var(--gold); border-color: var(--gold); color: var(--white);
       transform: translateY(-2px);
     }
-
-    /* ── CATEGORY NAV ── */
-    .cat-nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(250,246,240,0.97); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(184,149,90,0.18);
-      padding: 0 10vw; display: flex; gap: 0;
-      overflow-x: auto; scrollbar-width: none;
-    }
-    .cat-nav::-webkit-scrollbar { display: none; }
-    .cat-nav-link {
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--text-light); text-decoration: none;
-      padding: 1.2rem 1.8rem; border-bottom: 2px solid transparent;
-      white-space: nowrap; transition: color 0.3s, border-color 0.3s; flex-shrink: 0;
-    }
-    .cat-nav-link:hover, .cat-nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
 
     /* ══════════════════════════════════════
        CATEGORY BLOCK
@@ -319,7 +303,6 @@
       .cat-divider { margin: 2rem 6vw 0; }
       .cat-total { display: none; }
       .page-hero-content { padding: 0 6vw; }
-      .cat-nav { padding: 0 4vw; }
       .cta-banner { padding: 4.5rem 6vw; }
       .cat-desc { padding: 2rem 6vw 0; gap: 2rem; }
       .subcat-block { padding: 0 6vw; }
@@ -396,7 +379,7 @@
 
     <div class="cat-overview-card reveal" style="transition-delay:0.2s">
       <div class="cat-overview-num">03</div>
-      <h3 class="cat-overview-name">Dermocosmiátria</h3>
+      <h3 class="cat-overview-name">Dermocosmiatría</h3>
       <p class="cat-overview-desc">Ciencia dermatológica con cosmética de alta tecnología. Activos de última generación para resultados en profundidad.</p>
       <span class="cat-overview-tag">Mesoterapia · Exosomas · Dermapen</span>
       <a href="#dermocosmiatria" class="cat-overview-btn">Ver tratamientos</a>
@@ -404,9 +387,6 @@
 
   </div>
 </div>
-
-<!-- CATEGORY NAV -->
-
 
 <!-- ══════════════════════════════════════════
      CATEGORÍA 1 — PATOLOGÍAS
@@ -454,7 +434,7 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
+          <img src="Recursos/img/photo-1559757148-5c350d0d3c56.jpg" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
@@ -466,7 +446,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=900&auto=format&fit=crop&q=80" alt="Peeling Químico Acné" loading="lazy">
+          <img src="Recursos/img/photo-1596755389378-c31d21fd1273.jpg" alt="Peeling Químico Acné" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
@@ -478,7 +458,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80" alt="Limpieza Facial Comedogénica" loading="lazy">
+          <img src="Recursos/img/photo-1570172619644-dfd03ed5d881.jpg" alt="Limpieza Facial Comedogénica" loading="lazy">
           <div class="tr-num">03</div>
         </div>
         <div class="tr-body">
@@ -503,7 +483,7 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
+          <img src="Recursos/img/photo-1512290923902-8a9f81dc236c.jpg" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
@@ -515,7 +495,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=900&auto=format&fit=crop&q=80" alt="Plenhyage Rosácea" loading="lazy">
+          <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="Plenhyage Rosácea" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
@@ -540,7 +520,7 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=900&auto=format&fit=crop&q=80" alt="PDRN + Dermofacial" loading="lazy">
+          <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="PDRN + Dermofacial" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
@@ -552,7 +532,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas" loading="lazy">
+          <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Exosomas" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
@@ -564,7 +544,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=900&auto=format&fit=crop&q=80" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
+          <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="Pack Rejuvenecimiento y Nutrición" loading="lazy">
           <div class="tr-num">03</div>
         </div>
         <div class="tr-body">
@@ -576,7 +556,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1644982647869-95f09eb3e89e?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Facial" loading="lazy">
+          <img src="Recursos/img/photo-1616391182219-e080b4d1043a.jpg" alt="Crioradiofrecuencia Facial" loading="lazy">
           <div class="tr-num">04</div>
         </div>
         <div class="tr-body">
@@ -601,7 +581,7 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&auto=format&fit=crop&q=80" alt="Hollywood Black Peel" loading="lazy">
+          <img src="Recursos/img/photo-1515377905703-c4788e51af15.jpg" alt="Hollywood Black Peel" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
@@ -613,7 +593,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80" alt="Dark Circles" loading="lazy">
+          <img src="Recursos/img/photo-1522337360788-8b13dee7a37e.jpg" alt="Dark Circles" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
@@ -625,7 +605,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=80" alt="Zona Íntima" loading="lazy">
+          <img src="Recursos/img/photo-1629909613654-28e377c37b09.jpg" alt="Zona Íntima" loading="lazy">
           <div class="tr-num">03</div>
         </div>
         <div class="tr-body">
@@ -650,7 +630,7 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&auto=format&fit=crop&q=80" alt="Limpieza con Oxígeno" loading="lazy">
+          <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="Limpieza con Oxígeno" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
@@ -662,7 +642,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
+          <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
@@ -674,7 +654,7 @@
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop&q=80" alt="Drenaje Manual Facial" loading="lazy">
+          <img src="Recursos/img/photo-1600334089648-b0d9d3028eb2.jpg" alt="Drenaje Manual Facial" loading="lazy">
           <div class="tr-num">03</div>
         </div>
         <div class="tr-body">
@@ -719,7 +699,7 @@
   <div class="treatment-list" style="margin-top:3rem;">
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80" alt="Microneedling" loading="lazy">
+        <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="Microneedling" loading="lazy">
         <div class="tr-num">01</div>
       </div>
       <div class="tr-body">
@@ -731,7 +711,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=900&auto=format&fit=crop&q=80" alt="Pack Papada" loading="lazy">
+        <img src="Recursos/img/photo-1552693673-1bf958298935.jpg" alt="Pack Papada" loading="lazy">
         <div class="tr-num">02</div>
       </div>
       <div class="tr-body">
@@ -743,7 +723,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80" alt="Moldeo Corporal 360" loading="lazy">
+        <img src="Recursos/img/photo-1571019613454-1cb2f99b2d8b.jpg" alt="Moldeo Corporal 360" loading="lazy">
         <div class="tr-num">03</div>
       </div>
       <div class="tr-body">
@@ -755,7 +735,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&auto=format&fit=crop&q=80" alt="Pack Antiinflamatorio" loading="lazy">
+        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Pack Antiinflamatorio" loading="lazy">
         <div class="tr-num">04</div>
       </div>
       <div class="tr-body">
@@ -767,7 +747,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1593476550610-87baa860004a?w=900&auto=format&fit=crop&q=80" alt="Crioradiofrecuencia Corporal" loading="lazy">
+        <img src="Recursos/img/photo-1593476550610-87baa860004a.jpg" alt="Crioradiofrecuencia Corporal" loading="lazy">
         <div class="tr-num">05</div>
       </div>
       <div class="tr-body">
@@ -779,7 +759,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset" loading="lazy">
+        <img src="Recursos/img/photo-1518611012118-696072aa579a.jpg" alt="Full Body Reset" loading="lazy">
         <div class="tr-num">06</div>
       </div>
       <div class="tr-body">
@@ -800,7 +780,7 @@
 
   <div class="cat-heading reveal">
     <div>
-      <h2 class="cat-title">Dermocos<em>miátria</em></h2>
+      <h2 class="cat-title">Dermocos<em>miatría</em></h2>
     </div>
     <div class="cat-total">03</div>
   </div>
@@ -809,7 +789,7 @@
   <div class="cat-desc reveal">
     <div class="cat-desc-text">
       <p class="cat-desc-intro">
-        La dermocosmiátria integra la ciencia dermatológica con la cosmética de alta tecnología,
+        La dermocosmiatría integra la ciencia dermatológica con la cosmética de alta tecnología,
         utilizando activos de última generación y equipamiento médico-estético avanzado.
         En esta categoría encontrarás protocolos de alto rendimiento como
         <em>Mesoterapia Corporal</em>, <em>Full Body Reset + Mesoterapia</em>,
@@ -823,7 +803,7 @@
   <div class="treatment-list" style="margin-top:3rem;">
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&auto=format&fit=crop&q=80" alt="Mesoterapia Corporal" loading="lazy">
+        <img src="Recursos/img/photo-1620916566398-39f1143ab7be.jpg" alt="Mesoterapia Corporal" loading="lazy">
         <div class="tr-num">01</div>
       </div>
       <div class="tr-body">
@@ -835,7 +815,7 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&auto=format&fit=crop&q=80" alt="Full Body Reset + Mesoterapia Corporal" loading="lazy">
+        <img src="Recursos/img/photo-1540555700478-4be289fbecef.jpg" alt="Full Body Reset + Mesoterapia Corporal" loading="lazy">
         <div class="tr-num">02</div>
       </div>
       <div class="tr-body">
@@ -847,19 +827,19 @@
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=900&auto=format&fit=crop&q=80" alt="Dermapen Avanzado" loading="lazy">
+        <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Dermapen Avanzado" loading="lazy">
         <div class="tr-num">03</div>
       </div>
       <div class="tr-body">
         <span class="tr-tag">Renovación intensiva · Textura · Activos</span>
         <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
-        <p class="tr-desc">Protocolo avanzado de dermocosmiátria que combina microperforación, hidratación y electroporación para resultados óptimos.</p>
+        <p class="tr-desc">Protocolo avanzado de dermocosmiatría que combina microperforación, hidratación y electroporación para resultados óptimos.</p>
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
     <div class="tr-row">
       <div class="tr-img">
-        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=80" alt="Exosomas Avanzado" loading="lazy">
+        <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Exosomas Avanzado" loading="lazy">
         <div class="tr-num">04</div>
       </div>
       <div class="tr-body">
@@ -893,10 +873,10 @@
       <div class="footer-brand">PielBy</div>
       <p class="footer-tagline">Cosmetología y estética avanzada. Representantes exclusivos de las más prestigiosas marcas europeas de medicina estética en Chile.</p>
       <div class="footer-social">
-        <a href="#" class="social-btn" aria-label="Instagram">
+        <a href="https://www.instagram.com/pielby_cl" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
         </a>
-        <a href="#" class="social-btn" aria-label="Facebook">
+        <a href="https://www.facebook.com/pielbyestetica" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
         </a>
         <a href="https://wa.me/56966266742" class="social-btn" aria-label="WhatsApp">
@@ -909,24 +889,24 @@
       <ul class="footer-links">
         <li><a href="servicios.html#patologias">Patologías</a></li>
         <li><a href="servicios.html#cosmetologia">Cosmetología</a></li>
-        <li><a href="servicios.html#dermocosmiatria">Dermocosmiátria</a></li>
+        <li><a href="servicios.html#dermocosmiatria">Dermocosmiatría</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Marcas</div>
       <ul class="footer-links">
-        <li><a href="#">Innoaesthetics</a></li>
-        <li><a href="#">Croma</a></li>
-        <li><a href="#">Meline</a></li>
+        <li><a href="productos.html#innoaesthetics">Innoaesthetics</a></li>
+        <li><a href="productos.html#croma">Croma</a></li>
+        <li><a href="productos.html#meline">Meline</a></li>
         <li><a href="index.html#productos">Productos</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Contacto</div>
       <ul class="footer-links">
-        <li><a href="#">+56 9 6626 6742</a></li>
-        <li><a href="#">contacto@pielby.cl</a></li>
-        <li><a href="#">Apoquindo 4501, Las Condes</a></li>
+        <li><a href="tel:+56966266742">+56 9 6626 6742</a></li>
+        <li><a href="mailto:contacto@pielby.cl">contacto@pielby.cl</a></li>
+        <li><a href="https://maps.google.com/?q=Av.+Apoquindo+4501,+Las+Condes,+Santiago" target="_blank" rel="noopener">Apoquindo 4501, Las Condes</a></li>
         <li><a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su">Reservar Hora</a></li>
       </ul>
     </div>
@@ -968,18 +948,6 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.tr-row').forEach(el => rowObserver.observe(el));
-
-  const sectionIds = ['patologias', 'cosmetologia', 'dermocosmiatria'];
-  const catLinks = document.querySelectorAll('.cat-nav-link');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sectionIds.forEach(id => {
-      const sec = document.getElementById(id);
-      if (sec && window.scrollY >= sec.offsetTop - 130) current = id;
-    });
-    catLinks.forEach(link =>
-      link.classList.toggle('active', link.getAttribute('href') === '#' + current));
-  });
 </script>
 
 </body>
