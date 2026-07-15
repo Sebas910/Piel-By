@@ -17,6 +17,8 @@ p, h1, h2, h3, a, span { overflow-wrap: break-word; word-wrap: break-word; }
   --black: #0a0805;
   --rose: #c4897a;
   --sage: #8a9e8c;
+  /* Altura reservada de la navbar: el contenido nunca queda debajo de ella */
+  --nav-h: 5rem;
 }
 
 p {
@@ -29,7 +31,7 @@ p {
 html { scroll-behavior: smooth; font-size: clamp(0.75rem, 0.9375vw, 1.25rem); }
 
 /* Evita que las secciones queden ocultas bajo el navbar fijo al navegar con anclas */
-[id] { scroll-margin-top: 6.25rem; }
+[id] { scroll-margin-top: calc(var(--nav-h) + 1rem); }
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -44,20 +46,24 @@ body {
   line-height: 1.7;
 }
 
-/* ── NAV CON ANIMACIÓN ── */
-nav {
+/* ── NAV CON ANIMACIÓN ──
+   Altura fija (--nav-h): las secciones reservan ese espacio con padding,
+   así la navbar nunca tapa contenido. Transparente al inicio (sobre el hero
+   oscuro) y crema apenas se hace scroll. Delimitada a #navbar para no
+   afectar otros <nav> como la barra de categorías de productos. */
+#navbar {
   position: fixed; top: 0; width: 100%; z-index: 100;
-  padding: 1.5rem 5vw;
+  height: var(--nav-h);
+  padding: 0 5vw;
   display: flex; align-items: center; justify-content: space-between;
-  transition: background 0.5s, padding 0.4s, box-shadow 0.4s;
-  animation: navSlideDown 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-  transform: translateY(-100%);
+  background: transparent;
+  transition: background 0.5s, box-shadow 0.4s;
+  animation: navSlideDown 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-@keyframes navSlideDown { to { transform: translateY(0); } }
+@keyframes navSlideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
-nav.scrolled {
+#navbar.scrolled {
   background: rgba(250, 246, 240, 0.96);
-  padding: 1rem 5vw;
   box-shadow: 0 1px 0 rgba(184,149,90,0.2);
   backdrop-filter: blur(10px);
 }
@@ -70,7 +76,7 @@ nav.scrolled {
   text-decoration: none;
   transition: color 0.4s;
 }
-nav.scrolled .nav-logo { color: var(--brown); }
+#navbar.scrolled .nav-logo { color: var(--brown); }
 
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
 .nav-links a {
@@ -89,7 +95,7 @@ nav.scrolled .nav-logo { color: var(--brown); }
 }
 .nav-links a:hover::after { width: 100%; }
 
-nav.scrolled .nav-links a { color: var(--text-mid); }
+#navbar.scrolled .nav-links a { color: var(--text-mid); }
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
   font-size: 0.7rem !important;
@@ -102,8 +108,8 @@ nav.scrolled .nav-links a { color: var(--text-mid); }
   transition: background 0.3s, border-color 0.3s, color 0.3s !important;
 }
 .nav-cta:hover { background: var(--gold) !important; border-color: var(--gold) !important; color: var(--white) !important; }
-nav.scrolled .nav-cta { border-color: var(--gold) !important; color: var(--gold) !important; }
-nav.scrolled .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+#navbar.scrolled .nav-cta { border-color: var(--gold) !important; color: var(--gold) !important; }
+#navbar.scrolled .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
 
 /* Hamburger */
 .hamburger {
@@ -112,7 +118,7 @@ nav.scrolled .nav-cta:hover { background: var(--gold) !important; color: var(--w
 .hamburger span { width: 24px; height: 1px; background: var(--white); display: block; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.3s, opacity 0.3s; }
 .hamburger:hover span:nth-child(1) { transform: translateY(-3px); }
 .hamburger:hover span:nth-child(3) { transform: translateY(3px); }
-nav.scrolled .hamburger span { background: var(--brown); }
+#navbar.scrolled .hamburger span { background: var(--brown); }
 
 .mobile-menu {
   display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -145,6 +151,8 @@ nav.scrolled .hamburger span { background: var(--brown); }
   height: 100vh; min-height: 33.5rem;
   position: relative; display: flex; align-items: center;
   overflow: hidden;
+  /* Reserva la franja de la navbar: el contenido nunca queda debajo de ella */
+  padding-top: var(--nav-h);
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -183,17 +191,21 @@ nav.scrolled .hamburger span { background: var(--brown); }
   width: 40%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  height: 25rem;
+}
+
+.contenedor {
+  width: 300px;
+  height: 200px;
 }
 
 .hero-image img {
   width: 100%;
-  max-width: 23.5rem;
-  height: 29rem;
-  border-radius: 20px;
-  box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+  max-width: 27.75rem;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
   object-fit: cover;
-  object-position: center top;
 }
 
 @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
@@ -310,6 +322,7 @@ section { padding: 7rem 5vw; }
   width: 100%; padding-bottom: 120%;
   background: linear-gradient(145deg, var(--cream-dark) 0%, var(--gold-pale) 100%);
   position: relative; overflow: hidden;
+  height: 50rem;
 }
 .about-img-frame::after {
   content: ''; position: absolute; inset: 0;
@@ -385,21 +398,6 @@ section { padding: 7rem 5vw; }
   text-transform: uppercase; padding: 0.3rem 0.8rem;
   background: var(--gold-pale); color: var(--brown-mid);
   border: 1px solid rgba(184,149,90,0.3);
-}
-
-.service-card-btn {
-  display: inline-flex; align-items: center;
-  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
-  text-transform: uppercase; text-decoration: none;
-  padding: 0.75rem 1.6rem; margin-top: 1.5rem;
-  background: transparent; color: var(--brown);
-  border: 1px solid var(--brown);
-  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
-}
-.service-card-btn::after { content: ' →'; }
-.service-card-btn:hover {
-  background: var(--gold); border-color: var(--gold); color: var(--white);
-  transform: translateY(-2px);
 }
 
 /* ── TRATAMIENTOS DESTACADOS ── */
@@ -814,6 +812,9 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .footer-links a:hover { color: var(--gold-light); }
 .footer-bottom { max-width: 66.7rem; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-copy { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.3s; }
+.footer-legal a:hover { color: var(--gold); }
 
 /* ── FLOATING WA ── */
 .wa-float {
@@ -828,7 +829,7 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .wa-float::before {
   content: 'Escríbenos';
   position: absolute; right: 60px; white-space: nowrap;
-  font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
+  font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
   background: var(--black); color: var(--white); padding: 0.35rem 0.8rem;
   opacity: 0; transform: translateX(5px); transition: opacity 0.3s, transform 0.3s;
   pointer-events: none;
@@ -842,6 +843,15 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 .reveal-left.visible { opacity: 1; transform: translateX(0); }
 .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── NOTIFICATION ── */
+.notification {
+  position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--brown); color: var(--white); padding: 0.8rem 2rem;
+  font-size: 0.8rem; letter-spacing: 0.05em; opacity: 0;
+  transition: opacity 0.3s, transform 0.3s; z-index: 600;
+}
+.notification.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ── RESPONSIVE PARA MÓVILES Y TABLETAS ── */
 @media (max-width: 1024px) {
@@ -858,81 +868,47 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 }
 
 @media (max-width: 768px) {
-  /* Reducir la base tipográfica para que el texto no se vea sobredimensionado en el teléfono */
+  /* Base tipográfica propia para móvil (la escala fluida es solo de escritorio) */
   html { font-size: 100%; }
-  p { font-size: 1.05rem; }
-
+  :root { --nav-h: 4.25rem; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  /* El logo y la hamburguesa siempre legibles sobre el hero oscuro */
-  nav { padding: 1.2rem 6vw; }
-  .nav-logo { color: var(--white); }
-  .hamburger span { background: var(--white); }
-  section { padding: 5rem 6vw; }
+  #navbar { padding: 0 6vw; }
+  section { padding: 5rem 5vw; }
   .services-grid { grid-template-columns: 1fr; }
   .treatments-grid { grid-template-columns: 1fr 1fr; }
   .products-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-
+  
   .services-desc { text-align: left; }
   .services-header { flex-direction: column; align-items: flex-start; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-grid { grid-template-columns: 1fr; }
   .about-badge { right: 0; bottom: -1rem; }
-
+  
   /* AQUÍ ESTÁ LA CORRECCIÓN DEL HERO PARA MÓVILES */
-  .hero { height: auto; min-height: 100vh; padding: 130px 0 60px; }
+  .hero { height: auto; min-height: 100vh; padding: calc(var(--nav-h) + 2.5rem) 0 60px; }
   .hero-content { flex-direction: column; padding: 0 6vw; gap: 3rem; }
-
+  
   .hero-text {
     width: 100%;
     display: block;
     margin-bottom: 2rem;
   }
-
+  
   .hero-image {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  .hero-image img {
-    max-width: 85%;
-    height: 340px;
-    border-radius: 16px;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  /* Botones del hero alineados a la izquierda y que ocupen el ancho disponible */
-  .hero-actions { justify-content: flex-start; }
-  .hero-actions .btn-primary,
-  .hero-actions .btn-ghost { flex: 1 1 12rem; text-align: center; }
-
+  
   .hero-scroll { display: none; }
 }
 
 @media (max-width: 480px) {
   /* Un punto más pequeña en pantallas muy estrechas */
   html { font-size: 93.75%; }
-  section { padding: 4rem 6vw; }
-
   .treatments-grid { grid-template-columns: 1fr; }
   .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 1rem; width: 100%; }
   .stat-item:last-child { border-bottom: none; }
-
-  /* Features de "Nosotros" en una sola columna para que respiren */
-  .about-features { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-
-  /* Botones a ancho completo y apilados (hero y CTA).
-     flex:0 0 auto evita que el flex-basis se interprete como ALTURA
-     al cambiar a dirección columna (cajas gigantes). */
-  .hero-actions { flex-direction: column; }
-  .hero-actions .btn-primary,
-  .hero-actions .btn-ghost { flex: 0 0 auto; width: 100%; }
-  .cta-actions { flex-direction: column; }
-  .cta-actions .btn-primary,
-  .cta-actions .btn-ghost { width: 100%; text-align: center; }
-
-  /* Botón flotante de WhatsApp más cerca del borde */
-  .wa-float { bottom: 1.2rem; right: 1.2rem; }
 }

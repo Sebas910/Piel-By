@@ -12,9 +12,10 @@
   <style>
     /* ── PAGE HERO (Heredado de servicios.html) ── */
     .page-hero {
-      height: 52vh; min-height: 22.5rem;
+      min-height: max(52vh, 22.5rem);
       position: relative; display: flex; align-items: flex-end;
-      overflow: hidden; padding-top: 4.5rem; padding-bottom: 5rem;
+      /* Reserva la franja de la navbar: el contenido nunca queda debajo de ella */
+      overflow: hidden; padding-top: calc(var(--nav-h) + 1rem); padding-bottom: 5rem;
     }
     .page-hero-bg {
       position: absolute; inset: 0;
@@ -60,7 +61,7 @@
 
     /* ── CATEGORY NAV ── */
     .cat-nav {
-      position: sticky; top: 0; z-index: 50;
+      position: sticky; top: var(--nav-h); z-index: 50;
       background: rgba(250,246,240,0.97); backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(184,149,90,0.18);
       padding: 0 10vw; display: flex; gap: 0;
@@ -74,6 +75,9 @@
       white-space: nowrap; transition: color 0.3s, border-color 0.3s; flex-shrink: 0;
     }
     .cat-nav-link:hover, .cat-nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* Los anclajes deben librar la navbar + la barra de categorías sticky */
+    [id] { scroll-margin-top: calc(var(--nav-h) + 4.5rem); }
 
     /* ══════════════════════════════════════
        PRODUCT GRID - ESTILO "CUADRITOS SEPARADOS"

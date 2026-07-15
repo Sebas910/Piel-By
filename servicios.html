@@ -13,9 +13,10 @@
 
     /* ── PAGE HERO ── */
     .page-hero {
-      height: 52vh; min-height: 22.5rem;
+      min-height: max(52vh, 22.5rem);
       position: relative; display: flex; align-items: flex-end;
-      overflow: hidden; padding-top: 4.5rem; padding-bottom: 5rem;
+      /* Reserva la franja de la navbar: el contenido nunca queda debajo de ella */
+      overflow: hidden; padding-top: calc(var(--nav-h) + 1rem); padding-bottom: 5rem;
     }
     .page-hero-bg {
       position: absolute; inset: 0;
