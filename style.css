@@ -24,6 +24,7 @@ p, h1, h2, h3, a, span { overflow-wrap: break-word; word-wrap: break-word; }
 p {
   font-size: 1.15rem;
 }
+
 /* Escala fluida: 0.9375vw = 18px en 1920px de ancho (el diseño de referencia).
    Toda medida en rem escala proporcionalmente con el ancho de pantalla,
    así la página se ve idéntica en un monitor de 24" y en una laptop de 14".
@@ -46,11 +47,7 @@ body {
   line-height: 1.7;
 }
 
-/* ── NAV CON ANIMACIÓN ──
-   Altura fija (--nav-h): las secciones reservan ese espacio con padding,
-   así la navbar nunca tapa contenido. Transparente al inicio (sobre el hero
-   oscuro) y crema apenas se hace scroll. Delimitada a #navbar para no
-   afectar otros <nav> como la barra de categorías de productos. */
+/* ── NAV CON ANIMACIÓN ── */
 #navbar {
   position: fixed; top: 0; width: 100%; z-index: 100;
   height: var(--nav-h);
@@ -152,7 +149,6 @@ body {
   height: 100vh; min-height: 33.5rem;
   position: relative; display: flex; align-items: center;
   overflow: hidden;
-  /* Reserva la franja de la navbar: el contenido nunca queda debajo de ella */
   padding-top: var(--nav-h);
 }
 .hero-bg {
@@ -183,23 +179,28 @@ body {
   align-items: center; 
   gap: 3rem; 
 }
-
 .hero-text {
-  width: 55%;
+  width: 90%;
+}
+.hero-image {
+  width: 100%;
+  height: 100%; /* Necesario si el contenedor padre tiene una altura definida */
+  object-fit: contain;
+  display: block;
 }
 
-.hero-image {
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  height: 25rem;
+.contenedor-limitado {
+  width: 65%;
+  max-width: 100%; /* Aquí decides el ancho máximo real (ej. 400px, 20rem, etc.) */
+  height: 100%;    /* Altura estricta para que la imagen sepa dónde detenerse */
+  margin: 200px ;   /* Esto centra la caja horizontalmente */
+  overflow: hidden; /* Oculta cualquier cosa que intente salirse de la caja */
 }
 
 .contenedor {
   width: 300px;
   height: 200px;
 }
-
 .hero-image img {
   width: 100%;
   max-width: 27.75rem;
@@ -208,8 +209,8 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
   object-fit: cover;
 }
-
 @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
+
 .hero-eyebrow {
   font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
   text-transform: uppercase; color: var(--gold);
@@ -232,6 +233,8 @@ body {
   margin-bottom: 3rem;
 }
 .hero-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+
+/* ── BOTONES GLOBALES ── */
 .btn-primary {
   font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
   text-transform: uppercase; text-decoration: none;
@@ -241,6 +244,21 @@ body {
   display: inline-block;
 }
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-secondary {
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 1rem 2.5rem; background: var(--brown);
+  color: var(--white); border: 1px solid var(--brown);
+  transition: all 0.3s ease;
+  display: inline-block; cursor: pointer;
+}
+.btn-secondary:hover {
+  background: var(--gold); border-color: var(--gold);
+  color: var(--white); transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(184, 149, 90, 0.2);
+}
+
 .btn-ghost {
   font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
   text-transform: uppercase; text-decoration: none;
@@ -257,14 +275,11 @@ body {
   padding: 1.1rem 2.8rem; background: transparent;
   color: var(--brown); border: 1px solid var(--brown);
   transition: all 0.4s ease;
-  display: inline-block;
-  margin-top: 1.5rem;
+  display: inline-block; margin-top: 1.5rem;
 }
 .btn-brown-outline:hover { 
-  background: var(--gold); 
-  border-color: var(--gold); 
-  color: var(--white); 
-  transform: translateY(-4px);
+  background: var(--gold); border-color: var(--gold); 
+  color: var(--white); transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(184, 149, 90, 0.25);
 }
 
@@ -279,7 +294,7 @@ body {
 
 /* ── STATS RIBBON ── */
 .stats-ribbon {
-  background: var(--brown); padding: 2rem 5vw;
+  background: var(--brown); 
   display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
 }
 .stat-item {
@@ -293,10 +308,14 @@ body {
   font-size: 2.2rem; font-weight: 400; color: var(--gold-light);
   display: block; line-height: 1;
 }
-.stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+.stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem;}
 
 /* ── SECTION BASE ── */
-section { padding: 7rem 5vw; }
+section { 
+  width: 100%; /* Fuerza a que ocupe todo el ancho disponible de la pantalla */
+  display: block;
+  padding: 7rem 5vw; 
+}
 .section-tag {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem; font-weight: 500; font-style: italic; letter-spacing: 0.05em;
@@ -381,6 +400,29 @@ section { padding: 7rem 5vw; }
 }
 .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(74,55,40,0.12); }
 .service-card:hover::before { transform: scaleX(1); }
+
+/* Botón interior de la tarjeta de servicio */
+.service-card-btn {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--brown);
+  background: transparent;
+  border: 1px solid rgba(184, 149, 90, 0.4);
+  padding: 0.6rem 1.4rem;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.service-card-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
 .service-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 3.5rem; font-weight: 300; color: rgba(184,149,90,0.12);
@@ -502,11 +544,46 @@ section { padding: 7rem 5vw; }
 .testimonials-header { text-align: center; margin-bottom: 4rem; }
 .testimonials .section-tag { justify-content: center; }
 .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 66.7rem; margin: 0 auto; }
-.testimonial-card { background: var(--white); padding: 2.5rem 2rem; position: relative; }
+
+/* Tarjeta convertida en enlace interactivo */
+.testimonial-card { 
+  background: var(--white); 
+  padding: 2.5rem 2rem; 
+  position: relative; 
+  display: block; /* Fundamental para que el enlace tome forma de caja */
+  text-decoration: none; /* Elimina el subrayado azul por defecto */
+  color: inherit; /* Hereda el color del texto original */
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Feedback visual: la tarjeta se eleva para indicar que es clickeable */
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(74, 55, 40, 0.08);
+}
+
 .testimonial-quote {
   font-family: 'Cormorant Garamond', serif;
   font-size: 4rem; font-weight: 300; color: var(--gold-pale);
   position: absolute; top: 1rem; left: 1.5rem; line-height: 1; user-select: none;
+}
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-style: italic; font-weight: 400;
+  line-height: 1.7; color: var(--text-dark); margin-bottom: 1.5rem;
+  position: relative; z-index: 1;
+}
+.testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+.author-avatar {
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  background: var(--gold-pale); display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--brown-mid);
+  flex-shrink: 0;
+}
+.author-name { font-size: 0.85rem; font-weight: 500; color: var(--text-dark); }
+.author-detail { font-size: 0.72rem; font-weight: 300; color: var(--text-light); letter-spacing: 0.05em; }
+.stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 0.3rem; letter-spacing: 0.1em; }
 }
 .testimonial-text {
   font-family: 'Cormorant Garamond', serif;
@@ -557,12 +634,10 @@ section { padding: 7rem 5vw; }
   background: var(--cream-dark);
   position: relative;
 }
-
 .contact-container {
   max-width: 66.7rem;
   margin: 0 auto;
 }
-
 .contact-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -570,7 +645,6 @@ section { padding: 7rem 5vw; }
   flex-direction: column;
   align-items: center;
 }
-
 .contact-subtitle {
   font-size: 0.95rem;
   font-weight: 300;
@@ -579,13 +653,11 @@ section { padding: 7rem 5vw; }
   max-width: 22.5rem;
   line-height: 1.6;
 }
-
 .contact-clean-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
 }
-
 .contact-card-info {
   background: var(--white);
   padding: 4.5rem 2.5rem 4rem; 
@@ -599,12 +671,10 @@ section { padding: 7rem 5vw; }
   border-top: 4px solid var(--gold); 
   box-shadow: 0 15px 35px rgba(74, 55, 40, 0.04);
 }
-
 .contact-card-info:hover {
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(74, 55, 40, 0.12);
 }
-
 .card-inner-border {
   position: absolute;
   inset: 0.8rem;
@@ -612,7 +682,6 @@ section { padding: 7rem 5vw; }
   pointer-events: none; 
   z-index: 1;
 }
-
 .card-watermark {
   position: absolute;
   bottom: -40px;
@@ -625,7 +694,6 @@ section { padding: 7rem 5vw; }
   pointer-events: none;
   transform: rotate(-15deg);
 }
-
 .contact-icon-circle, 
 .contact-info-label, 
 .contact-info-val, 
@@ -634,7 +702,6 @@ section { padding: 7rem 5vw; }
   position: relative;
   z-index: 2;
 }
-
 .contact-icon-circle {
   width: 3.9rem;
   height: 3.9rem;
@@ -647,7 +714,6 @@ section { padding: 7rem 5vw; }
   color: var(--brown);
   margin-bottom: 2rem;
 }
-
 .contact-info-label {
   font-size: 0.8rem; 
   letter-spacing: 0.25em;
@@ -656,7 +722,6 @@ section { padding: 7rem 5vw; }
   font-weight: 600;
   margin-bottom: 1.2rem;
 }
-
 .serif-val {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.65rem; 
@@ -665,7 +730,6 @@ section { padding: 7rem 5vw; }
   line-height: 1.5;
   margin-bottom: 2rem;
 }
-
 .contact-card-link {
   margin-top: auto;
   font-size: 0.85rem; 
@@ -680,13 +744,11 @@ section { padding: 7rem 5vw; }
   transition: color 0.3s;
   padding-top: 1.5rem;
 }
-
 .contact-card-link span {
   color: var(--gold);
   transition: transform 0.3s;
   font-size: 1.2rem;
 }
-
 .contact-card-link:hover { color: var(--gold); }
 .contact-card-link:hover span { transform: translateX(6px); }
 
@@ -697,7 +759,6 @@ section { padding: 7rem 5vw; }
   width: 100%;
   margin-top: 0.5rem;
 }
-
 .detailed-social-item {
   display: flex;
   align-items: center;
@@ -709,14 +770,12 @@ section { padding: 7rem 5vw; }
   transition: all 0.3s ease;
   text-align: left; 
 }
-
 .detailed-social-item:hover {
   background: var(--gold);
   border-color: var(--gold);
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(184, 149, 90, 0.2);
 }
-
 .social-icon-wrapper {
   width: 2.7rem;
   height: 2.7rem;
@@ -730,18 +789,15 @@ section { padding: 7rem 5vw; }
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
-
 .detailed-social-item:hover .social-icon-wrapper {
   color: var(--gold);
   transform: scale(1.05);
 }
-
 .social-text {
   display: flex;
   flex-direction: column;
   flex-grow: 1; 
 }
-
 .social-name {
   font-size: 0.75rem;
   font-weight: 600;
@@ -750,7 +806,6 @@ section { padding: 7rem 5vw; }
   color: var(--text-dark);
   transition: color 0.3s;
 }
-
 .social-handle {
   font-size: 0.9rem;
   font-weight: 400;
@@ -758,25 +813,27 @@ section { padding: 7rem 5vw; }
   margin-top: 0.2rem;
   transition: color 0.3s;
 }
-
 .detailed-social-item:hover .social-name,
 .detailed-social-item:hover .social-handle {
   color: var(--white); 
 }
-
 .social-arrow {
   font-size: 1.2rem;
   color: rgba(184, 149, 90, 0.4);
   transition: all 0.3s ease;
 }
-
 .detailed-social-item:hover .social-arrow {
   color: var(--white);
   transform: translate(3px, -3px); 
 }
 
 /* ── FOOTER ── */
-footer { background: var(--black); padding: 5rem 5vw 2rem; }
+footer {
+  background: var(--black);
+  width: 100%;
+  display: block;
+  padding: 5rem 5vw 2rem;
+}
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 66.7rem; margin: 0 auto 4rem; }
 .footer-brand {
   font-family: 'Cormorant Garamond', serif;
@@ -785,7 +842,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 }
 .footer-tagline { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 1.8; max-width: 28ch; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: 0.8rem; }
-
 .social-btn {
   width: 2.25rem;
   height: 2.25rem;
@@ -798,7 +854,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
   text-decoration: none; 
   transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
 }
-
 .social-btn:hover { 
   border-color: var(--gold); 
   color: var(--gold); 
@@ -869,7 +924,6 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
 }
 
 @media (max-width: 768px) {
-  /* Base tipográfica propia para móvil (la escala fluida es solo de escritorio) */
   html { font-size: 100%; }
   :root { --nav-h: 4.25rem; }
   .nav-links { display: none; }
@@ -881,33 +935,20 @@ footer { background: var(--black); padding: 5rem 5vw 2rem; }
   .products-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  
   .services-desc { text-align: left; }
   .services-header { flex-direction: column; align-items: flex-start; }
   .footer-grid { grid-template-columns: 1fr; }
   .about-badge { right: 0; bottom: -1rem; }
   
-  /* AQUÍ ESTÁ LA CORRECCIÓN DEL HERO PARA MÓVILES */
   .hero { height: auto; min-height: 100vh; padding: calc(var(--nav-h) + 2.5rem) 0 60px; }
   .hero-content { flex-direction: column; padding: 0 6vw; gap: 3rem; }
   
-  .hero-text {
-    width: 100%;
-    display: block;
-    margin-bottom: 2rem;
-  }
-  
-  .hero-image {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
+  .hero-text { width: 100%; display: block; margin-bottom: 2rem; }
+  .hero-image { width: 100%; display: flex; justify-content: center; }
   .hero-scroll { display: none; }
 }
 
 @media (max-width: 480px) {
-  /* Un punto más pequeña en pantallas muy estrechas */
   html { font-size: 93.75%; }
   .treatments-grid { grid-template-columns: 1fr; }
   .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 1rem; width: 100%; }

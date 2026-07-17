@@ -314,7 +314,47 @@
       .tr-img { height: 240px; }
       .subcat-block { padding: 0 4vw; }
     }
-  </style>
+  
+    /* ── DETALLES DE PRECIO Y SESIONES ── */
+    .tr-details {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+      border-top: 1px solid rgba(184,149,90,0.2);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .tr-detail-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .tr-detail-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold, #b8955a);
+      margin-bottom: 0.4rem;
+    }
+    .tr-detail-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-dark, #1a0f08);
+      line-height: 1;
+    }
+
+    @media (max-width: 600px) {
+      .tr-details {
+        gap: 1.5rem;
+        margin-bottom: 1.8rem;
+      }
+      .tr-detail-value {
+        font-size: 1.25rem;
+      }
+    }
+
+</style>
 </head>
 <body>
 
@@ -437,37 +477,70 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="Recursos/img/photo-1559757148-5c350d0d3c56.jpg" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
+          <img src="Recursos/img/Imagen 1 - acne.png" alt="Limpieza Facial Clínica y Patológica" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
           <span class="tr-tag">Clínico · Rosácea · Acné</span>
           <h3 class="tr-name">Limpieza Facial<br>Clínica y Patológica</h3>
           <p class="tr-desc">Tratamiento especializado para acné activo, piel sensible y congestionada. Protocolo personalizado según las necesidades específicas de cada paciente.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$35.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar evaluación</a>
         </div>
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="Recursos/img/photo-1596755389378-c31d21fd1273.jpg" alt="Peeling Químico Acné" loading="lazy">
+          <img src="Recursos/img/imagen 2 - acne.png" alt="Peeling Químico Acné" loading="lazy">
           <div class="tr-num">02</div>
         </div>
         <div class="tr-body">
           <span class="tr-tag">Manchas · Acné · Renovación</span>
           <h3 class="tr-name">Peeling<br>Químico</h3>
           <p class="tr-desc">Renueva la piel, mejora manchas post-acné y regula la producción de sebo.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$45.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 a 5 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
       <div class="tr-row">
         <div class="tr-img">
-          <img src="Recursos/img/photo-1570172619644-dfd03ed5d881.jpg" alt="Limpieza Facial Comedogénica" loading="lazy">
+          <img src="Recursos/img/imagen 3 - acne.png" alt="Limpieza Facial Comedogénica" loading="lazy">
           <div class="tr-num">03</div>
         </div>
         <div class="tr-body">
           <span class="tr-tag">Limpieza · Piel Grasa · Poros</span>
           <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
           <p class="tr-desc">Elimina puntos negros, impurezas y exceso de grasa, dejando la piel limpia y equilibrada.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$30.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -486,13 +559,24 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="Recursos/img/photo-1512290923902-8a9f81dc236c.jpg" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
+          <img src="Recursos/img/imagen 1 - rosacea.png" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
           <span class="tr-tag">Hidratación · Calmante · Rosácea</span>
           <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
           <p class="tr-desc">Limpieza avanzada, sin irritación, que calma la piel reactiva y reduce la rojez característica de la rosácea.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$35.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -505,6 +589,17 @@
           <span class="tr-tag">Bioregeneración · Calmante · Vascular</span>
           <h3 class="tr-name">Plenhyage<br>+ Dermofacial</h3>
           <p class="tr-desc">Bioestimula la regeneración cutánea y reduce la inflamación vascular asociada a la rosácea.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$90.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -530,6 +625,17 @@
           <span class="tr-tag">Regeneración celular · Revitalización</span>
           <h3 class="tr-name">PDRN<br>+ Dermofacial</h3>
           <p class="tr-desc">Estimula la regeneración celular, aportando luminosidad, firmeza y revitalización profunda.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$90.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -542,6 +648,17 @@
           <span class="tr-tag">Bioregeneración · Anti-arrugas</span>
           <h3 class="tr-name">Exosomas</h3>
           <p class="tr-desc">Favorecen la regeneración celular, ayudando a disminuir arrugas, líneas de expresión y flacidez.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$120.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 a 5 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -554,6 +671,17 @@
           <span class="tr-tag">Firmeza · Hidratación · Luminosidad</span>
           <h3 class="tr-name">Pack Rejuvenecimiento<br>y Nutrición</h3>
           <p class="tr-desc">Combina activos y tecnología para una piel más firme, hidratada y luminosa.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$150.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">6 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -566,6 +694,17 @@
           <span class="tr-tag">Firmeza · Anti-flacidez · Reafirmación</span>
           <h3 class="tr-name">Crioradiofrecuencia<br>Facial</h3>
           <p class="tr-desc">Ayuda a reafirmar la piel y mejorar la flacidez facial mediante tecnología de frío y radiofrecuencia.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$45.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">8 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -591,6 +730,17 @@
           <span class="tr-tag">Textura · Luminosidad · Manchas</span>
           <h3 class="tr-name">Hollywood<br>Black Peel</h3>
           <p class="tr-desc">Ayuda a mejorar la textura, luminosidad y apariencia de manchas y poros de la piel.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$50.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 a 4 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -603,6 +753,17 @@
           <span class="tr-tag">Ojeras · Manchas · Luminosidad</span>
           <h3 class="tr-name">Dark<br>Circles</h3>
           <p class="tr-desc">Tratamiento enfocado en mejorar la apariencia de ojeras y manchas periorbitarias, aportando luminosidad.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$50.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 a 4 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -615,6 +776,17 @@
           <span class="tr-tag">Hiperpigmentación · Tono uniforme</span>
           <h3 class="tr-name">Zona<br>Íntima</h3>
           <p class="tr-desc">Ayuda a disminuir la hiperpigmentación y unificar el tono de la piel en zonas sensibles.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$50.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 a 4 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -640,6 +812,17 @@
           <span class="tr-tag">Oxigenación · Luminosidad · Hidratación</span>
           <h3 class="tr-name">Limpieza<br>con Oxígeno</h3>
           <p class="tr-desc">Oxigena e hidrata la piel en profundidad, aportando frescura y luminosidad inmediata en pieles deshidratadas.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$35.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -652,6 +835,17 @@
           <span class="tr-tag">Renovación intensiva · Hidratación profunda</span>
           <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
           <p class="tr-desc">Renovación intensiva que hidrata, revitaliza y restaura la barrera cutánea en pieles deshidratadas.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$60.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -664,6 +858,17 @@
           <span class="tr-tag">Circulación · Drenaje · Desinflamación</span>
           <h3 class="tr-name">Drenaje Manual<br>Facial</h3>
           <p class="tr-desc">Activa la circulación linfática, reduce la retención de líquidos y mejora la absorción de activos hidratantes.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$25.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">5 Sesiones</span>
+          </div>
+        </div>
+
           <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
         </div>
       </div>
@@ -709,6 +914,17 @@
         <span class="tr-tag">Colágeno · Cicatrices · Anti-aging</span>
         <h3 class="tr-name">Microneedling</h3>
         <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura de la piel.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$60.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -721,6 +937,17 @@
         <span class="tr-tag">Contorno facial · Reafirmación</span>
         <h3 class="tr-name">Pack<br>Papada</h3>
         <p class="tr-desc">Tratamiento diseñado para reducir y reafirmar la zona de la papada y mejorar el contorno facial.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$120.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">6 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -733,6 +960,17 @@
         <span class="tr-tag">Silueta · Circulación · Reducción</span>
         <h3 class="tr-name">Moldeo<br>Corporal 360</h3>
         <p class="tr-desc">Ayuda a reducir medidas, mejorar la circulación y modelar la silueta corporal.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$200.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">10 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -745,6 +983,17 @@
         <span class="tr-tag">Retención de líquidos · Desinflamación</span>
         <h3 class="tr-name">Pack<br>Antiinflamatorio</h3>
         <p class="tr-desc">Disminuye la retención de líquidos y ayuda a desinflamar el cuerpo de forma integral.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$150.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">6 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -757,6 +1006,17 @@
         <span class="tr-tag">Reafirmación · Flacidez corporal</span>
         <h3 class="tr-name">Crioradiofrecuencia<br>Corporal</h3>
         <p class="tr-desc">Reafirma la piel y mejora la apariencia de la flacidez corporal mediante tecnología avanzada.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$45.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">8 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -769,6 +1029,17 @@
         <span class="tr-tag">Remodelación · Tonificación · Integral</span>
         <h3 class="tr-name">Full Body<br>Reset</h3>
         <p class="tr-desc">Protocolo integral para remodelar, tonificar y mejorar la apariencia corporal de forma completa.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$250.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">12 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -813,6 +1084,17 @@
         <span class="tr-tag">Grasa localizada · Anti-flacidez</span>
         <h3 class="tr-name">Mesoterapia<br>Corporal</h3>
         <p class="tr-desc">Aplicación de activos que ayudan a combatir grasa localizada y flacidez con resultados precisos y duraderos.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$60.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">5 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -825,6 +1107,17 @@
         <span class="tr-tag">Reducción · Reafirmación · Premium</span>
         <h3 class="tr-name">Full Body Reset<br>+ Mesoterapia Corporal</h3>
         <p class="tr-desc">Tratamiento completo para potenciar la reducción de medidas y reafirmación corporal en un solo protocolo.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$250.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">12 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -837,6 +1130,17 @@
         <span class="tr-tag">Renovación intensiva · Textura · Activos</span>
         <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
         <p class="tr-desc">Protocolo avanzado de dermocosmiatría que combina microperforación, hidratación y electroporación para resultados óptimos.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor</span>
+            <span class="tr-detail-value">$60.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">1 Sesión</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
@@ -849,6 +1153,17 @@
         <span class="tr-tag">Bioregeneración · Células madre · Premium</span>
         <h3 class="tr-name">Exosomas<br>Avanzados</h3>
         <p class="tr-desc">Tecnología de punta en regeneración cutánea mediante vesículas extracelulares para una reparación profunda y duradera.</p>
+        <div class="tr-details">
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Valor por sesión</span>
+            <span class="tr-detail-value">$150.000</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">Frecuencia recomendada</span>
+            <span class="tr-detail-value">3 Sesiones</span>
+          </div>
+        </div>
+
         <a href="https://agendamiento.reservo.cl/makereserva/agenda/W0rOc240Q0Os6U7D3a64oLD7l4C1Su" class="tr-cta">Agendar hora</a>
       </div>
     </div>
