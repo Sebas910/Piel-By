@@ -211,6 +211,65 @@
       color: var(--white);
     }
 
+    /* ══════════════════════════════════════
+       SUBAPARTADOS POR TIPO DE PRODUCTO (dentro de cada marca)
+    ══════════════════════════════════════ */
+    .subcat-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+    }
+    .subcat-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown-mid, var(--text-mid));
+      border: 1px solid rgba(184,149,90,0.3);
+      padding: 0.55rem 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .subcat-nav a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+    .shop-subcat {
+      margin-bottom: 4rem;
+    }
+    .shop-subcat:last-child {
+      margin-bottom: 0;
+    }
+    .shop-subcat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--brown-mid, var(--text-dark));
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .shop-subcat-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(184,149,90,0.25);
+    }
+    .shop-subcat-empty {
+      font-size: 0.85rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-light, var(--text-mid));
+      padding: 1.5rem 0;
+      border: 1px dashed rgba(184,149,90,0.3);
+      text-align: center;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -267,59 +326,79 @@
   </div>
 </section>
 
-<nav class="cat-nav" id="catNav" aria-label="Categorías de productos">
-  <a href="#innoaesthetics" class="cat-nav-link active">Innoaesthetics</a>
-  <a href="#meline" class="cat-nav-link">Meline</a>
-  <a href="#croma" class="cat-nav-link">Croma</a>
-</nav>
 
 <section class="shop-section" id="innoaesthetics">
   <div class="shop-header reveal">
-    <h2 class="shop-title">Línea <em>Innoaesthetics</em></h2>
+    <h2 class="shop-title">Línea de <em>Naturabel</em></h2>
   </div>
 
-  <div class="shop-grid">
-    <div class="shop-card reveal">
-      <div class="shop-img-container">
-        <img src="Recursos/img/photo-1620916566398-39f1143ab7be.jpg" alt="Sérum Vitamina C 20%" loading="lazy">
-      </div>
-      <div class="shop-content">
-        <span class="shop-brand">Innoaesthetics</span>
-        <h3 class="shop-name">Sérum Vitamina C 20%</h3>
-        <p class="shop-desc">Antioxidante de alta concentración para iluminación y uniformidad del tono. Previene con éxito el fotoenvejecimiento celular.</p>
-        <div class="shop-footer">
-          <span class="shop-price">$48.900</span>
-          <button class="shop-btn" onclick="solicitarProducto('Sérum Vitamina C 20%', 'Innoaesthetics')">Me Interesa</button>
+  <nav class="subcat-nav reveal">
+    <a href="#naturabel-serums">Serums</a>
+    <a href="#naturabel-hidratantes">Hidratantes</a>
+    <a href="#naturabel-jabones">Jabones</a>
+    <a href="#naturabel-bloqueadores">Bloqueadores Solares</a>
+  </nav>
+
+  <div class="shop-subcat" id="naturabel-serums">
+    <h3 class="shop-subcat-title">Serums</h3>
+    <div class="shop-grid">
+      <div class="shop-card reveal">
+        <div class="shop-img-container">
+          <img src="Recursos/img/photo-1620916566398-39f1143ab7be.jpg" alt="Sérum Vitamina C 20%" loading="lazy">
+        </div>
+        <div class="shop-content">
+          <span class="shop-brand">Innoaesthetics</span>
+          <h3 class="shop-name">Sérum Vitamina C 20%</h3>
+          <p class="shop-desc">Antioxidante de alta concentración para iluminación y uniformidad del tono. Previene con éxito el fotoenvejecimiento celular.</p>
+          <div class="shop-footer">
+            <span class="shop-price">$48.900</span>
+            <button class="shop-btn" onclick="solicitarProducto('Sérum Vitamina C 20%', 'Innoaesthetics')">Me Interesa</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="shop-card reveal" style="transition-delay: 0.05s;">
-      <div class="shop-img-container">
-        <img src="Recursos/img/photo-1617897903246-719242758050.jpg" alt="Ultimate Eye Corrector" loading="lazy">
-      </div>
-      <div class="shop-content">
-        <span class="shop-brand">Innoaesthetics</span>
-        <h3 class="shop-name">Ultimate Eye Corrector</h3>
-        <p class="shop-desc">Tratamiento intensivo específico para el contorno de ojos. Reduce visiblemente bolsas, ojeras y líneas de expresión.</p>
-        <div class="shop-footer">
-          <span class="shop-price">$55.000</span>
-          <button class="shop-btn" onclick="solicitarProducto('Ultimate Eye Corrector', 'Innoaesthetics')">Me Interesa</button>
+  <div class="shop-subcat" id="naturabel-hidratantes">
+    <h3 class="shop-subcat-title">Hidratantes</h3>
+    <div class="shop-grid">
+      <div class="shop-card reveal">
+        <div class="shop-img-container">
+          <img src="Recursos/img/photo-1617897903246-719242758050.jpg" alt="Ultimate Eye Corrector" loading="lazy">
+        </div>
+        <div class="shop-content">
+          <span class="shop-brand">Innoaesthetics</span>
+          <h3 class="shop-name">Ultimate Eye Corrector</h3>
+          <p class="shop-desc">Tratamiento intensivo específico para el contorno de ojos. Reduce visiblemente bolsas, ojeras y líneas de expresión.</p>
+          <div class="shop-footer">
+            <span class="shop-price">$55.000</span>
+            <button class="shop-btn" onclick="solicitarProducto('Ultimate Eye Corrector', 'Innoaesthetics')">Me Interesa</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="shop-card reveal" style="transition-delay: 0.1s;">
-      <div class="shop-img-container">
-        <img src="Recursos/img/photo-1608248543803-ba4f8c70ae0b.jpg" alt="Sunblock SPF 50+" loading="lazy">
-      </div>
-      <div class="shop-content">
-        <span class="shop-brand">Innoaesthetics</span>
-        <h3 class="shop-name">Sunblock SPF 50+</h3>
-        <p class="shop-desc">Protección solar extrema de amplio espectro con textura ligera y rápida absorción. Ideal para cuidados post-tratamiento clínico.</p>
-        <div class="shop-footer">
-          <span class="shop-price">$32.500</span>
-          <button class="shop-btn" onclick="solicitarProducto('Sunblock SPF 50+', 'Innoaesthetics')">Me Interesa</button>
+  <div class="shop-subcat" id="naturabel-jabones">
+    <h3 class="shop-subcat-title">Jabones</h3>
+    <div class="shop-subcat-empty">Próximamente nuevos productos en esta categoría.</div>
+  </div>
+
+  <div class="shop-subcat" id="naturabel-bloqueadores">
+    <h3 class="shop-subcat-title">Bloqueadores Solares</h3>
+    <div class="shop-grid">
+      <div class="shop-card reveal">
+        <div class="shop-img-container">
+          <img src="Recursos/img/photo-1608248543803-ba4f8c70ae0b.jpg" alt="Sunblock SPF 50+" loading="lazy">
+        </div>
+        <div class="shop-content">
+          <span class="shop-brand">Innoaesthetics</span>
+          <h3 class="shop-name">Sunblock SPF 50+</h3>
+          <p class="shop-desc">Protección solar extrema de amplio espectro con textura ligera y rápida absorción. Ideal para cuidados post-tratamiento clínico.</p>
+          <div class="shop-footer">
+            <span class="shop-price">$32.500</span>
+            <button class="shop-btn" onclick="solicitarProducto('Sunblock SPF 50+', 'Innoaesthetics')">Me Interesa</button>
+          </div>
         </div>
       </div>
     </div>
