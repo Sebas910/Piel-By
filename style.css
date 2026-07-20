@@ -206,15 +206,20 @@ body {
 
 .contenedor-limitado {
   width: 100%;
-  max-width: 27.75rem; /* Ancho máximo real de la caja de la imagen */
-  margin: 0 auto;      /* Centra la caja horizontalmente sin forzar overflow */
+  max-width: 27.75rem;
+  margin: 0 auto;
   overflow: visible;
   text-align: center;
+  
+  /* --- AÑADE ESTO --- */
+  display: flex;
+  flex-direction: column; /* Alinea los elementos uno abajo del otro */
+  align-items: center;    /* Centra la imagen y el span horizontalmente */
 }
 
 .hero-image img {
-  width: 100%;
-  max-width: 27.75rem;
+  width: 80%%;
+  max-width: 24.75rem;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
@@ -222,9 +227,17 @@ body {
 }
 .hero-image-caption {
   display: block;
-  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em;
-  text-transform: uppercase; color: rgba(255,255,255,0.5);
-  margin-top: 0.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem; 
+  font-weight: 500; 
+  letter-spacing: 0.1em;
+  color: rgba(218, 173, 78, 0.979);
+  margin-top: 1.3rem; /* Aumentamos un poco el margen para separarlo de la sombra */
+  margin-
+  
+  /* --- AÑADE ESTO --- */
+  position: relative;
+  z-index: 2; /* Lo posiciona por encima de la sombra de la imagen */
 }
 @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
 
@@ -248,8 +261,9 @@ body {
   font-size: 0.9rem; font-weight: 300; letter-spacing: 0.08em;
   color: rgba(255,255,255,0.6); max-width: 38ch; line-height: 1.8;
   margin-bottom: 3rem;
+  margin-top: -1.5rem; /* Ajusta el margen superior para separar del título */
 }
-.hero-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.hero-actions {margin-top: -2.2rem; display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
 
 /* ── BOTONES GLOBALES ── */
 .btn-primary {
