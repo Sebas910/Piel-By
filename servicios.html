@@ -159,7 +159,7 @@
     .cat-desc-text { flex: 1; min-width: 14.5rem; }
     .cat-desc-intro {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      font-size: clamp(1.7rem, 1.2vw, 1.2rem);
       font-weight: 300; color: var(--text-mid);
       line-height: 1.9; max-width: 62ch; margin: 0 auto;
     }
@@ -203,7 +203,7 @@
       font-size: clamp(1.4rem, 2.5vw, 2rem);
       font-weight: 400; color: var(--text-dark); line-height: 1.1; letter-spacing: 0.04em;
     }
-    .subcat-title em { font-style: italic; color: var(--brown-mid); }
+    .subcat-title em {font-size: 3.4rem; font-style: italic; color: var(--brown-mid); }
     .subcat-divider { margin: 1.5rem 0 0; height: 1px; background: rgba(184,149,90,0.12); }
     .subcat-block .treatment-list { padding-left: 0; padding-right: 0; }
     .subcat-block .tr-body { padding-left: 4vw; padding-right: 4vw; }
@@ -309,7 +309,7 @@
       .subcat-block { padding: 0 6vw; }
       .subcat-block .tr-body { padding-left: 5vw; padding-right: 5vw; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 400px) {
       .tr-body { padding: 2.5rem 5vw; }
       .tr-img { height: 240px; }
       .subcat-block { padding: 0 4vw; }
@@ -482,16 +482,29 @@
         </div>
         <div class="tr-body">
           <span class="tr-tag">Clínico · Rosácea · Acné</span>
-          <h3 class="tr-name">Limpieza Facial<br>Clínica y Patológica</h3>
-          <p class="tr-desc">Tratamiento especializado para acné activo, piel sensible y congestionada. Protocolo personalizado según las necesidades específicas de cada paciente.</p>
+          <h3 class="tr-name">Limpieza Facial<br>Clínica (acné)</h3>
+          <p class="tr-desc">
+            Comenzamos con extracción especializada con lancetas para tratar pápulas, pústulas, comedones cerrados y millium con precisión clínica, seguida de Hydrafacial para una limpieza profunda e hidratación instantánea.Sumamos láser infrarrojo MMO —con luz azul y roja— que reduce inflamación y bacterias mientras estimula la regeneración celular.
+            Aplicamos ozonoterapia transdérmica para desinfectar y oxigenar la piel en profundidad.
+          </p>
+
+          <p class="tr-desc">
+            Renovamos textura y luminosidad con un peeling Skin Recovery o AKN ID de Innoestetics, y cerramos con mascarilla regenerativa Restore y protector, dejando tu piel calmada, nutrida y protegida.
+            Ideal para piel congestionada, con tendencia acneica, poros dilatados o textura irregular que necesita un abordaje clínico real.
+            Sin excesos, resultados visibles desde la primera sesión.
+          </p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor</span>
-            <span class="tr-detail-value">$35.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$108.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">1 Sesión</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$199.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$299.990</span>
           </div>
         </div>
 
@@ -506,15 +519,26 @@
         <div class="tr-body">
           <span class="tr-tag">Manchas · Acné · Renovación</span>
           <h3 class="tr-name">Peeling<br>Químico</h3>
-          <p class="tr-desc">Renueva la piel, mejora manchas post-acné y regula la producción de sebo.</p>
+          <p class="tr-desc">Aplicamos peelings de laboratorio Innoestetics, seleccionados según tu tipo de piel y objetivo a tratar —despigmentante, antiacné, antiedad o renovación general—, para actuar directamente sobre manchas, textura irregular, cicatrices o signos de envejecimiento.
+            Sumamos láser MMO ámbar y rojo, que estimula la regeneración celular y calma la piel durante el proceso.
+            Aplicamos ozonoterapia transdérmica para desinfectar y oxigenar la piel en profundidad.
+          </p>
+          <p class="tr-desc"> Finalizamos con mascarilla regenerativa de Exosomas y protector, potenciando la renovación celular y dejando la piel calmada, nutrida y protegida.
+            Ideal para piel con manchas, textura irregular, cicatrices, signos de envejecimiento o que necesita una renovación profunda sin extracciones.
+            Sin excesos, resultados visibles desde la primera sesión.
+          </p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$45.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$129.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">3 a 5 Sesiones</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$249.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$379.990</span>
           </div>
         </div>
 
@@ -529,15 +553,27 @@
         <div class="tr-body">
           <span class="tr-tag">Limpieza · Piel Grasa · Poros</span>
           <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
-          <p class="tr-desc">Elimina puntos negros, impurezas y exceso de grasa, dejando la piel limpia y equilibrada.</p>
+          <p class="tr-desc">Un tratamiento enfocado en despejar y refinar la piel congestionada, combinando exfoliación mecánica y tecnología para una piel visiblemente más limpia y uniforme.
+            Comenzamos con higiene facial profunda y exfoliación con scrub, preparando la piel para la microdermoabrasión con ozonoterapia, que remueve células muertas mientras desinfecta y oxigena en profundidad.
+            Aplicamos radiofrecuencia para estimular la producción de colágeno y mejorar la firmeza y textura de la piel.
+          </p>
+          <p class="tr-desc">
+            Finalizamos con mascarilla regenerativa Selvert Thermal, crema de células madres y protector solar, dejando la piel calmada, nutrida y protegida.
+            Ideal para piel con comedones, textura irregular, poros dilatados o congestión que necesita un abordaje profundo y renovador.Sin excesos, resultados visibles desde la primera sesión.
+          </p>
+
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor</span>
-            <span class="tr-detail-value">$30.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$49.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">1 Sesión</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$90.800</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$119.990</span>
           </div>
         </div>
 
@@ -559,21 +595,27 @@
     <div class="treatment-list">
       <div class="tr-row">
         <div class="tr-img">
-          <img src="Recursos/img/imagen 1 - rosacea.png" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
+          <img src="Recursos/img/rosacea-1.jpeg" alt="Limpieza con Hydrafacial Rosácea" loading="lazy">
           <div class="tr-num">01</div>
         </div>
         <div class="tr-body">
           <span class="tr-tag">Hidratación · Calmante · Rosácea</span>
-          <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
-          <p class="tr-desc">Limpieza avanzada, sin irritación, que calma la piel reactiva y reduce la rojez característica de la rosácea.</p>
+          <h3 class="tr-name">Tratamiento Dermocosmiátrico<br>para Rosácea</h3>
+          <p class="tr-desc">Comenzamos con higiene facial suave, seguida de Hydrafacial para una limpieza profunda e hidratación sin irritación.
+          Aplicamos láser infrarrojo MMO ámbar, que ayuda a calmar la inflamación y favorecer la regeneración celular.
+          Sumamos una aplicación híbrida: Redness Peeling con suaves toques sobre la epidermis para actuar en superficie sin agredir la piel, y mesoterapia Redness ID de Innoestetics mediante electroporación, que trabaja en dermis profunda para una penetración óptima de los activos calmantes y reductores de rojez.
+          Aplicamos ozonoterapia para desinfectar y oxigenar la piel en profundidad, y finalizamos con mascarilla regenerativa Restore de Innoestetics, dejando la piel calmada, nutrida y fortalecida.</p>
+          <p>
+          Ideal para piel con rosácea, enrojecimiento persistente, sensibilidad o piel reactiva que necesita un cuidado especializado y respetuoso. 
+          Sin excesos, resultados visibles desde la primera sesión.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor</span>
-            <span class="tr-detail-value">$35.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$258.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">1 Sesión</span>
+            <span class="tr-detail-label">3 Sesiones(⭐ MÁS ELEGIDO)</span>
+            <span class="tr-detail-value">$657.990</span>
           </div>
         </div>
 
@@ -732,12 +774,16 @@
           <p class="tr-desc">Ayuda a mejorar la textura, luminosidad y apariencia de manchas y poros de la piel.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$50.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$189.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">3 a 4 Sesiones</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$379.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$429.990</span>
           </div>
         </div>
 
@@ -755,12 +801,16 @@
           <p class="tr-desc">Tratamiento enfocado en mejorar la apariencia de ojeras y manchas periorbitarias, aportando luminosidad.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$50.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$110.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">3 a 4 Sesiones</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$209.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$319.990</span>
           </div>
         </div>
 
@@ -778,12 +828,16 @@
           <p class="tr-desc">Ayuda a disminuir la hiperpigmentación y unificar el tono de la piel en zonas sensibles.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$50.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$149.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">3 a 4 Sesiones</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$289.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$420.000</span>
           </div>
         </div>
 
@@ -798,7 +852,7 @@
     <div class="subcat-header">
       <div class="subcat-num">05</div>
       <div class="subcat-info">
-        <h3 class="subcat-title">Piel <em>Deshidratada</em></h3>
+        <h3 class="subcat-title"><em>Piel Deshidratada</em></h3>
       </div>
     </div>
     <div class="subcat-divider"></div>
@@ -814,12 +868,16 @@
           <p class="tr-desc">Oxigena e hidrata la piel en profundidad, aportando frescura y luminosidad inmediata en pieles deshidratadas.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor</span>
-            <span class="tr-detail-value">$35.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$79.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">1 Sesión</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$149.990</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$199.990</span>
           </div>
         </div>
 
@@ -916,12 +974,16 @@
         <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura de la piel.</p>
         <div class="tr-details">
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$60.000</span>
+            <span class="tr-detail-label">1 Sesión</span>
+            <span class="tr-detail-value">$199.990</span>
           </div>
           <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">3 Sesiones</span>
+            <span class="tr-detail-label">2 Sesiones</span>
+            <span class="tr-detail-value">$399.980</span>
+          </div>
+          <div class="tr-detail-item">
+            <span class="tr-detail-label">3 Sesiones</span>
+            <span class="tr-detail-value">$449.990</span>
           </div>
         </div>
 
