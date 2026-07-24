@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PielBy — Cosmetología & Cosmiatria</title>
+  <title>PielBy — Cosmetología & Dermatocosmiatría</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="Recursos/favicon.svg">
 </head>
@@ -17,11 +17,11 @@
   <a href="#inicio" class="nav-logo">PielBy</a>
   <ul class="nav-links">
     <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#nosotros">Quiénes Somos</a></li>
     <li><a href="servicios.html">Servicios</a></li>
     <li><a href="productos.html">Productos</a></li>
-    <li><a href="#contacto">Contacto</a></li>
     <li><a href="aparatologia.html">Aparatología</a></li>
+    <li><a href="#contacto">Contacto</a></li>
     <li><a href="https://wa.me/56999886940" class="nav-cta">Reservar Hora</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menú">
@@ -33,10 +33,8 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
   <a href="#inicio" class="mobile-link">Inicio</a>
-  <a href="#nosotros" class="mobile-link">Nosotros</a>
-  <a href="servicios.html" class="mobile-link">Servicios</a>
-  <a href="productos.html" class="mobile-link">Productos</a>
-  <a href="aparatologia.html" class="mobile-link">Aparatología</a>
+  <a href="#nosotros" class="mobile-link">Quiénes Somos</a>
+  <a href="#servicios" class="mobile-link">Servicios</a>
   <a href="#contacto" class="mobile-link">Contacto</a>
   <a href="https://wa.me/56999886940" class="mobile-link" style="color: var(--gold);">Reservar Hora</a>
 </div>
@@ -48,22 +46,21 @@
   <div class="hero-line-left"></div>
   <div class="hero-line-right"></div>
  <div class="hero-content">
-  <div class="hero-text">s
-    <p class="hero-eyebrow">Cosmiatría &amp; Dermocosmiatría</p>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Cosmiatría Especialidad Dermatocosmiatría</p>
     <h1 class="hero-title">
-      Revela tu<br><em>belleza natural</em><br>con ciencia y sin dolor
+      Dermatocosmiatría avanzada aplicada, facial y corporal, <em>sin agujas</em> ni tiempos de recuperación
     </h1>
-    <p class="hero-subtitle">Tratamientos faciales y corporales de medicina estética de alto nivel, con tecnología europea de vanguardia.</p>
+    <p class="hero-subtitle">15 años de experiencia dermatocosmiátrica y tecnología europea de vanguardia, en un espacio diseñado para tu comodidad, privacidad y resultados reales.</p>
     <div class="hero-actions">
       <a href="https://wa.me/56999886940" class="btn-primary">Agendar Consulta</a>
-      <a href="servicios.html" class="btn-ghost">Nuestros Servicios</a>
+      <a href="#servicios" class="btn-ghost">Nuestros Servicios</a>
     </div>
   </div>
   
   <div class="hero-image">
     <div class="contenedor-limitado">
-      <img src="Recursos/Imagen-Inicio.jpeg" alt="Tratamiento estético PielBy">
-      <span class="hero-image-caption">Dermocosmiatra María Rodríguez</span>
+      <img src="Recursos/pielby-recepcion.jpeg" alt="Tratamiento estético PielBy">
     </div>
   </div>
   </div>
@@ -72,68 +69,232 @@
 <!-- STATS -->
 <div class="stats-ribbon">
   <div class="stat-item reveal">
-    <span class="stat-number" data-target="14">14</span>
-    <span class="stat-label">Años de Experiencia</span>
+    <span class="stat-number" data-target="15">15</span>
+    <span class="stat-label">Años de Carrera</span>
   </div>
   <div class="stat-item reveal" style="transition-delay:0.1s">
-    <span class="stat-number" data-target="5000">5000+</span>
-    <span class="stat-label">Mujeres Satisfechas</span>
+    <span class="stat-number" >5000+</span>
+    <span class="stat-label">Mujeres Acompañadas</span>
   </div>
   <div class="stat-item reveal" style="transition-delay:0.2s">
+    <span class="stat-number" data-target="7">7</span>
+    <span class="stat-label">Años Pielby Independiente</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.3s">
     <span class="stat-number" data-target="45">45</span>
     <span class="stat-label">Tratamientos Disponibles</span>
   </div>
 </div>
 
+<!-- INTRO POST-STATS -->
+<section class="intro-block reveal">
+  <div class="intro-container">
+    
+    <!-- Sello de Laboratorio Partner -->
+    <div class="intro-partner">
+      <span class="partner-icon">✦</span>
+      <p class="partner-text">Trabajamos con <strong>Innoaesthetics</strong> — Laboratorio con +125 años de trayectoria y creador de la tecnología <em>Smart GPS®</em>.</p>
+    </div>
+    
+    <!-- Mensaje Principal -->
+    <h2 class="intro-statement">
+      ¿Buscas resultados <em>sin agujas</em>, en un espacio donde te sientas en calma?
+    </h2>
+    <p class="intro-text">
+      Aquí la atención es personalizada, discreta y segura, en un ambiente cómodo, con estacionamiento exclusivo y un trato de <strong>5 estrellas</strong> en cada visita.
+    </p>
+    
+    <!-- Cierre Elegante -->
+    <div class="intro-hook-wrapper">
+      <div class="hook-line"></div>
+      <p class="intro-hook">Si esto es lo que buscas, esta página es para ti.</p>
+      <div class="hook-line"></div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="nosotros">
+  <!-- Elemento decorativo de fondo -->
+  <div class="about-bg-decor"></div>
+
   <div class="about-grid">
     <div class="about-visual reveal-left">
       <div class="about-img-frame">
         <div class="about-img-overlay">
-          <img class="contenedor-limitado" src="Recursos/pielby-recepcion.jpeg" alt="Recepción PielBy">
+          <img class="about-img" src="Recursos/Imagen-Inicio.jpeg" alt="María Rodríguez CEO Pielby">
+        </div>
+        <!-- Nuevo sello decorativo flotante -->
+        <div class="about-badge-new">
+          <span class="badge-ring"></span>
+          <div class="badge-content">
+            <span class="badge-number">15</span>
+            <span class="badge-text">Años<br>Experiencia</span>
+          </div>
         </div>
       </div>
-      <div class="about-badge">
-        <span class="badge-text">Te mereces</span>
-        <span class="badge-text">Lo mejor</span>
-      </div>
+      <p class="about-caption">
+        <strong>María Rodríguez</strong><br>CEO & Fundadora de Pielby
+      </p>
     </div>
+    
     <div class="about-text reveal-right">
       <div class="section-tag">Quiénes Somos</div>
+      <p class="about-eyebrow">Cosmiatra y Dermatocosmiatra</p>
+      
       <h2 class="section-title">Donde la <em>ciencia</em><br>y la belleza convergen</h2>
-      <p class="about-lead">"Cada rostro es una obra única. Nuestro compromiso es revelar su mejor versión sin agujas y sin dolor."</p>
-      <p class="about-body">En PielBy María Rodríguez no fabricamos belleza. La revelamos. Somos un equipo de profesionales dedicados a la dermocosmiatría facial y corporal, comprometidos con algo más que la piel: tu bienestar y tu confianza. Creemos que antes de cualquier tratamiento, hay un paso que casi nadie te ofrece: detenerte.</p>
-      <p class="about-body"><strong>¿Qué nos diferencia?</strong> <br> 
-
-Un ritual, no solo un tratamiento
-Antes de comenzar, te invitamos a conectar con tu cuerpo: manta térmica, presoterapia y un masaje facial de bienvenida. 10 a 15 minutos donde bajas las revoluciones, sueltas el estrés del día y llegas a tu tratamiento desde la calma, no desde el apuro. Porque una piel que se transforma necesita primero una persona que se sienta en paz.
-
-Cuidado sin agujas, sin dolor, sin excesos
-Trabajamos con tecnología de última generación que da resultados visibles sin procedimientos invasivos ni tiempos de recuperación eternos.
-
-Planes verdaderamente personalizados
-Nada de protocolos estándar.</p>
-<p class="about-body">Cada rostro y cada cuerpo cuentan una historia distinta, y así los tratamos.
-
-Acompañamiento post-tratamiento
-El cuidado no termina cuando sales de la clínica. Hacemos seguimiento real para asegurar que los resultados se sostengan en el tiempo.
-
-Nuestra comunidad
-
-Cientos de historias de piel renovada y autoestima recuperada respaldan lo que hacemos. No transformamos solo la piel: transformamos la forma en que te miras al espejo.
-
-Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
-      <div class="about-features">
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">cosmetólogos y Consmiatras certificados</span></div>
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Productos con certificación europea</span></div>
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Protocolos personalizados</span></div>
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Tecnología de última generación</span></div>
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Instalaciones premium</span></div>
-        <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Seguimiento post tratamiento</span></div>
+      
+      <!-- Cita destacada con diseño editorial -->
+      <div class="about-quote-box">
+        <span class="quote-icon">"</span>
+        <p class="about-lead">Cada rostro es una obra única. Nuestro compromiso es revelar su mejor versión sin agujas y sin dolor.</p>
       </div>
-      <a href="https://wa.me/56999886940" class="btn-primary" style="background:var(--brown);border-color:var(--brown);">Agendar Evaluación </a>
+      
+      <p class="about-body">Soy Cosmiatra y Dermatocosmiatra con 15 años de carrera y expertise. Hace 7 años fundé Pielby, mi proyecto independiente, con un objetivo claro: que el bienestar no sea un extra, sino el punto de partida de cada tratamiento. ¿Sabías que antes de cualquier protocolo hay un paso que casi nadie te ofrece? Detenerte.</p>
+      
+      <p class="about-body">Por eso cada tratamiento en Pielby tiene dos fases. Primero, bienestar desde adentro: manta térmica, presoterapia y un masaje facial de bienvenida, 10 a 15 minutos donde bajas las revoluciones y te conectas con tu cuerpo. Luego, el protocolo que personalizo para cada piel, buscando resultados óptimos de forma natural y sin dolor.</p>
+      
+      <!-- Caja de resalte final -->
+      <div class="about-highlight">
+        <p><strong>¿Lo mejor?</strong>Una piel que se transforma necesita primero una persona que se sienta en paz.</p>
+      </div>
+
+      <!-- Firma personal -->
+      <div class="about-signature">
+        <span class="signature-font">María Rodríguez</span>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- QUÉ NOS DIFERENCIA -->
+<section class="differentiators" id="diferenciadores">
+  <div class="diff-container">
+    
+    <div class="diff-header reveal">
+      <div class="section-tag">Qué nos diferencia</div>
+      <h2 class="section-title">Nuestra <em>Filosofía</em></h2>
+    </div>
+    
+    <div class="diff-grid">
+      
+      <!-- Pilar 1 -->
+      <div class="diff-card reveal" style="transition-delay: 0s;">
+        <div class="diff-decor"></div>
+        <span class="diff-num">01</span>
+        
+        <div class="diff-icon-wrapper">
+          <!-- Ícono Pluma (Sin dolor / Delicadeza) -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+            <line x1="16" y1="8" x2="2" y2="22"></line>
+            <line x1="17.5" y1="15" x2="9" y2="15"></line>
+          </svg>
+        </div>
+
+        <h3 class="diff-title">¿Buscas resultados reales,<br><em>sin agujas ni dolor</em>?</h3>
+        <div class="diff-separator"></div>
+        <p class="diff-text">En Pielby trabajamos con tecnología de última generación que entrega resultados visibles desde las primeras sesiones, sin procedimientos invasivos.</p>
+      </div>
+      
+      <!-- Pilar 2 -->
+      <div class="diff-card reveal" style="transition-delay: 0.1s;">
+        <div class="diff-decor"></div>
+        <span class="diff-num">02</span>
+        
+        <div class="diff-icon-wrapper">
+          <!-- Ícono Diamante (Exclusivo / Personalizado) -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12l4 6-10 13L2 9Z"></path>
+            <path d="M11 3 8 9l4 13"></path>
+            <path d="M13 3l3 6-4 13"></path>
+          </svg>
+        </div>
+
+        <h3 class="diff-title">¿Cansada de los<br><em>protocolos estándar</em>?</h3>
+        <div class="diff-separator"></div>
+        <p class="diff-text">Cada rostro y cada cuerpo cuentan una historia distinta, y así los tratamos: planes verdaderamente personalizados.</p>
+      </div>
+      
+      <!-- Pilar 3 -->
+      <div class="diff-card reveal" style="transition-delay: 0.2s;">
+        <div class="diff-decor"></div>
+        <span class="diff-num">03</span>
+        
+        <div class="diff-icon-wrapper">
+          <!-- Ícono Infinito (Acompañamiento continuo) -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"></path>
+          </svg>
+        </div>
+
+        <h3 class="diff-title">¿Y <em>después</em><br>de la sesión?</h3>
+        <div class="diff-separator"></div>
+        <p class="diff-text">El cuidado no termina cuando sales de Pielby. Hacemos seguimiento real para asegurar que los resultados se sostengan en el tiempo. ¿Lo mejor? Nunca estás sola en el proceso.</p>
+      </div>
+      
+      <!-- Pilar 4 -->
+      <div class="diff-card reveal" style="transition-delay: 0.3s;">
+        <div class="diff-decor"></div>
+        <span class="diff-num">04</span>
+        
+        <div class="diff-icon-wrapper">
+          <!-- Ícono Gota (Sérum / Ciencia / Mejores productos) -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path>
+          </svg>
+        </div>
+
+        <h3 class="diff-title">¿Y si te dijera que usamos<br>los <em>mejores productos</em>?</h3>
+        <div class="diff-separator"></div>
+        <p class="diff-text">Trabajamos con Innoaesthetics, laboratorio con más de 125 años de trayectoria científica, y su tecnología patentada Smart GPS® que dirige cada activo exactamente a donde tu piel lo necesita.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- GUÍA PIELBY -->
+<section class="guide" id="guia" style="background: var(--white); padding: 6rem 5vw;">
+  <div style="text-align:center; max-width:40rem; margin:0 auto 3rem;">
+    <div class="section-tag reveal" style="justify-content:center; gap:0.8rem">Tu Guía Pielby</div>
+    <h2 class="section-title reveal">¿Cómo quiero <em>mi piel</em> hoy?</h2>
+    <p class="services-desc reveal" style="text-align: center; margin: 1rem auto 0; max-width: 100%;">Elige lo que buscas y te llevamos directo al protocolo pensado para eso.</p>
+  </div>
+  
+  <div class="guide-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; max-width: 66.7rem; margin: 0 auto;">
+    
+    <div class="guide-card">
+      <div class="guide-icon">◈</div>
+      <h3 class="guide-title">Equilibrada</h3>
+      <p class="guide-tags">Acné · Piel grasa</p>
+    </div>
+    
+    <div class="guide-card">
+      <div class="guide-icon">✧</div>
+      <h3 class="guide-title">Calmada</h3>
+      <p class="guide-tags">Rosácea · Sensible</p>
+    </div>
+    
+    <div class="guide-card">
+      <div class="guide-icon">◐</div>
+      <h3 class="guide-title">Luminosa</h3>
+      <p class="guide-tags">Manchas · Hidratación</p>
+    </div>
+    
+    <div class="guide-card">
+      <div class="guide-icon">⟡</div>
+      <h3 class="guide-title">Firme</h3>
+      <p class="guide-tags">Rejuvenecimiento · Élite</p>
+    </div>
+    
+    <div class="guide-card">
+      <div class="guide-icon">◎</div>
+      <h3 class="guide-title">Relajada</h3>
+      <p class="guide-tags">Bienestar</p>
+    </div>
+
   </div>
 </section>
 
@@ -144,119 +305,40 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
       <div class="section-tag">Especialidades</div>
       <h2 class="section-title">Nuestros<br><em>Servicios</em></h2>
     </div>
-    <p class="services-desc">Cada tratamiento es diseñado a medida, combinando las técnicas más avanzadas con productos de eficacia comprobada.</p>
+    <p class="services-desc">Cada tratamiento es diseñado a medida, combinando tecnología de alta precisión con activos de eficacia comprobada.</p>
   </div>
   <div class="services-grid">
 
     <!-- CATEGORÍA 1 -->
     <div class="service-card reveal" style="transition-delay:0s;">
-      <div class="service-num">01</div>
       <div class="service-icon">◈</div>
-      <h3 class="service-name">Patologías</h3>
-      <p class="service-desc">Protocolos clínicos personalizados para acné, rosácea, manchas, rejuvenecimiento y piel deshidratada.</p>
-      <span class="service-tag">Acné · Rosácea · Manchas</span>
-      <a href="servicios.html#patologias" class="service-card-btn">Ver tratamientos</a>
+      <h3 class="service-name">Dermofacial Alteraciones Cutáneas</h3>
+      <p class="service-desc">¿Acné que no cede, manchas que no se van, o rosácea que aparece y desaparece? Diseñamos un protocolo pensado solo para tu piel, no una receta genérica.</p>
+      <span class="service-tag">Acné · Manchas · Rosácea · Hidratación</span>
+      <br>
+      <a href="servicios.html#patologias" class="service-card-btn">Ver tratamientos →</a>
     </div>
 
     <!-- CATEGORÍA 2 -->
     <div class="service-card reveal" style="transition-delay:0.1s;">
-      <div class="service-num">02</div>
       <div class="service-icon">✦</div>
-      <h3 class="service-name">Cosmetología</h3>
-      <p class="service-desc">Tratamientos orientados a mejorar la apariencia y el bienestar de la piel con tecnología y activos cosméticos.</p>
+      <h3 class="service-name">Piel en Forma</h3>
+      <p class="service-desc">¿Quieres mejorar la textura de tu piel o moldear tu figura? Combinamos tecnología y activos cosméticos para que veas cambios reales, sesión a sesión.</p>
       <span class="service-tag">Microneedling · Corporal · Moldeo</span>
-      <a href="servicios.html#cosmetologia" class="service-card-btn">Ver tratamientos</a>
+      <br>
+      <a href="servicios.html#cosmetologia" class="service-card-btn">Ver tratamientos →</a>
     </div>
 
     <!-- CATEGORÍA 3 -->
     <div class="service-card reveal" style="transition-delay:0.2s;">
-      <div class="service-num">03</div>
       <div class="service-icon">◐</div>
-      <h3 class="service-name">Dermocosmiatría</h3>
-      <p class="service-desc">Ciencia dermatológica con cosmética de alta tecnología. Activos de última generación para resultados en profundidad.</p>
-      <span class="service-tag">Mesoterapia · Exosomas · Dermapen</span>
-      <a href="servicios.html#dermocosmiatria" class="service-card-btn">Ver tratamientos</a>
+      <h3 class="service-name">Ciencia para tu Piel</h3>
+      <p class="service-desc">¿Ya probaste de todo y quieres ir un paso más profundo? Aquí la ciencia dermatológica se une a tecnología de alta precisión, sin agujas.</p>
+      <span class="service-tag">Electroporación · Exosomas · CrioRadiofrecuencia</span>
+      <br>
+      <a href="servicios.html#dermocosmiatria" class="service-card-btn">Ver tratamientos →</a>
     </div>
 
-  </div>
-</section>
-
-<!-- FEATURED TREATMENTS -->
-<section class="featured">
-  <div class="featured-header reveal">
-    <div class="section-tag">Lo más solicitado</div>
-    <h2 class="section-title">Tratamientos <em>Estrella</em></h2>
-  </div>
-  <div class="treatments-grid">
-    <div class="treatment-card reveal" style="transition-delay:0.05s">
-      <span class="treatment-symbol">❧</span>
-      <h3 class="treatment-name">Relleno Labial con AH</h3>
-      <p class="treatment-info">Volumen y definición natural con ácido hialurónico de alta densidad. Resultados inmediatos.</p>
-    </div>
-    <div class="treatment-card reveal" style="transition-delay:0.1s">
-      <span class="treatment-symbol">✧</span>
-      <h3 class="treatment-name">Peeling Enzimático</h3>
-      <p class="treatment-info">Renovación suave y profunda, ideal para pieles sensibles. Luminosidad desde la primera sesión.</p>
-    </div>
-    <div class="treatment-card reveal" style="transition-delay:0.15s">
-      <span class="treatment-symbol">⟡</span>
-      <h3 class="treatment-name">Radiofrecuencia Facial</h3>
-      <p class="treatment-info">Estimulación de colágeno y elastina para lifting no quirúrgico con resultados progresivos.</p>
-    </div>
-    <div class="treatment-card reveal" style="transition-delay:0.2s">
-      <span class="treatment-symbol">✦</span>
-      <h3 class="treatment-name">Bioestimuladores de Colágeno</h3>
-      <p class="treatment-info">Regeneración profunda de la estructura cutánea con ácido poliláctico y otros biostimuladores.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="products" id="productos">
-  <div class="products-intro">
-    <div>
-      <div class="section-tag">Líneas Exclusivas</div>
-      <h2 class="section-title">Productos<br><em>de Élite</em></h2>
-    </div>
-    <p class="products-body">Distribuidores en Chile de las marcas europeas más reconocidas en medicina estética y cosmética avanzada. Cada producto cumple con los más estrictos estándares de calidad y eficacia.</p>
-  </div>
-  <div class="products-grid">
-    <div class="product-card reveal" style="transition-delay:0s; cursor: pointer;" onclick="window.location.href='productos.html#innoaesthetics'">
-      <div class="product-img">
-        <img src="Recursos/Productos-img/Sun Defense SPF 50+- Bloqueador.webp" alt="Sun Defense SPF 50+ Bloqueador" loading="lazy">
-      </div>
-      <p class="product-brand">Innoaesthetics</p>
-      <h3 class="product-name">Sun Defense SPF 50+</h3>
-      <p class="product-desc">Bloqueador solar de amplio espectro que combina filtros minerales y químicos para protección UVB y UVA.</p>
-      <div class="product-footer">
-        <span class="product-price">$00.000</span>
-        <button class="product-btn" onclick="event.stopPropagation(); solicitarProducto('Sun Defense SPF 50+', 'Innoaesthetics')">Me Interesa</button>
-      </div>
-    </div>
-    <div class="product-card reveal" style="transition-delay:0.1s; cursor: pointer;" onclick="window.location.href='productos.html#meline'">
-      <div class="product-img">
-        <img src="Recursos/Productos-img/Sensitive Cream - crema.webp" alt="Sensitive Cream" loading="lazy">
-      </div>
-      <p class="product-brand">Innoaesthetics</p>
-      <h3 class="product-name">Sensitive Cream</h3>
-      <p class="product-desc">Crema ligera especialmente indicada para pieles sensibles.</p>
-      <div class="product-footer">
-        <span class="product-price">$00.000</span>
-        <button class="product-btn" onclick="event.stopPropagation(); solicitarProducto('Sensitive Cream', 'Innoaesthetics')">Me Interesa</button>
-      </div>
-    </div>
-    <div class="product-card reveal" style="transition-delay:0.2s; cursor: pointer;" onclick="window.location.href='productos.html#croma'">
-      <div class="product-img">
-        <img src="Recursos/Age Perfection - serum.webp" alt="Age Perfection Serum" loading="lazy">
-      </div>
-      <p class="product-brand">Innoaesthetics</p>
-      <h3 class="product-name">Age Perfection Serum</h3>
-      <p class="product-desc">Sérum antiedad concentrado que trata eficazmente los signos de la edad favoreciendo la síntesis de colágeno y protegiendo del daño oxidativo.</p>
-      <div class="product-footer">
-        <span class="product-price">Consultar</span>
-        <button class="product-btn" onclick="event.stopPropagation(); solicitarProducto('Age Perfection Serum', 'Innoaesthetics')">Me Interesa</button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -265,6 +347,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div style="text-align:center; max-width:33.5rem; margin:0 auto 1rem;">
     <div class="section-tag reveal" style="justify-content:center; gap:0.8rem">Cómo Trabajamos</div>
     <h2 class="section-title reveal"><em>Tu experiencia</em> con nosotros</h2>
+    <p class="services-desc reveal" style="text-align: center; margin: 1rem auto 0; max-width: 100%;">¿Te preguntas cómo es tu primera vez en Pielby? Así te acompañamos, paso a paso:</p>
   </div>
   <div class="process-grid">
     <div class="process-step reveal" style="transition-delay:0s">
@@ -275,29 +358,27 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
     <div class="process-step reveal" style="transition-delay:0.1s">
       <div class="step-circle"><span class="step-num">II</span></div>
       <h3 class="step-title">Diagnóstico</h3>
-      <p class="step-text">Análisis facial y corporal con tecnología de imagen avanzada para un diagnóstico preciso y completo.</p>
+      <p class="step-text">Anamnesis facial y corporal: revisamos tu historial, hábitos y objetivos con tecnología de imagen avanzada, para un diagnóstico preciso y completo.</p>
     </div>
     <div class="process-step reveal" style="transition-delay:0.2s">
       <div class="step-circle"><span class="step-num">III</span></div>
       <h3 class="step-title">Tratamiento</h3>
-      <p class="step-text">Aplicación del protocolo diseñado por nuestros especialistas, en un ambiente seguro y de alta comodidad.</p>
+      <p class="step-text">Aplicación del protocolo en un ambiente seguro y de alta comodidad.</p>
     </div>
     <div class="process-step reveal" style="transition-delay:0.3s">
       <div class="step-circle"><span class="step-num">IV</span></div>
       <h3 class="step-title">Seguimiento</h3>
-      <p class="step-text">Acompañamos tu evolución con controles periódicos y ajustes al protocolo para resultados óptimos.</p>
+      <p class="step-text">Acompañamos tu evolución con controles periódicos y ajustes.</p>
     </div>
   </div>
 </section>
 
 <!-- ANTES Y DESPUÉS -->
-<!-- Nota: reemplaza las rutas de imagen por las fotos reales de cada paciente,
-     siempre con su consentimiento informado por escrito para uso publicitario. -->
 <section class="results" id="resultados">
   <div class="results-header">
     <div class="section-tag reveal" style="justify-content:center; gap:0.8rem">Resultados Reales</div>
     <h2 class="section-title reveal">Antes &amp; <em>Después</em></h2>
-    <p class="results-desc reveal">Transformaciones reales de nuestras pacientes tras sus tratamientos.</p>
+    <p class="results-desc reveal">¿Quieres ver resultados reales, no promesas? Transformaciones reales de nuestras pacientes tras sus tratamientos.</p>
   </div>
   <div class="results-grid">
 
@@ -350,7 +431,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div class="testimonial-quote">"</div>
   <p class="testimonial-text">Cuidarse la piel también es amor propio ❤️‍🩹 Son años atendiéndome con @pielbymariarodriguez_chile y los resultados siempre son increíbles, agenden su evaluación y no se arrepentirán en lucir radiantes </p>
   <div class="testimonial-author">
-    <div class="author-avatar">A</div>
+    <div class="author-avatar">D</div>
     <div>
       <div class="stars">★★★★★</div>
       <div class="author-name">Daniel Arcos</div>
@@ -362,7 +443,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div class="testimonial-quote">"</div>
   <p class="testimonial-text">Me encanta cómo está mi piel ahora. Y aunque, volvió un pequeño brotecito mi piel sigue Hermosa, gracias a los tratamientos que hemos realizado todo el año</p>
   <div class="testimonial-author">
-    <div class="author-avatar">A</div>
+    <div class="author-avatar">M</div>
     <div>
       <div class="stars">★★★★★</div>
       <div class="author-name">Monserrat Arcos</div>
@@ -374,7 +455,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div class="testimonial-quote">"</div>
   <p class="testimonial-text">Muy rico y la piel la veo hidratada y fresca, Mari siempre es un relajo ir a verte, mi hada madrina que previene el envejecimiento de mi piel.</p>
   <div class="testimonial-author">
-    <div class="author-avatar">A</div>
+    <div class="author-avatar">C</div>
     <div>
       <div class="stars">★★★★★</div>
       <div class="author-name">Carla Arcamone</div>
@@ -390,7 +471,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div class="cta-decor">PielBy</div>
   <div class="cta-content">
     <h2 class="cta-title">Agenda Tu Hora <em>Con Nosotros</em></h2>
-    <p class="cta-text">Agenda hoy tu evaluación y descubre el tratamiento ideal para tu piel. Cupos limitados.</p>
+    <p class="cta-text">¿Lista para conocer tu piel de verdad? Agenda hoy tu evaluación y descubre el tratamiento ideal para ti. Cupos limitados.</p>
     <div class="cta-actions">
       <a href="https://wa.me/56999886940" class="btn-primary">Reservar Hora</a>
       <a href="https://wa.me/56999886940" target="_blank" class="btn-ghost">Escribir por WhatsApp</a>
@@ -406,7 +487,6 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
       <div class="section-tag reveal" style="justify-content: center; gap: 0.8rem;">Estamos para ti</div>
       <h2 class="section-title reveal" style="text-align: center;">Hablemos<br><em>hoy mismo</em></h2>
       <p class="contact-subtitle reveal">Permítenos guiarte en tu proceso de transformación y cuidado personal.</p>
-      <a href="https://wa.me/56999886940" target="_blank" class="btn-brown-outline">Escribir por WhatsApp</a>
     </div>
     
     <div class="contact-clean-grid">
@@ -417,7 +497,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
         <div class="card-watermark">◎</div>
         <div class="contact-icon-circle">◎</div>
         <h3 class="contact-info-label">Nuestra Ubicación</h3>
-        <div class="contact-info-val serif-val">Av. Apoquindo 4100<br>Oficina 1009<br>Las Condes, Santiago</div>
+        <div class="contact-info-val serif-val" style="font-size: 1.3rem;">Centro Médico Apoquindo 4100<br>Oficina 1009<br><span style="font-size:1rem; color:var(--text-light); font-family: 'Montserrat', sans-serif;">Estacionamiento N°229 exclusivo Pielby</span><br>Las Condes, Santiago</div>
         <a href="https://maps.google.com/?q=Av.+Apoquindo+4100,+Las+Condes,+Santiago" target="_blank" rel="noopener" class="contact-card-link">Ver en el mapa <span>→</span></a>
       </div>
 
@@ -427,8 +507,8 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
         <div class="card-watermark">◷</div>
         <div class="contact-icon-circle">◷</div>
         <h3 class="contact-info-label">Horario de Atención</h3>
-        <div class="contact-info-val serif-val">Lunes a Viernes<br>9:00 – 19:00<br>Sábados: 9:00 – 14:00</div>
-        <a href="#contacto" class="contact-card-link">Agendar visita <span>→</span></a>
+        <div class="contact-info-val serif-val">Lunes a Viernes<br>9:00 – 19:00<br>Sábados<br>9:00 – 14:00</div>
+        <a href="https://wa.me/56999886940" class="contact-card-link">Agendar visita <span>→</span></a>
       </div>
 
       <!-- BLOQUE 3: REDES SOCIALES DETALLADAS -->
@@ -480,7 +560,7 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
   <div class="footer-grid">
     <div>
       <div class="footer-brand">PielBy</div>
-      <p class="footer-tagline">Consmiatria y estética avanzada. Representantes exclusivos de las más prestigiosas marcas europeas de medicina estética en Chile.</p>
+      <p class="footer-tagline">Centro Espacio Belleza y Bienestar Pielby Spa. Dermocosmiatría facial y corporal, sin agujas ni dolor.</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/pielbymariarodriguez_chile" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
@@ -496,19 +576,18 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
     <div>
       <div class="footer-col-title">Tratamientos</div>
       <ul class="footer-links">
-        <li><a href="servicios.html#patologias">Patologías</a></li>
-        <li><a href="servicios.html#cosmetologia">Cosmetología</a></li>
+        <li><a href="servicios.html#patologias">Dermofacial Alteraciones Cutáneas</a></li>
+        <li><a href="servicios.html#cosmetologia">Piel en Forma</a></li>
         <li><a href="servicios.html#dermocosmiatria">Dermocosmiatría</a></li>
         <li><a href="aparatologia.html">Aparatología</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Marcas</div>
+      <div class="footer-col-title">Élite</div>
       <ul class="footer-links">
-        <li><a href="productos.html#innoaesthetics">Innoaesthetics</a></li>
-        <li><a href="productos.html#croma">Croma</a></li>
-        <li><a href="productos.html#meline">Meline</a></li>
-        <li><a href="index.html#productos">Productos</a></li>
+        <li><a href="#">BI-DENS</a></li>
+        <li><a href="#">Plenhyage</a></li>
+        <li><a href="productos.html">Productos</a></li>
       </ul>
     </div>
     <div>
@@ -516,13 +595,13 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
       <ul class="footer-links">
         <li><a href="tel:+56999886940">+56 9 9988 6940</a></li>
         <li><a href="mailto:gerenciapielbymr@gmail.com">gerenciapielbymr@gmail.com</a></li>
-        <li><a href="https://maps.google.com/?q=Av.+Apoquindo+4501,+Las+Condes,+Santiago" target="_blank" rel="noopener">Avenida Apoquindo 4100, Las Condes</a></li>
+        <li><a href="https://maps.google.com/?q=Av.+Apoquindo+4100,+Las+Condes,+Santiago" target="_blank" rel="noopener">Avenida Apoquindo 4100, Las Condes</a></li>
         <li><a href="https://wa.me/56999886940">Reservar Hora</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 PielBy Cosmetología. Todos los derechos reservados.</span>
+    <span class="footer-copy">© 2026 Pielby Centro Espacio Belleza y Bienestar Pielby Spa. Todos los derechos reservados.</span>
   </div>
 </footer>
 
@@ -590,14 +669,6 @@ Te invitamos a vivir la experiencia PielBy. El lujo de hoy es verte natural.</P>
       }
     });
   });
-
-  // Redirección dinámica a WhatsApp con mensaje personalizado del producto
-  function solicitarProducto(nombreProducto, marcaProducto) {
-    const telefono = '56999886940';
-    const mensaje = `Hola, me interesa el producto "${nombreProducto}" de la línea ${marcaProducto} que vi en su sitio web.`;
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-  }
 </script>
 </body>
 </html>
