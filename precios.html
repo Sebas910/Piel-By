@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PielBy — Lista de Precios y Protocolos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="Recursos/favicon.svg">
+  <style>
+    /* ── PALETA DE COLORES LUJOSA & VARIABLES ── */
+    :root {
+      --gold: #b28a50;
+      --gold-light: #d6b88b;
+      --gold-muted: rgba(178, 138, 80, 0.15);
+      
+      --bg-cream: #faf8f5;
+      --bg-cream-alt: #f4f0eb;
+      
+      --bg-brown: #32261e;
+      --bg-brown-alt: #241a14;
+      
+      --text-dark: #3a2e28;
+      --text-mid: #6b5c54;
+      --text-light: #f4efeb;
+      --text-muted-light: #b5a9a1;
+      
+      --nav-h: 80px;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px; /* Tamaño un poco más reducido y delicado */
+    }
+
+    /* ── NAVBAR DINÁMICO ── */
+    #navbar {
+      transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.nav-dark-mode {
+      background-color: var(--bg-brown) !important;
+      border-bottom: 1px solid rgba(178, 138, 80, 0.15) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    }
+    #navbar.nav-dark-mode .nav-logo { color: var(--gold) !important; }
+    #navbar.nav-dark-mode .nav-links li a { color: var(--text-light) !important; }
+    #navbar.nav-dark-mode .nav-links li a[style*="var(--gold)"] { color: var(--gold) !important; }
+    #navbar.nav-dark-mode .nav-cta { border-color: var(--gold) !important; color: var(--gold) !important; }
+    #navbar.nav-dark-mode .nav-cta:hover { background-color: var(--gold) !important; color: var(--bg-brown) !important; }
+    #navbar.nav-dark-mode .hamburger span { background-color: var(--text-light) !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      min-height: max(40vh, 18rem);
+      position: relative; display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden; padding-top: calc(var(--nav-h) + 1rem); padding-bottom: 4rem;
+      background-color: var(--bg-brown);
+      text-align: center;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, #4a3a31 0%, var(--bg-brown) 70%);
+    }
+    .page-hero-pattern {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 60%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 2; padding: 0 5vw; width: 100%; max-width: 800px;
+      opacity: 0; transform: translateY(20px);
+      animation: heroReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
+    
+    .page-hero-eyebrow {
+      font-size: 0.65rem; font-weight: 400; letter-spacing: 0.25em;
+      color: var(--gold); margin-bottom: 1rem; display: block;
+      text-transform: uppercase;
+    }
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 300; line-height: 1.05; color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+    .page-hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+    .page-hero-sub {
+      font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em;
+      color: var(--text-muted-light); line-height: 1.8; margin: 0 auto;
+    }
+
+    /* ── REDIRECCIONES DE CATEGORÍAS (FULL WIDTH) ── */
+    .cat-overview {
+      background: var(--bg-cream-alt);
+      padding: 5rem 5vw;
+      position: relative;
+    }
+    .cat-overview::before {
+      content: ''; position: absolute; top: 0; left: 5vw; right: 5vw;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+    }
+    .cat-overview-grid {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 2rem; 
+      max-width: 1400px; /* Uso de todo el espacio */
+      margin: 0 auto;
+    }
+    .cat-overview-card {
+      background: var(--bg-cream); 
+      border: 1px solid var(--gold-muted); 
+      border-radius: 6px;
+      padding: 3rem 2rem; 
+      position: relative; display: flex; flex-direction: column; align-items: center;
+      transition: all 0.5s ease; text-align: center; text-decoration: none;
+    }
+    .cat-overview-card::after {
+      content: ''; position: absolute; inset: 6px; 
+      border: 1px solid rgba(178, 138, 80, 0.08); 
+      border-radius: 4px; pointer-events: none; transition: border-color 0.5s ease;
+    }
+    .cat-overview-card:hover {
+      background: var(--white);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(54, 41, 34, 0.05);
+    }
+    .cat-overview-card:hover::after { border-color: rgba(178, 138, 80, 0.2); }
+    
+    .cat-icon {
+      width: 40px; height: 40px; color: var(--gold); margin-bottom: 1.5rem;
+      transition: transform 0.5s ease;
+    }
+    .cat-overview-card:hover .cat-icon { transform: scale(1.1); }
+    
+    .cat-overview-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 400; color: var(--text-dark);
+      margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .cat-overview-desc {
+      font-size: 0.85rem; font-weight: 300; color: var(--text-mid); 
+      line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;
+    }
+    .cat-overview-btn {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em;
+      color: var(--gold); text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    .cat-overview-btn::after { content: '→'; font-family: sans-serif; transition: transform 0.3s ease; }
+    .cat-overview-card:hover .cat-overview-btn { color: var(--bg-brown); }
+    .cat-overview-card:hover .cat-overview-btn::after { transform: translateX(4px); }
+
+    /* ── SECCIONES DE CATEGORÍAS ── */
+    .cat-block { padding-bottom: 6rem; }
+    .cat-block-light { background-color: var(--bg-cream); }
+    .cat-block-dark { background-color: var(--bg-brown); color: var(--text-light); }
+
+    .cat-header-wrapper {
+      padding: 6rem 5vw 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .cat-header-wrapper::before {
+      content: '◆'; position: absolute; top: 2.5rem; left: 50%; transform: translateX(-50%);
+      color: var(--gold); font-size: 0.7rem;
+    }
+    .cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .cat-title em { font-style: italic; color: var(--gold); }
+    
+    .cat-intro-box {
+      max-width: 800px; margin: 0 auto; text-align: center; padding: 0 2rem;
+    }
+    .cat-intro-box strong {
+      display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+      font-weight: 400; color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .cat-intro-box p {
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8; margin: 0;
+      color: inherit; opacity: 0.85;
+    }
+
+    /* ── SUBCATEGORÍAS ── */
+    .subcat-header {
+      padding: 4rem 5vw 2rem; text-align: center; position: relative;
+    }
+    .subcat-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+      font-weight: 400; display: inline-block; position: relative; margin-bottom: 0.8rem;
+    }
+    .subcat-title::after {
+      content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
+      margin: 0.6rem auto 0;
+    }
+    .subcat-desc {
+      font-size: 0.95rem; font-weight: 300; max-width: 60ch; margin: 0 auto; line-height: 1.7; opacity: 0.85;
+    }
+
+    /* ── LISTA DE PRECIOS Y PROTOCOLOS (FULL WIDTH GRID) ── */
+    .price-list { 
+      padding: 0 5vw; 
+      max-width: 1400px; /* Expansión a lo ancho */
+      margin: 0 auto; 
+    }
+    .price-list.two-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2rem;
+      align-items: start;
+    }
+    
+    .pr-item {
+      background: var(--bg-cream-alt);
+      border: 1px solid var(--gold-muted);
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+      display: flex; flex-direction: column;
+      height: 100%; /* Para que los items en grid tengan la misma altura */
+    }
+    .price-list.two-cols .pr-item { margin-bottom: 0; }
+    
+    .cat-block-dark .pr-item {
+        background: var(--bg-brown-alt);
+        border-color: rgba(178, 138, 80, 0.25);
+    }
+    .pr-item:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+        border-color: rgba(178, 138, 80, 0.4);
+    }
+    .cat-block-dark .pr-item:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .pr-item.visible { opacity: 1; transform: translateY(0); }
+    
+    .pr-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 2.2rem 2.5rem; position: relative; flex-grow: 1;
+    }
+    
+    .pr-info { flex: 1; padding-right: 2rem; }
+    
+    .pr-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em;
+      color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase;
+      display: inline-block; padding: 0.2rem 0.6rem; border: 1px solid var(--gold-muted);
+      border-radius: 20px;
+    }
+    .pr-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      font-weight: 400; line-height: 1.15; margin-bottom: 0.8rem;
+      color: var(--text-dark);
+    }
+    .cat-block-dark .pr-name { color: var(--text-light); }
+    
+    .pr-desc-short {
+      font-size: 0.9rem; font-weight: 300; line-height: 1.6;
+      color: var(--text-mid); margin: 0;
+    }
+    .cat-block-dark .pr-desc-short { color: var(--text-muted-light); }
+
+    .pr-price-box { text-align: right; min-width: 100px; }
+    
+    .pr-price {
+        font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+        font-weight: 400; color: var(--text-dark); display: block;
+    }
+    .cat-block-dark .pr-price { color: var(--gold-light); }
+    
+    .pr-duration {
+        font-size: 0.75rem; color: var(--text-mid); font-weight: 400;
+        display: block; margin-top: 0.4rem; letter-spacing: 0.05em;
+    }
+    .cat-block-dark .pr-duration { color: var(--text-muted-light); }
+
+    /* Accordion Toggle */
+    .pr-toggle {
+        width: 100%; background: transparent; border: none;
+        border-top: 1px solid var(--gold-muted); padding: 1rem;
+        cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 0.5rem;
+        font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 500;
+        letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+        transition: background 0.3s ease; margin-top: auto;
+    }
+    .pr-toggle:hover { background: rgba(178, 138, 80, 0.05); }
+    .pr-toggle::after { content: '↓'; transition: transform 0.3s ease; font-size: 0.9rem; }
+    .pr-item.active .pr-toggle::after { transform: rotate(180deg); }
+    .pr-item.active .pr-toggle .toggle-text::before { content: 'Ocultar protocolo'; }
+    .pr-toggle .toggle-text::before { content: 'Ver protocolo completo'; }
+
+    /* Accordion Content */
+    .pr-content {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+        background: var(--white);
+    }
+    .cat-block-dark .pr-content { background: var(--bg-brown); }
+    
+    .pr-item.active .pr-content { max-height: 2500px; }
+    
+    .pr-content-inner {
+        padding: 2.5rem; font-size: 0.9rem; font-weight: 300; line-height: 1.7;
+        color: var(--text-mid); border-top: 1px solid var(--gold-muted);
+    }
+    .cat-block-dark .pr-content-inner { color: var(--text-muted-light); border-color: rgba(178, 138, 80, 0.2); }
+    
+    .pr-content-inner p { margin-top: 0; margin-bottom: 1.2rem; }
+    .pr-content-inner p:last-child { margin-bottom: 0; }
+    .pr-content-inner strong { font-weight: 500; color: var(--text-dark); }
+    .cat-block-dark .pr-content-inner strong { color: var(--text-light); }
+
+    /* Special Gift Banner within content */
+    .pr-gift-banner {
+        border: 1px dashed rgba(178, 138, 80, 0.6);
+        padding: 1.5rem; border-radius: 4px; margin-bottom: 1.5rem;
+        background: rgba(178, 138, 80, 0.03); position: relative;
+    }
+    .pr-gift-title {
+        color: var(--gold); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.1em;
+        text-transform: uppercase; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .pr-gift-title::before { content: '✦'; font-size: 1rem; }
+    .pr-gift-list { list-style: none; padding: 0; margin: 0; }
+    .pr-gift-list li { margin-bottom: 0.4rem; padding-left: 1.2rem; position: relative; }
+    .pr-gift-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; }
+    .pr-gift-value { font-style: italic; color: var(--gold); margin-top: 0.8rem; display: block; font-size: 0.85rem; opacity: 0.9;}
+
+    /* Variant Pricing (Simple vs Premium) */
+    .pr-variants {
+        display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+        margin-top: 1.5rem; border-top: 1px solid var(--gold-muted); padding-top: 1.5rem;
+    }
+    @media (min-width: 768px) { .pr-variants { grid-template-columns: 1fr 1fr; } }
+    .pr-variant {
+        border: 1px solid var(--gold-muted); padding: 1.8rem; border-radius: 4px;
+        display: flex; flex-direction: column;
+    }
+    .pr-variant-title {
+        font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+        color: var(--gold); margin-bottom: 0.8rem; display: block;
+    }
+    .pr-variant-name {
+        font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 1rem;
+        color: var(--text-dark); line-height: 1.2;
+    }
+    .cat-block-dark .pr-variant-name { color: var(--text-light); }
+    
+    .pr-variant-price {
+        font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+        color: var(--text-dark); display: block; margin-top: auto; padding-top: 1.5rem;
+    }
+    .cat-block-dark .pr-variant-price { color: var(--gold-light); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background-color: var(--bg-brown-alt);
+      padding: 6rem 5vw; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.05;
+      background: radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 60%);
+    }
+    .cta-banner-inner { position: relative; z-index: 1; }
+    .cta-banner-tag {
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.25em;
+      color: var(--gold); margin-bottom: 1.2rem; display: block; text-transform: uppercase;
+    }
+    .cta-banner-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; color: var(--text-light); line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .cta-banner-title em { font-style: italic; color: var(--gold-light); font-weight: 400;}
+    .cta-banner-sub {
+      font-size: 0.95rem; font-weight: 300; color: var(--text-muted-light);
+      max-width: 45ch; margin: 0 auto 2.5rem; line-height: 1.8;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; padding: 1rem 3rem;
+      background: var(--gold); color: var(--white); text-decoration: none;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: background 0.3s, transform 0.3s; border-radius: 4px;
+    }
+    .btn-primary:hover { background: #9a7642; transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cat-overview { padding: 4rem 6vw; }
+      
+      .cat-header-wrapper { padding: 4rem 6vw 2rem; }
+      .cat-intro-box { padding: 0 6vw 2rem; }
+      
+      .price-list { padding: 0 6vw; }
+      .price-list.two-cols { grid-template-columns: 1fr; }
+      
+      .pr-header { flex-direction: column; padding: 2rem 1.5rem; gap: 1.5rem; }
+      .pr-info { padding-right: 0; }
+      .pr-price-box { text-align: left; }
+      .pr-content-inner { padding: 2rem 1.5rem; }
+      
+      .subcat-header { padding: 3rem 6vw 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">PielBy</a>
+  <ul class="nav-links">
+    <li><a href="/index.html#inicio">Inicio</a></li> 
+    <li><a href="/servicios.html">Servicios</a></li>
+    <li><a href="/precios.html">Precios</a></li>
+    <li><a href="/productos.html">Productos</a></li>
+    <li><a href="/aparatologia.html">Aparatología</a></li>
+    <li><a href="/index.html#contacto">Contacto</a></li>
+    <li><a href="https://wa.me/56999886940" class="nav-cta">Reservar Hora</a></li>  
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+  <a href="index.html#inicio" class="mobile-link">Inicio</a>
+  <a href="index.html#nosotros" class="mobile-link">Nosotros</a>
+  <a href="servicios.html" class="mobile-link" style="color:var(--gold)">Servicios</a>
+  <a href="aparatologia.html" class="mobile-link">Aparatología</a>
+  <a href="productos.html" class="mobile-link">Productos</a>
+  <a href="index.html#contacto" class="mobile-link">Contacto</a>
+  <a href="https://wa.me/56999886940" class="mobile-link" style="color:var(--gold);">Reservar hora</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-pattern"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-eyebrow">Lista de precios</span>
+    <h1 class="page-hero-title">Nuestros <em>Protocolos</em></h1>
+    <p class="page-hero-sub">Cada servicio tiene su descripción y valor a la vista. Toca "Ver protocolo completo" para conocer el paso a paso con tiempos de cada sesión.</p>
+  </div>
+</section>
+
+<!-- REDIRECCIONES DE CATEGORÍAS -->
+<div class="cat-overview">
+  <div class="cat-overview-grid">
+    <a href="#fase-bienestar" class="cat-overview-card reveal">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a5.5 5.5 0 0 0-3.09 10.15 5.5 5.5 0 0 0 6.18 0A5.5 5.5 0 0 0 12 2.5Z"></path><path d="M12 21.5a5.5 5.5 0 0 1-3.09-10.15 5.5 5.5 0 0 1 6.18 0A5.5 5.5 0 0 1 12 21.5Z"></path><path d="M2.5 12a5.5 5.5 0 0 0 10.15 3.09 5.5 5.5 0 0 0 0-6.18A5.5 5.5 0 0 0 2.5 12Z"></path><path d="M21.5 12a5.5 5.5 0 0 1-10.15-3.09 5.5 5.5 0 0 1 0 6.18A5.5 5.5 0 0 1 21.5 12Z"></path></svg>
+      <h3 class="cat-overview-name">Fase Bienestar</h3>
+      <p class="cat-overview-desc">Te ayudo a que tu cuerpo baje las revoluciones antes de cualquier protocolo.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+
+    <a href="#base-dermofacial" class="cat-overview-card reveal" style="transition-delay:0.1s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+      <h3 class="cat-overview-name">Base Dermofacial</h3>
+      <p class="cat-overview-desc">Te ayudo a tener una base de piel limpia y preparada para cualquier tratamiento.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+
+    <a href="#protocolos-faciales" class="cat-overview-card reveal" style="transition-delay:0.2s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      <h3 class="cat-overview-name">Protocolos Faciales</h3>
+      <p class="cat-overview-desc">Abordamos patologías específicas: acné, rosácea, manchas y rejuvenecimiento.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+    
+    <a href="#fase-corporal" class="cat-overview-card reveal">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+      <h3 class="cat-overview-name">Fase Corporal</h3>
+      <p class="cat-overview-desc">Te ayudo a definir y tensar tu contorno, sin pasar por quirófano.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+
+    <a href="#tratamientos-elite" class="cat-overview-card reveal" style="transition-delay:0.1s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <h3 class="cat-overview-name">Tratamientos Élite</h3>
+      <p class="cat-overview-desc">Regeneración desde la dermis, con tecnología avanzada Innoaesthetics.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+    
+    <a href="#packs" class="cat-overview-card reveal" style="transition-delay:0.2s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      <h3 class="cat-overview-name">Packs Especiales</h3>
+      <p class="cat-overview-desc">Te ayudo a comprometerte con tu proceso completo, al mejor valor.</p>
+      <span class="cat-overview-btn">Ver precios</span>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FASE DE BIENESTAR 
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-light" id="fase-bienestar">
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Fase de <em>Bienestar</em></h2>
+  </div>
+  <div class="cat-intro-box reveal">
+    <strong>Bienestar</strong>
+    <p>Te ayudo a que tu cuerpo baje las revoluciones antes de cualquier protocolo. El punto de partida de cada visita a Pielby: calma antes de cualquier protocolo.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- ITEM 1 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name">Masaje facial</h3>
+          <p class="pr-desc-short">Maniobras de relajación y activación circulatoria en rostro y cuello, que alivian tensión y devuelven luminosidad inmediata.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$29.990</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Masaje manual con maniobras específicas de drenaje y activación circulatoria en rostro, cuello y escote, sin uso de dispositivos.</p>
+          <p><strong>Beneficios:</strong> alivia tensión muscular (mandíbula, frente, entrecejo), mejora la circulación, aporta luminosidad inmediata y relajación.</p>
+          <p><strong>Cuidados:</strong> Evita maquillaje, calor extremo y exposición solar directa por 24 horas.</p>
+          <p><strong>Contraindicaciones:</strong> heridas abiertas, quemaduras solares recientes o infecciones cutáneas activas en el rostro.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name">Drenaje facial manual + Jade roller</h3>
+          <p class="pr-desc-short">Drenaje linfático manual combinado con rodillos de jade frío, que desinflama el rostro y reactiva la circulación. Ideal después de vuelos o trasnoches.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$29.990</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Técnica manual de drenaje linfático que sigue el trayecto natural de los ganglios del rostro, potenciada con rodillos de jade frío que ayudan a cerrar los capilares y descongestionar.</p>
+          <p><strong>Beneficios:</strong> reduce la retención de líquidos y la hinchazón matutina, mejora la circulación linfática, efecto descongestionante inmediato.</p>
+          <p><strong>Cuidados:</strong> Evita maquillaje, calor extremo y exposición solar directa por 24 horas.</p>
+          <p><strong>Contraindicaciones:</strong> infecciones activas, heridas abiertas o inflamación aguda en el rostro.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 3 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name">Masaje corporal manual + Drenaje linfático</h3>
+          <p class="pr-desc-short">Una hora combinando masaje relajante y drenaje linfático manual, para liberar tensión y activar la circulación de cuerpo completo.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$79.990</span>
+          <span class="pr-duration">1 hora</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Una hora completa que combina masaje corporal manual con maniobras de relajación profunda, y drenaje linfático que sigue el trayecto natural de los ganglios para desinflamar y activar la circulación de cuerpo completo.</p>
+          <p><strong>Beneficios:</strong> libera tensión muscular, mejora la circulación sanguínea y linfática, reduce el estrés y la retención de líquidos.</p>
+          <p><strong>Cuidados:</strong> Evita maquillaje, calor extremo y exposición solar directa por 24 horas.</p>
+          <p><strong>Contraindicaciones:</strong> fiebre, heridas abiertas, trombosis venosa profunda o embarazo (requiere protocolo adaptado).<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 4 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name">Manta térmica</h3>
+          <p class="pr-desc-short">Calor progresivo que relaja la musculatura y prepara el cuerpo para absorber mejor los tratamientos posteriores.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$35.000</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Envolvente térmica que aplica calor progresivo y uniforme sobre el cuerpo, dilatando los vasos sanguíneos y relajando la musculatura antes de cualquier protocolo.</p>
+          <p><strong>Beneficios:</strong> mejora la circulación, favorece la eliminación de toxinas, relaja profundamente y potencia la absorción de tratamientos posteriores.</p>
+          <p><strong>Cuidados:</strong> Hidrátate bien las horas siguientes y evita calor extremo o ejercicio intenso el mismo día.</p>
+          <p><strong>Contraindicaciones:</strong> embarazo, hipertensión no controlada, enfermedades cardiovasculares, uso de marcapasos, fiebre.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 5 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name">Presoterapia</h3>
+          <p class="pr-desc-short">Compresión secuencial que activa el drenaje linfático y reduce la sensación de piernas cansadas o retención de líquidos.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$35.000</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Botas y mangas neumáticas que ejercen compresión secuencial de distal a proximal, activando el retorno linfático y venoso.</p>
+          <p><strong>Beneficios:</strong> reduce la retención de líquidos y la sensación de piernas cansadas, mejora la circulación, efecto relajante inmediato.</p>
+          <p><strong>Cuidados:</strong> Evita maquillaje, calor extremo y exposición solar directa por 24 horas.</p>
+          <p><strong>Contraindicaciones:</strong> trombosis venosa profunda, insuficiencia cardíaca, embarazo, infecciones activas en las piernas.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM 6 DESTACADO -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag" style="background: rgba(178, 138, 80, 0.1);">Destacado</span>
+          <h3 class="pr-name">Sesión bienestar</h3>
+          <p class="pr-desc-short">Una hora completa: manta térmica + presoterapia + masaje, en una sola sesión de desconexión total.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$69.990</span>
+          <span class="pr-duration">1 hora</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>La experiencia Bienestar completa en una sola sesión de una hora: manta térmica, presoterapia y masaje, combinados para que bajes las revoluciones antes de cualquier protocolo o simplemente porque lo necesitas.</p>
+          <p><strong>Beneficios:</strong> relajación profunda, mejora circulación sanguínea y linfática, reduce el estrés y prepara el cuerpo para absorber mejor cualquier tratamiento posterior.</p>
+          <p><strong>Cuidados:</strong> Ninguno especial puedes retomar tu rutina normal de inmediato.</p>
+          <p><strong>Contraindicaciones:</strong> embarazo (requiere protocolo adaptado), fiebre, trombosis venosa profunda, marcapasos.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKS BIENESTAR -->
+    <div class="pr-item reveal" style="border: 1px dashed var(--gold);">
+      <div class="pr-header" style="flex-direction: column; align-items: flex-start;">
+        <span class="pr-tag" style="background: var(--gold); color: var(--white); border: none;">Pack 5 Sesiones</span>
+        <h3 class="pr-name">Pack bienestar facial y corporal (1 hora)</h3>
+        <p class="pr-desc-short" style="max-width: 90%;">Una hora completa dedicada a bajar las revoluciones: manta térmica, presoterapia y masaje facial o corporal según lo que tu cuerpo necesite ese día.</p>
+        <span class="pr-price" style="margin-top: 1.5rem;">$199.990</span>
+      </div>
+    </div>
+
+    <div class="pr-item reveal" style="border: 1px dashed var(--gold);">
+      <div class="pr-header" style="flex-direction: column; align-items: flex-start;">
+        <span class="pr-tag" style="background: var(--gold); color: var(--white); border: none;">Pack 10 Sesiones</span>
+        <h3 class="pr-name">Pack bienestar</h3>
+        <p class="pr-desc-short" style="max-width: 90%;">Para quienes hicieron del bienestar parte de su rutina: 10 sesiones de manta térmica, presoterapia y masaje, con el mejor valor por sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        <span class="pr-price" style="margin-top: 1.5rem;">$330.000</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BASE DERMOFACIAL 
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-dark" id="base-dermofacial">
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Base <em>Dermofacial</em></h2>
+  </div>
+  <div class="cat-intro-box reveal">
+    <strong>Dermofacial</strong>
+    <p>Te ayudo a tener una base de piel limpia y preparada para cualquier tratamiento. La base Dermofacial de nuestros protocolos combinados: limpieza profunda, tecnología y peeling personalizado en una sola sesión.</p>
+  </div>
+
+  <div class="price-list">
+    <div class="pr-item reveal" style="max-width: 800px; margin: 0 auto;">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo base</span>
+          <h3 class="pr-name">Dermofacial</h3>
+          <p class="pr-desc-short">Limpieza Dermofacial profunda + tecnología + peeling personalizado. La base de todos nuestros protocolos combinados.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$108.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+            </ul>
+            <span class="pr-gift-value">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+          </div>
+          
+          <p><strong>20 min -</strong> Extracción especializada con lancetas para tratar pápulas, pústulas, comedones cerrados y millium con técnica Dermofacial, seguida de Hydrafacial para una limpieza profunda e hidratación instantánea.</p>
+          <p><strong>10 min -</strong> Láser infrarrojo MMO -con luz azul y roja que reduce inflamación y bacterias mientras estimula la regeneración celular.</p>
+          <p><strong>10 min -</strong> Ozonoterapia transdérmica para desinfectar y oxigenar la piel en profundidad.</p>
+          <p>Cerramos con un peeling del laboratorio Innoaesthetics, seleccionado según la necesidad de tu piel y la sugerencia profesional, más mascarilla regenerativa Restore y protector.</p>
+          <p><strong>Ideal para:</strong> piel congestionada, con tendencia acneica, poros dilatados o textura irregular que necesita un abordaje Dermofacial real.</p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROTOCOLOS FACIALES PATOLOGÍA
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-light" id="protocolos-faciales">
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Protocolos faciales <em>Patología</em></h2>
+  </div>
+
+  <!-- CONTROL DEL ACNÉ -->
+  <div class="subcat-header reveal">
+    <h3 class="subcat-title">Control del acné</h3>
+    <p class="subcat-desc">Te ayudo a tener una piel equilibrada, libre de brillo y brotes.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo</span>
+          <h3 class="pr-name">Limpieza comedogénica</h3>
+          <p class="pr-desc-short">Exfoliación mecánica + microdermoabrasión con ozonoterapia + radiofrecuencia, para piel congestionada.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$49.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Soy una persona abundante y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>10 minutos de protocolo bienestar porque Merezco eso y más.</li>
+              <li>10 minutos de radiofrecuencia para activar el colágeno de mi piel.</li>
+            </ul>
+            <span class="pr-gift-value">Valorado en: $149.000 (regalo válido por 1 sesión)</span>
+          </div>
+          <p>Comenzamos con higiene facial profunda y exfoliación con scrub, preparando la piel para la microdermoabrasión con ozonoterapia, que remueve células muertas mientras desinfecta y oxigena en profundidad.</p>
+          <p>Aplicamos radiofrecuencia para estimular la producción de colágeno y mejorar la firmeza y textura de la piel.</p>
+          <p>Finalizamos con mascarilla regenerativa Selvert Thermal, crema de células madres y protector solar.</p>
+          <p><strong>Cuidados:</strong> Hidrátate bien las horas siguientes y evita calor extremo o ejercicio intenso el mismo día.</p>
+          <p><strong>Contraindicaciones:</strong> embarazo, piel con heridas activas, uso de marcapasos (por la radiofrecuencia).</p>
+          <p><em>Ideal para piel con comedones, textura irregular, poros dilatados o congestión que necesita un abordaje profundo y renovador.</em></p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE CON DERMOFACIAL (SKIN RECOVERY) -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">Skin Recovery + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + peeling Skin Recovery aplicado tópicamente con cotonitos, para renovar la piel con marcas de acné.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$187.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Skin Recovery + Facial clásico</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem;">
+                <span class="pr-gift-title" style="font-size: 0.7rem;">Soy una persona abundante y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li>10 minutos de protocolo bienestar porque Merezco eso y más.</li>
+                  <li>10 minutos de radiofrecuencia para activar el colágeno de mi piel.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem;">Valorado en: $149.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 50 a 60 minutos</span>
+              <span class="pr-variant-price">$118.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Skin Recovery + Dermofacial completo</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem; border-color: var(--brown); background: rgba(54, 41, 34, 0.03);">
+                <span class="pr-gift-title" style="font-size: 0.7rem; color: var(--brown);">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li style="color: var(--brown);">20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem; color: var(--brown);">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 1 hora 30 minutos</span>
+              <span class="pr-variant-price">$187.000</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+              <p>Skin Recovery es un peeling de Innoaesthetics a base de ácido salicílico, ácido mandélico, resorcinol, ácido azelaico y retinol, diseñado para piel seborreica, con acné severo, estrías rojas o alteraciones cutáneas.</p>
+              <p>Incluye el protocolo Dermofacial completo y cierra con aplicación tópica del peeling Skin Recovery con cotonitos (no brocha), para actuar en superficie sin agredir la piel.</p>
+              <p><strong>Beneficios:</strong> regula el exceso de grasa, calma pieles con tendencia a marcas rojas, mejora la textura irregular.</p>
+              <p><strong>Cuidados:</strong> Evita exposición solar directa sin protector, maquillaje pesado y exfoliantes por 24-48 horas.</p>
+              <p><strong>Contraindicaciones:</strong> embarazo y lactancia, exposición solar directa sin protección los días posteriores.</p>
+              <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE CON DERMOFACIAL (AKN-ID) -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">AKN-ID + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + AKN-ID aplicado con Dermapen y Electroporación, para piel grasa y con tendencia acneica.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">AKN-ID + Facial clásico</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem;">
+                <span class="pr-gift-title" style="font-size: 0.7rem;">Soy una persona abundante y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li>10 minutos de protocolo bienestar porque Merezco eso y más.</li>
+                  <li>10 minutos de radiofrecuencia para activar el colágeno de mi piel.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem;">Valorado en: $149.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 50 a 60 minutos</span>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">AKN-ID + Dermofacial completo</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem; border-color: var(--brown); background: rgba(54, 41, 34, 0.03);">
+                <span class="pr-gift-title" style="font-size: 0.7rem; color: var(--brown);">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li style="color: var(--brown);">20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem; color: var(--brown);">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 1 hora 30 minutos</span>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+              <p>AKN-ID es un cóctel seborregulador y purificante de Innoaesthetics, formulado con ácido pirúvico, zinc, niacinamida, melilotus, taurina y péptidos, diseñado específicamente para piel grasa y con tendencia acneica.</p>
+              <p>Incluye el protocolo Dermofacial completo y cierra con aplicación de AKN-ID mediante Dermapen + Electroporación, para que el activo seborregulador llegue a dermis profunda.</p>
+              <p><strong>Beneficios:</strong> regula el exceso de sebo, acción antibacteriana, desobstruye poros y calma la inflamación.</p>
+              <p><strong>Cuidados:</strong> Evita maquillaje, cremas activas y calor extremo (sauna, sol directo) por 24 horas.</p>
+              <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE CON DERMOFACIAL (VITAMIN COMPLEX) -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Vitamin Complex + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Vitamin Complex aplicado con Dermapen y Electroporación, para piel grasa con impurezas que necesita energía.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Vitamin Complex + Facial clásico</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem;">
+                <span class="pr-gift-title" style="font-size: 0.7rem;">Soy una persona abundante y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li>10 minutos de protocolo bienestar porque Merezco eso y más.</li>
+                  <li>10 minutos de radiofrecuencia para activar el colágeno de mi piel.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem;">Valorado en $149.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 50 a 60 minutos</span>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Vitamin Complex + Dermofacial completo</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem; border-color: var(--brown); background: rgba(54, 41, 34, 0.03);">
+                <span class="pr-gift-title" style="font-size: 0.7rem; color: var(--brown);">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li style="color: var(--brown);">20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+                </ul>
+                <span class="pr-gift-value" style="font-size: 0.8rem; color: var(--brown);">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 1 hora 30 minutos</span>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+              <p>Vitamin Complex es un suplemento nutritivo de Innoaesthetics con aminoácidos, oligoelementos, vitaminas estabilizadas y ácido hialurónico, que optimiza el metabolismo celular y restaura la vitalidad de la piel.</p>
+              <p>Incluye el protocolo Dermofacial completo y cierra con aplicación de Vitamin Complex mediante Dermapen + Electroporación, aportando vitaminas y nutrientes esenciales en profundidad.</p>
+              <p><strong>Beneficios:</strong> mejora el metabolismo celular, aporta luminosidad y frescura, fortalece la barrera cutánea.</p>
+              <p><strong>Cuidados:</strong> Evita maquillaje, cremas activas y calor extremo (sauna, sol directo) por 24 horas.</p>
+              <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROSÁCEA & ROJECES -->
+  <div class="subcat-header reveal" style="margin-top: 1rem;">
+    <h3 class="subcat-title">Rosácea & rojeces</h3>
+    <p class="subcat-desc">Te ayudo a calmar tu piel y devolverle su equilibrio natural.</p>
+  </div>
+
+  <div class="price-list">
+    <div class="pr-item reveal" style="max-width: 800px; margin: 0 auto;">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo Híbrido</span>
+          <h3 class="pr-name">Protocolo de rosácea</h3>
+          <p class="pr-desc-short">Hydrafacial + láser MMO ámbar + aplicación híbrida (Redness Peeling en superficie y Redness-ID por electroporación), para piel reactiva.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+            </ul>
+            <span class="pr-gift-value">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+          </div>
+          <p>Comenzamos con higiene facial suave, seguida de Hydrafacial para una limpieza profunda e hidratación sin irritación.</p>
+          <p>Aplicamos láser infrarrojo MMO ámbar, que ayuda a calmar la inflamación y favorecer la regeneración celular.</p>
+          <p>Sumamos una aplicación híbrida: Redness Peeling y Redness-ID de Innoaesthetics mediante electroporación, que trabaja en dermis profunda para una penetración óptima de los activos calmantes y reductores de rojez.</p>
+          <p><strong>Beneficios:</strong> calma y descongestiona, fortalece la barrera cutánea, regula la microcirculación.</p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANCHAS & DESPIGMENTACIÓN -->
+  <div class="subcat-header reveal" style="margin-top: 1rem;">
+    <h3 class="subcat-title">Manchas & despigmentación</h3>
+    <p class="subcat-desc">Te ayudo a unificar tu tono y recuperar luminosidad.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">Hollywood black peel</h3>
+          <p class="pr-desc-short">Carbono activado + láser, para minimizar poros y unificar el tono antes de eventos importantes.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$108.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+            </ul>
+            <span class="pr-gift-value">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+          </div>
+          <p>El Hollywood Peel combina una mascarilla de carbón activado con un láser especializado: el carbón absorbe impurezas y sebo desde el fondo del poro, y el láser lo vaporiza junto con las células muertas, estimulando además la producción de colágeno.</p>
+          <p><strong>Beneficios:</strong> limpieza profunda de poros, control de brillo, piel visiblemente más uniforme, sin tiempo de recuperación.</p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE LIGHTENING -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">Lightening + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Lightening aplicado tópicamente con cotonitos, para manchas y melasma.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$187.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Lightening + Facial clásico</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem;">
+                <span class="pr-gift-title" style="font-size: 0.7rem;">Soy una persona abundante y recibo mi regalo</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li>10 min de bienestar + 10 min de radiofrecuencia.</li>
+                </ul>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 50 a 60 minutos</span>
+              <span class="pr-variant-price">$118.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Lightening + Dermofacial completo</h4>
+              <div class="pr-gift-banner" style="padding: 1rem; margin-top: 1rem; border-color: var(--brown); background: rgba(54, 41, 34, 0.03);">
+                <span class="pr-gift-title" style="font-size: 0.7rem; color: var(--brown);">Regalo especial</span>
+                <ul class="pr-gift-list" style="font-size: 0.8rem;">
+                  <li style="color: var(--brown);">20 minutos bienestar + 20 min CrioRadiofrecuencia.</li>
+                </ul>
+              </div>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 1 hora 30 minutos</span>
+              <span class="pr-variant-price">$187.000</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+              <p>Lightening es un peeling despigmentante de Innoaesthetics a base de Vitamina A, ácido láctico, ácido salicílico, arbutina, ácido kójico y ácido fítico, indicado para fotoenvejecimiento y pigmentaciones superficiales.</p>
+              <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE MCA 35 -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">MCA 35 + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + MCA 35 aplicado tópicamente con cotonitos, para manchas y daño solar.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$187.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">MCA 35 + Facial clásico</h4>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 50 a 60 minutos</span>
+              <span class="pr-variant-price">$118.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">MCA 35 + Dermofacial completo</h4>
+              <span class="pr-duration" style="margin-top: 1rem;">1 sesión · 1 hora 30 minutos</span>
+              <span class="pr-variant-price">$187.000</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+              <p>MCA 35 es un peeling biorevitalizante de Innoaesthetics que combina ácido cloroacético, ácido salicílico y arbutina, indicado para piel hipotónica o atrófica, elastosis y daño solar acumulado.</p>
+              <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEQUEDAD & DESHIDRATACIÓN -->
+  <div class="subcat-header reveal" style="margin-top: 1rem;">
+    <h3 class="subcat-title">Resequedad & deshidratación</h3>
+    <p class="subcat-desc">Te ayudo a hidratar tu piel en profundidad, desde adentro.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo</span>
+          <h3 class="pr-name">Oxígeno Pollogen</h3>
+          <p class="pr-desc-short">Tecnología OxyGeneo de Pollogen: oxigena, exfolia y nutre la piel en un solo tratamiento 3 en 1, mediante cápsulas Oxypod.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$79.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>OxyGeneo es la tecnología israelí patentada por Pollogen que activa el Efecto Bohr: una cápsula Oxypod libera CO2 sobre un gel nutritivo, lo que estimula al cuerpo a enviar sangre rica en oxígeno hacia la piel tratada, generando oxigenación natural desde adentro.</p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTOCOLO HYDROAGE FACIAL -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo</span>
+          <h3 class="pr-name">HydroAge facial</h3>
+          <p class="pr-desc-short">Tratamiento facial de 8 fases con tecnología HydroAge: hidratación profunda, limpieza avanzada y regeneración, efecto "glass skin".</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$79.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>HydroAge es un equipo de última generación que combina sistema ciclón, peeling ultrasónico, mesoterapia virtual, crioterapia y nanocosmética en un protocolo de 8 fases personalizadas según tu tipo de piel.</p>
+          <p>Sin excesos, resultados visibles desde la primera sesión.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE BIO C -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">Bio C + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Bio C aplicado tópicamente con cotonitos, el más suave de la línea de peelings.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$187.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Bio C + Facial clásico</h4>
+              <span class="pr-variant-price">$118.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Bio C + Dermofacial completo</h4>
+              <span class="pr-variant-price">$187.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Bio C es un peeling de dos pasos de Innoaesthetics: la primera solución combina ácidos lactobiónico, mandélico, láctico y glicólico; la segunda aporta Vitamina C y ácido hialurónico, sin generar tiempo de recuperación.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTOCOLO DERMAPEN + HYDRAFACIAL + ELECTROPORADOR -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo</span>
+          <h3 class="pr-name">Dermapen + Hydrafacial + Electroporador</h3>
+          <p class="pr-desc-short">Renovación profunda en tres pasos: estimulación, hidratación activa e infusión de activos.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$180.000</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Estimulación con Dermapen para activar colágeno propio, seguida de Hydrafacial para hidratación activa, y cerramos con infusión de activos mediante Electroporador.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE HYALURONIC ACID -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Hyaluronic Acid + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Ácido Hialurónico aplicado con Dermapen y Electroporación, para hidratación profunda.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Hyaluronic Acid + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Hyaluronic Acid + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Es un cóctel de Innoaesthetics con ácido hialurónico no reticulado, la molécula clave de la hidratación cutánea: puede retener hasta mil veces su propio peso en agua, mejorando densidad y elasticidad.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REJUVENECIMIENTO FACIAL -->
+  <div class="subcat-header reveal" style="margin-top: 1rem;">
+    <h3 class="subcat-title">Rejuvenecimiento facial</h3>
+    <p class="subcat-desc">Te ayudo a recuperar firmeza y un aspecto descansado.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- MICRONEEDLING + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Microneedling + Vitamina</h3>
+          <p class="pr-desc-short">Microagujas que estimulan el colágeno propio y abren paso a la vitamina elegida.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$99.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Microagujas ultrafinas generan una lesión controlada que activa la producción natural de colágeno, mientras abren paso a la vitamina que tu piel necesita.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELECTROPORADOR + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Electroporador + Vitamina</h3>
+          <p class="pr-desc-short">El electroporador abre microcanales para que la vitamina penetre mucho más profundo de lo normal.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$149.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Impulsos eléctricos controlados abren microcanales temporales en la piel, permitiendo que la vitamina elegida penetre hasta las capas más profundas sin una sola aguja.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MICRONEEDLING + ELECTROPORADOR + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Microneedling + Electroporador + Vitamina</h3>
+          <p class="pr-desc-short">El protocolo más completo de renovación activa triple acción en una sola sesión.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$179.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Microneedling para estimular el colágeno propio, electroporador para infundir la vitamina en profundidad y vitamina personalizada según tu piel.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROTOCOLO DARK CIRCLES -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Protocolo</span>
+          <h3 class="pr-name">Dark circles</h3>
+          <p class="pr-desc-short">Tratamiento específico para ojeras y contorno de ojos.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$110.990</span>
+          <span class="pr-duration">1 sesión</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Aplicación de activos específicos para el contorno de ojos que iluminan, descongestionan y reducen la pigmentación oscura.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE T.C AGE -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Peeling</span>
+          <h3 class="pr-name">T.C AGE + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + T.C AGE aplicado tópicamente con cotonitos, para resultados antiedad más profundos.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$187.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">T.C AGE + Facial clásico</h4>
+              <span class="pr-variant-price">$118.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">T.C AGE + Dermofacial completo</h4>
+              <span class="pr-variant-price">$187.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>T.C AGE es un peeling bioestimulante de Innoaesthetics a base de TCA y ácido salicílico, indicado para reconstrucción dermo-epidérmica en fotoenvejecimiento moderado.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE DNA PEPT HA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">DNA PEPT HA + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + DNA PEPT HA aplicado con Dermapen y Electroporación. El antiedad estrella.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">DNA PEPT HA + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">DNA PEPT HA + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>DNA PEPT HA es una de las fórmulas más vendidas de Innoaesthetics por más de una década: combina PDRN (ADN de salmón), péptidos biomiméticos, ácido hialurónico y glutatión en una sinergia 4 en 1 que regenera, hidrata y protege.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE RESTRUCTURE -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Restructure + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Restructure aplicado con Dermapen y Electroporación, contra el envejecimiento ambiental.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Restructure + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Restructure + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Restructure es un cóctel antioxidante de Innoaesthetics con ácido ascórbico, glutatión, superóxido dismutasa, ácido lipoico y ácido hialurónico, que reduce radicales libres y repara la matriz extracelular.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE MATRIX -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">Matrix + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Matrix aplicado con Dermapen y Electroporación, para revitalizar desde adentro.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Matrix + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Matrix + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Matrix es un cóctel revitalizante de Innoaesthetics con ácido pirúvico, silicio orgánico, ácido hialurónico y zinc, que activa el metabolismo celular y favorece la desintoxicación del tejido.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE NCTF -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Vitamina</span>
+          <h3 class="pr-name">NCTF + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + NCTF aplicado con Electroporador. La mesoterapia antiedad premiada internacionalmente.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">NCTF + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">NCTF + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>NCTF combina ácido hialurónico con más de 50 activos -vitaminas, antioxidantes, aminoácidos y minerales- en un solo cóctel revitalizante. En 2023 fue reconocida como mejor inyectable revitalizante en el congreso AMWC, en Pielby la aplicamos sin agujas ni anestesia, con nuestro Electroporador.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FASE CORPORAL 
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-dark" id="fase-corporal">
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Fase <em>Corporal</em></h2>
+  </div>
+  <div class="cat-intro-box reveal">
+    <strong>Fase corporal</strong>
+    <p>Te ayudo a definir y tensar tu contorno, sin pasar por quirófano.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- RADIOFRECUENCIA TRICELL -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Corporal</span>
+          <h3 class="pr-name">Radiofrecuencia Tricell</h3>
+          <p class="pr-desc-short">Radiofrecuencia tripolar que calienta las capas profundas de la piel, estimulando colágeno para un efecto tensor progresivo.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price" style="font-size: 1.5rem;">Desde $35.000</span>
+          <span class="pr-duration">Ver valores abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
+            <li style="margin-bottom: 0.5rem; color: var(--gold);">Rostro completo - $79.990</li>
+            <li style="color: var(--gold);">Cuello - $35.000</li>
+          </ul>
+          <p>Radiofrecuencia tripolar que emite energía controlada para calentar las capas profundas de la dermis, estimulando la producción natural de colágeno y elastina.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRIORADIOFRECUENCIA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Corporal</span>
+          <h3 class="pr-name">CrioRadiofrecuencia</h3>
+          <p class="pr-desc-short">Combina frío y radiofrecuencia para tensar y definir el contorno sin agujas: el frío calma, el calor estimula colágeno y elastina.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price" style="font-size: 1.5rem;">Desde $55.000</span>
+          <span class="pr-duration">Ver valores abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
+            <li style="margin-bottom: 0.5rem; color: var(--gold);">Facial completo (rostro, cuello y escote) 35 min - $160.000</li>
+            <li style="margin-bottom: 0.5rem; color: var(--gold);">Corporal por zona - $55.000</li>
+            <li style="color: var(--gold);">Cuerpo completo - $179.990</li>
+          </ul>
+          <p>El frío calma y desinflama mientras la radiofrecuencia calienta las capas profundas, estimulando colágeno y elastina para un efecto tensor progresivo.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subcat-header reveal" style="margin-top: 1rem;">
+    <h3 class="subcat-title">Tratamientos corporales / Cuerpo</h3>
+    <p class="subcat-desc">Te ayudo a esculpir tu figura y mejorar la textura de tu piel.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- ULTRACAVITACIÓN -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Cuerpo</span>
+          <h3 class="pr-name">Ultracavitación</h3>
+          <p class="pr-desc-short">Ondas ultrasónicas que rompen las células de grasa localizada para que el cuerpo las elimine de forma natural.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$35.000</span>
+          <span class="pr-duration">Por zona</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Ondas ultrasónicas de baja frecuencia que generan microburbujas dentro de las células de grasa hasta romper su membrana, liberando su contenido para que el cuerpo lo procese y elimine de forma natural.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VACUMTERAPIA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Cuerpo</span>
+          <h3 class="pr-name">Vacumterapia</h3>
+          <p class="pr-desc-short">Succión controlada tipo masaje que activa la circulación y el drenaje, mejorando la apariencia de la celulitis y la textura de la piel.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$35.000</span>
+          <span class="pr-duration">Por zona</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Succión mecánica controlada que moviliza el tejido subcutáneo, activando la circulación sanguínea y linfática de la zona tratada.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONDAS RUSAS -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Cuerpo</span>
+          <h3 class="pr-name">Ondas rusas</h3>
+          <p class="pr-desc-short">Estimulación eléctrica muscular que genera contracciones controladas, tonificando y definiendo la zona sin pasar horas en el gimnasio.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$35.000</span>
+          <span class="pr-duration">Por zona</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <p>Corrientes eléctricas de media frecuencia que generan contracciones musculares involuntarias, similares a un entrenamiento intenso pero sin esfuerzo activo.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERENCIAS BIENESTAR -->
+    <div class="pr-item reveal" style="background: transparent; border: 1px dashed var(--gold-muted); box-shadow: none;">
+      <div class="pr-header" style="padding: 1.5rem 2.5rem;">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name" style="font-size: 1.6rem; margin-bottom: 0;">Presoterapia</h3>
+          <p class="pr-desc-short" style="margin-top: 0.5rem;">Ver valores en la sección "Bienestar" - $35.000.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-item reveal" style="background: transparent; border: 1px dashed var(--gold-muted); box-shadow: none;">
+      <div class="pr-header" style="padding: 1.5rem 2.5rem;">
+        <div class="pr-info">
+          <span class="pr-tag">Bienestar</span>
+          <h3 class="pr-name" style="font-size: 1.6rem; margin-bottom: 0;">Manta térmica infrarroja</h3>
+          <p class="pr-desc-short" style="margin-top: 0.5rem;">Ver valores en la sección "Bienestar" - $35.000.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TRATAMIENTOS ÉLITE 
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-light" id="tratamientos-elite">
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Tratamientos <em>Élite</em></h2>
+  </div>
+  <div class="cat-intro-box reveal">
+    <strong>Élite</strong>
+    <p>Te ayudo a regenerar tu piel desde la dermis, con la tecnología más avanzada.<br><br>Trabajamos con Innoaesthetics, laboratorio con más de 125 años de trayectoria (fundado en 1898 en Barcelona) y creador de Smart GPS®, su tecnología propia que dirige cada activo exactamente a las células donde tiene el máximo efecto.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- VARIANTE PDRN -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">PDRN | Élite</span>
+          <h3 class="pr-name">PDRN + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + PDRN aplicado con Electroporador, sin dolor, directo a dermis.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">PDRN + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">PDRN + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Este bioestimulador combina PDRN, péptidos biométricos, factores de crecimiento y ácido hialurónico en una fórmula con 65 activos, diseñada para mejorar la calidad de la piel desde el interior.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE PDRN + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">PDRN | Élite</span>
+          <h3 class="pr-name">PDRN + Vitamina + Dermofacial</h3>
+          <p class="pr-desc-short">El protocolo completo: PDRN + una vitamina elegida, ambos aplicados con Electroporador.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$408.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">PDRN + Facial clásico</h4>
+              <span class="pr-variant-price">$339.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">PDRN + Dermofacial completo</h4>
+              <span class="pr-variant-price">$408.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Incluye el Dermofacial completo, PDRN y una vitamina elegida según lo que tu piel necesita, ambos aplicados mediante Electroporador sin dolor.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE BI-DENS -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Bi-Dens | Élite</span>
+          <h3 class="pr-name">Bi-Dens + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + BI-DENS aplicado con Electroporador, para firmeza sin efecto relleno.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$258.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Bi-Dens + Facial clásico</h4>
+              <span class="pr-variant-price">$189.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Bi-Dens + Dermofacial completo</h4>
+              <span class="pr-variant-price">$258.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>BI-DENS 2.5 es una combinación de ácido hialurónico de alto y muy alto peso molecular de Innoaesthetics, indicada para aumentar la densidad de la piel. Viene en jeringa precargada, lo que permite tratar rostro, cuello, escote e incluso manos.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE ME LINE -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Élite</span>
+          <h3 class="pr-name">Me Line + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Me Line aplicado tópicamente con cotonitos, el peeling despigmentante más potente.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$218.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Me Line + Facial clásico</h4>
+              <span class="pr-variant-price">$149.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Me Line + Dermofacial completo</h4>
+              <span class="pr-variant-price">$218.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Me Line es la única marca de medicina estética dedicada exclusivamente al tratamiento de hiperpigmentación cutánea, del laboratorio Innoaesthetics. Actúa directamente en los melanocitos, regulando su actividad e inhibiendo la enzima tirosinasa para reducir la síntesis de melanina.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE PLENHYAGE THIN -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Élite</span>
+          <h3 class="pr-name">Plenhyage Thin + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Plenhyage Thin aplicado con Electroporador, para zonas delicadas.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$428.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Plenhyage Thin + Facial clásico</h4>
+              <span class="pr-variant-price">$359.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Plenhyage Thin + Dermofacial completo</h4>
+              <span class="pr-variant-price">$428.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Incluye el protocolo Dermofacial completo y cierra con aplicación de Plenhyage Thin mediante Electroporador, sin dolor: la versión más suave, ideal para empezar o para zonas delicadas.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE PLENHYAGE THIN + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Élite</span>
+          <h3 class="pr-name">Plenhyage Thin + Vitamina + Dermofacial</h3>
+          <p class="pr-desc-short">Regeneración suave + vitamina activa, ambas aplicadas con Electroporador.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$578.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Plenhyage Thin + Facial clásico</h4>
+              <span class="pr-variant-price">$509.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Plenhyage Thin + Dermofacial completo</h4>
+              <span class="pr-variant-price">$578.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Incluye el Dermofacial completo, Plenhyage Thin y una vitamina activa, ambos aplicados mediante Electroporador.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE PLENHYAGE STRONG -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Élite</span>
+          <h3 class="pr-name">Plenhyage Strong + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Plenhyage Strong aplicado con Electroporador, máxima concentración.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$428.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Plenhyage Strong + Facial clásico</h4>
+              <span class="pr-variant-price">$359.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Plenhyage Strong + Dermofacial completo</h4>
+              <span class="pr-variant-price">$428.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Incluye el protocolo Dermofacial completo y cierra con aplicación de Plenhyage Strong mediante Electroporador, sin dolor: alta concentración de activos regeneradores.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE PLENHYAGE STRONG + VITAMINA -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Élite</span>
+          <h3 class="pr-name">Plenhyage Strong + Vitamina + Dermofacial</h3>
+          <p class="pr-desc-short">La versión más completa: máxima regeneración + vitamina personalizada, ambas con Electroporador.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$578.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Plenhyage Strong + Facial clásico</h4>
+              <span class="pr-variant-price">$509.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Plenhyage Strong + Dermofacial completo</h4>
+              <span class="pr-variant-price">$578.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Incluye el Dermofacial completo, Plenhyage Strong y una vitamina personalizada, ambos aplicados mediante Electroporador.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIANTE EXO-SKIN -->
+    <div class="pr-item reveal">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Exo-Skin | Élite</span>
+          <h3 class="pr-name">Exo-Skin + Dermofacial</h3>
+          <p class="pr-desc-short">El Dermofacial completo + Exo-Skin aplicado con Electroporador: exosomas sintéticos que regeneran la piel desde su comunicación celular.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price">$358.000</span>
+          <span class="pr-duration">Ver niveles abajo</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content">
+        <div class="pr-content-inner">
+          <div class="pr-variants">
+            <div class="pr-variant">
+              <span class="pr-variant-title">Simple</span>
+              <h4 class="pr-variant-name">Exo-Skin + Facial clásico</h4>
+              <span class="pr-variant-price">$289.000</span>
+            </div>
+            <div class="pr-variant">
+              <span class="pr-variant-title">Premium</span>
+              <h4 class="pr-variant-name">Exo-Skin + Dermofacial completo</h4>
+              <span class="pr-variant-price">$358.000</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+              <p>Exo-Skin no contiene exosomas humanos: es una molécula 100% sintética (tecnología NARBEX™) que imita la forma en que los exosomas naturales envían señales entre células. Esas señales activan la propia maquinaria de reparación de tu piel, iniciando una cascada de regeneración de los tejidos.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PACKS ESPECIALES
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-dark" id="packs" style="background-color: var(--bg-brown-alt); padding-top: 6rem;">
+  <div class="cat-intro-box reveal" style="background: var(--bg-brown); border-color: rgba(178, 138, 80, 0.3);">
+    <strong style="color: var(--text-light);">Packs especiales</strong>
+    <p style="color: var(--text-muted-light);">Te ayudo a comprometerte con tu proceso completo, al mejor valor.</p>
+  </div>
+
+  <div class="price-list two-cols">
+    <!-- PACK PAPADA -->
+    <div class="pr-item reveal" style="background: var(--bg-brown); border-color: rgba(178, 138, 80, 0.3);">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Pack 4 Sesiones</span>
+          <h3 class="pr-name" style="color: var(--text-light);">Pack papada</h3>
+          <p class="pr-desc-short" style="color: var(--text-muted-light);">Protocolo intensivo de 4 sesiones para definir y reafirmar el contorno del cuello y la papada.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price" style="color: var(--gold);">$199.990</span>
+          <span class="pr-duration" style="color: var(--text-muted-light);">4 sesiones</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content" style="background: var(--bg-brown-alt);">
+        <div class="pr-content-inner" style="color: var(--text-muted-light);">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+            </ul>
+            <span class="pr-gift-value">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+          </div>
+          <p><strong>Contraindicaciones:</strong> embarazo, marcapasos, infecciones activas en la zona.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACK REJUVENECIMIENTO -->
+    <div class="pr-item reveal" style="background: var(--bg-brown); border-color: rgba(178, 138, 80, 0.3);">
+      <div class="pr-header">
+        <div class="pr-info">
+          <span class="pr-tag">Pack 4 Sesiones</span>
+          <h3 class="pr-name" style="color: var(--text-light);">Pack rejuvenecimiento y nutrición</h3>
+          <p class="pr-desc-short" style="color: var(--text-muted-light);">4 sesiones que combinan rejuvenecimiento profundo y nutrición intensiva.</p>
+        </div>
+        <div class="pr-price-box">
+          <span class="pr-price" style="color: var(--gold);">$269.990</span>
+          <span class="pr-duration" style="color: var(--text-muted-light);">4 sesiones</span>
+        </div>
+      </div>
+      <button class="pr-toggle" onclick="this.parentElement.classList.toggle('active')">
+          <span class="toggle-text"></span>
+      </button>
+      <div class="pr-content" style="background: var(--bg-brown-alt);">
+        <div class="pr-content-inner" style="color: var(--text-muted-light);">
+          <div class="pr-gift-banner">
+            <span class="pr-gift-title">Hoy soy abundante y magnética, todo lo puedo, y recibo mi regalo</span>
+            <ul class="pr-gift-list">
+              <li>20 minutos de bienestar + 20 minutos de CrioRadiofrecuencia.</li>
+            </ul>
+            <span class="pr-gift-value">Valorada en: $299.000 (regalo válido por 1 sesión)</span>
+          </div>
+          <p><strong>Contraindicaciones:</strong> embarazo, lactancia, infecciones activas en la zona.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <span class="cta-banner-tag">Tu piel merece lo mejor</span>
+    <h2 class="cta-banner-title">¿Lista para agendar tu<br><em>evaluación?</em></h2>
+    <p class="cta-banner-sub">Escríbenos por WhatsApp y te guiaremos hacia el protocolo perfecto para tu piel.</p>
+    <div class="cta-banner-actions">
+      <a href="https://wa.me/56999886940" class="btn-primary">Reservar hora</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">PielBy</div>
+      <p class="footer-tagline">Centro Integral Belleza y Bienestar Pielby Spa.<span style="display:none;" aria-hidden="true">[cite: 4]</span></p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/pielbymariarodriguez_chile" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+        </a>
+        <a href="https://www.tiktok.com/@pielbymariarodriguezcl" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+        </a>
+        <a href="https://wa.me/56999886940" class="social-btn" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Tratamientos</div>
+      <ul class="footer-links">
+        <li><a href="servicios.html#patologias">Patologías</a></li>
+        <li><a href="servicios.html#cosmetologia">Cosmetología</a></li>
+        <li><a href="servicios.html#dermocosmiatria">Dermocosmiatría</a></li>
+        <li><a href="aparatologia.html">Aparatología</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Marcas</div>
+      <ul class="footer-links">
+        <li><a href="productos.html#innoaesthetics">Innoaesthetics</a></li>
+        <li><a href="index.html#productos">Productos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <ul class="footer-links">
+        <li><a href="tel:+56999886940">+56 9 9988 6940</a></li>
+        <li><a href="mailto:gerenciapielbymr@gmail.com">gerenciapielbymr@gmail.com</a></li>
+        <li><a href="https://maps.google.com/?q=Av.+Apoquindo+4501,+Las+Condes,+Santiago" target="_blank" rel="noopener">Apoquindo 4501, Las Condes</a></li>
+        <li><a href="https://wa.me/56999886940">Reservar Hora</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 PielBy. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/56999886940" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // ── SCRIPT BARRA DE NAVEGACIÓN DINÁMICA ──
+  const nav = document.getElementById('navbar');
+  
+  window.addEventListener('scroll', () => {
+    // Clase básica de scroll
+    const isScrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', isScrolled);
+
+    // Detección de colisión con secciones oscuras para la transición de color
+    let isOverDark = false;
+    const navHeight = nav.offsetHeight || 80;
+    
+    document.querySelectorAll('.cat-block-dark, .page-hero').forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= (navHeight / 2) && rect.bottom >= (navHeight / 2)) {
+        isOverDark = true;
+      }
+    });
+    
+    if (isOverDark && isScrolled) {
+      nav.classList.add('nav-dark-mode');
+    } else {
+      nav.classList.remove('nav-dark-mode');
+    }
+  });
+
+  // ── SCRIPT MENÚ MÓVIL ──
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l =>
+    l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+  // ── SCRIPT ANIMACIONES DE REVELADO (SCROLL) ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .subcat-header, .cat-intro-box').forEach(el => revealObserver.observe(el));
+
+  const rowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const rows = Array.from(e.target.closest('.price-list, .cat-overview-grid')?.querySelectorAll('.pr-item, .cat-overview-card') || []);
+        const idx = rows.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), Math.max(idx, 0) * 80);
+        rowObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.pr-item').forEach(el => rowObserver.observe(el));
+</script>
+
+</body>
+</html>
