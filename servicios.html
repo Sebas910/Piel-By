@@ -6,374 +6,370 @@
   <title>PielBy — Nuestros Servicios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="Recursos/favicon.svg">
   <style>
+    /* ── LUXURY COLOR PALETTE & VARIABLES ── */
+    :root {
+      --gold: #b28a50;
+      --gold-light: #d6b88b;
+      --gold-muted: rgba(178, 138, 80, 0.2);
+      
+      --bg-cream: #f9f6f0;
+      --bg-cream-alt: #f3efe9;
+      
+      --bg-brown: #362922;
+      --bg-brown-alt: #2a1f19;
+      
+      --text-dark: #3a2e28;
+      --text-mid: #6b5c54;
+      --text-light: #f4efeb;
+      --text-muted-light: #c2b6af;
+      
+      --nav-h: 80px;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── DYNAMIC NAVBAR STYLES ── */
+    #navbar {
+      transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.nav-dark-mode {
+      background-color: var(--bg-brown) !important;
+      border-bottom: 1px solid rgba(178, 138, 80, 0.15) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    }
+    #navbar.nav-dark-mode .nav-logo {
+      color: var(--gold) !important;
+    }
+    #navbar.nav-dark-mode .nav-links li a {
+      color: var(--text-light) !important;
+    }
+    #navbar.nav-dark-mode .nav-links li a[style*="var(--gold)"] {
+      color: var(--gold) !important;
+    }
+    #navbar.nav-dark-mode .nav-cta {
+      border-color: var(--gold) !important;
+      color: var(--gold) !important;
+    }
+    #navbar.nav-dark-mode .nav-cta:hover {
+      background-color: var(--gold) !important;
+      color: var(--bg-brown) !important;
+    }
+    #navbar.nav-dark-mode .hamburger span {
+      background-color: var(--text-light) !important;
+    }
 
     /* ── PAGE HERO ── */
     .page-hero {
-      min-height: max(52vh, 22.5rem);
-      position: relative; display: flex; align-items: flex-end;
-      /* Reserva la franja de la navbar: el contenido nunca queda debajo de ella */
-      overflow: hidden; padding-top: calc(var(--nav-h) + 1rem); padding-bottom: 5rem;
+      min-height: max(45vh, 20rem);
+      position: relative; display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden; padding-top: calc(var(--nav-h) + 1rem); padding-bottom: 4rem;
+      background-color: var(--bg-brown);
+      text-align: center;
     }
     .page-hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #1a0f08 0%, #2e1a10 40%, #3d2418 70%, #1a0f08 100%);
+      background: radial-gradient(circle at 50% 0%, #4a3a31 0%, var(--bg-brown) 70%);
     }
     .page-hero-pattern {
-      position: absolute; inset: 0; opacity: 0.07;
-      background-image:
-        radial-gradient(circle at 15% 60%, #b8955a 0%, transparent 45%),
-        radial-gradient(circle at 85% 30%, #b8955a 0%, transparent 35%),
-        radial-gradient(circle at 50% 90%, #d4b07a 0%, transparent 30%);
-    }
-    .page-hero-line-left {
-      position: absolute; left: 5vw; top: 15%; bottom: 15%;
-      width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,149,90,0.5), transparent);
-    }
-    .page-hero-line-right {
-      position: absolute; right: 5vw; top: 15%; bottom: 15%;
-      width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,149,90,0.3), transparent);
+      position: absolute; inset: 0; opacity: 0.05;
+      background-image: radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 60%);
     }
     .page-hero-content {
-      position: relative; z-index: 2; padding: 0 10vw; width: 100%;
+      position: relative; z-index: 2; padding: 0 10vw; width: 100%; max-width: 800px;
       opacity: 0; transform: translateY(20px);
-      animation: heroReveal 1s ease 0.1s forwards;
+      animation: heroReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
     @keyframes heroReveal { to { opacity:1; transform:translateY(0); } }
+    
     .page-hero-eyebrow {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem;
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.3em;
+      color: var(--gold); margin-bottom: 1.2rem; display: block;
+      text-transform: uppercase;
     }
-    .page-hero-eyebrow::before { content:''; width:2.25rem; height:1px; background:var(--gold); flex-shrink:0; }
     .page-hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 7vw, 7rem);
-      font-weight: 300; line-height: 1.08; color: var(--white);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300; line-height: 1.05; color: var(--text-light);
+      margin-bottom: 1rem;
     }
-    .page-hero-title em { font-style: italic; color: var(--gold-light); }
+    .page-hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
     .page-hero-sub {
-      font-size: 1.15rem; font-weight: 300; letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.55); max-width: 50ch; line-height: 1.8; margin-top: 1.2rem;
+      font-size: 1.05rem; font-weight: 300; letter-spacing: 0.05em;
+      color: var(--text-muted-light); line-height: 1.8; margin: 0 auto;
     }
 
-    /* ── RESUMEN DE CATEGORÍAS ── */
+    /* ── REDIRECCIONES DE CATEGORÍAS (DELICADO Y LUJOSO) ── */
     .cat-overview {
-      background: var(--cream-dark);
-      padding: 5rem 10vw 4rem;
-      border-bottom: 1px solid rgba(184,149,90,0.12);
+      background: var(--bg-cream-alt);
+      padding: 6rem 10vw;
+      position: relative;
+    }
+    .cat-overview::before {
+      content: ''; position: absolute; top: 0; left: 10vw; right: 10vw;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
     }
     .cat-overview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 66.7rem;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 75rem; margin: 0 auto;
     }
     .cat-overview-card {
-      background: #f4f4f2;
-      border: 1px solid rgba(0,0,0,0.06);
+      background: var(--bg-cream); 
+      border: 1px solid var(--gold-muted); 
       border-radius: 8px;
-      padding: 2.5rem 2rem 2rem;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+      padding: 3.5rem 2.5rem; 
+      position: relative; display: flex; flex-direction: column; align-items: center;
+      transition: all 0.5s ease; text-align: center;
+      text-decoration: none;
+    }
+    .cat-overview-card::after {
+      content: ''; position: absolute; inset: 8px; 
+      border: 1px solid rgba(178, 138, 80, 0.1); 
+      border-radius: 4px; pointer-events: none; transition: border-color 0.5s ease;
     }
     .cat-overview-card:hover {
-      background: #eeeeec;
-      border-color: rgba(184,149,90,0.35);
-      box-shadow: 0 10px 35px rgba(74,55,40,0.08);
+      background: var(--white);
+      border-color: var(--gold);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(54, 41, 34, 0.06);
     }
-    .cat-overview-num { display: none; }
+    .cat-overview-card:hover::after { border-color: rgba(178, 138, 80, 0.3); }
+    
+    .cat-icon {
+      width: 45px; height: 45px; color: var(--gold); margin-bottom: 1.8rem;
+      transition: transform 0.5s ease;
+    }
+    .cat-overview-card:hover .cat-icon { transform: scale(1.1); }
+    
     .cat-overview-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem; font-weight: 400; color: var(--gold);
-      margin-bottom: 0.8rem; line-height: 1.2;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .cat-overview-name::before {
-      content: '✦';
-      font-size: 0.85rem;
-      color: var(--gold-light);
-      flex-shrink: 0;
+      font-size: 2rem; font-weight: 400; color: var(--text-dark);
+      margin-bottom: 1rem; line-height: 1.2;
     }
     .cat-overview-desc {
-      font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--text-mid);
-      margin-bottom: 1.8rem; flex-grow: 1;
+      font-size: 0.95rem; font-weight: 300; color: var(--text-mid); 
+      line-height: 1.7; margin-bottom: 2rem; flex-grow: 1;
     }
-    .cat-overview-tag { display: none; }
     .cat-overview-btn {
-      display: inline-flex; align-items: center;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; text-decoration: none;
-      padding: 0.75rem 1.6rem; align-self: flex-start;
-      background: transparent; color: var(--brown);
-      border: 1px solid rgba(74,55,40,0.4);
-      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: color 0.3s ease;
     }
-    .cat-overview-btn::after { content: ' →'; }
-    .cat-overview-btn:hover {
-      background: var(--gold); border-color: var(--gold); color: var(--white);
-      transform: translateY(-2px);
-    }
+    .cat-overview-btn::after { content: '→'; font-family: sans-serif; transition: transform 0.3s ease; }
+    .cat-overview-card:hover .cat-overview-btn { color: var(--bg-brown); }
+    .cat-overview-card:hover .cat-overview-btn::after { transform: translateX(4px); }
 
-    /* ══════════════════════════════════════
-       CATEGORY BLOCK
-    ══════════════════════════════════════ */
-    .cat-block { background: var(--cream); }
-    .cat-block:nth-child(even) { background: var(--white); }
+    /* ── SECCIONES DE CATEGORÍAS ── */
+    .cat-block { padding-bottom: 6rem; }
+    .cat-block-light { background-color: var(--bg-cream); }
+    .cat-block-dark { background-color: var(--bg-brown); color: var(--text-light); }
 
-    .cat-heading {
-      padding: 5rem 10vw 0;
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
-      flex-wrap: wrap;
+    .cat-header-wrapper {
+      padding: 7rem 10vw 4rem;
+      text-align: center;
+      position: relative;
     }
-    .cat-label {
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.32em;
-      text-transform: uppercase; color: var(--gold);
-      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem;
+    .cat-header-wrapper::before {
+      content: '◆'; position: absolute; top: 3rem; left: 50%; transform: translateX(-50%);
+      color: var(--gold); font-size: 0.8rem;
     }
-    .cat-label::before { content:''; display:inline-block; width:24px; height:1px; background:var(--gold); }
     .cat-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 300; color: var(--text-dark); line-height: 1.1;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem;
     }
-    .cat-title em { font-style: italic; color: var(--brown-mid); }
-    .cat-total { display: none; }
-    .cat-divider {
-      margin: 2.5rem 10vw 0;
-      height: 1px; background: rgba(184,149,90,0.18);
+    .cat-title em { font-style: italic; color: var(--gold); }
+    
+    .cat-intro-box {
+      max-width: 750px; margin: 0 auto; text-align: center;
+    }
+    .cat-intro-box strong {
+      display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+      font-weight: 400; color: var(--gold); margin-bottom: 1rem;
+    }
+    .cat-intro-box p {
+      font-size: 1.05rem; font-weight: 300; line-height: 1.8; margin: 0;
+      color: inherit; opacity: 0.85;
     }
 
-    /* ── CATEGORY DESCRIPTION ── */
-    .cat-desc {
-      padding: 3rem 10vw 0;
-      display: flex; gap: 4rem; align-items: flex-start; flex-wrap: wrap;
-      justify-content: center; text-align: center;
-    }
-    .cat-desc-text { flex: 1; min-width: 14.5rem; }
-    .cat-desc-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.7rem, 1.2vw, 1.2rem);
-      font-weight: 300; color: var(--text-mid);
-      line-height: 1.9; max-width: 62ch; margin: 0 auto;
-    }
-    .cat-desc-intro a {
-      color: var(--gold); text-decoration: none;
-      border-bottom: 1px solid rgba(184,149,90,0.35);
-      transition: color 0.25s, border-color 0.25s; font-style: italic;
-    }
-    .cat-desc-intro a:hover { color: var(--brown); border-color: var(--brown); }
-    .cat-desc-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 1.6rem; justify-content: center;
-    }
-    .cat-desc-tag {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(184,149,90,0.35);
-      padding: 0.4rem 0.9rem; text-decoration: none;
-      transition: background 0.25s, color 0.25s;
-    }
-    .cat-desc-tag:hover { background: var(--gold); color: var(--white); }
-
-    /* ══════════════════════════════════════
-       SUBCATEGORY BLOCK
-    ══════════════════════════════════════ */
-    .subcat-block { padding: 0 10vw; }
+    /* ── SUBCATEGORÍAS ── */
     .subcat-header {
-      padding-top: 4rem;
-      display: flex; align-items: center; gap: 1.5rem;
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .subcat-header.visible { opacity: 1; transform: translateY(0); }
-    .subcat-num { display: none; }
-    .subcat-label {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block;
+      padding: 5rem 10vw 2rem; text-align: center; position: relative;
     }
     .subcat-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 400; color: var(--text-dark); line-height: 1.1; letter-spacing: 0.04em;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
+      font-weight: 400; display: inline-block; position: relative; margin-bottom: 1rem;
     }
-    .subcat-title em {font-size: 3.4rem; font-style: italic; color: var(--brown-mid); }
-    .subcat-divider { margin: 1.5rem 0 0; height: 1px; background: rgba(184,149,90,0.12); }
-    .subcat-block .treatment-list { padding-left: 0; padding-right: 0; }
-    .subcat-block .tr-body { padding-left: 4vw; padding-right: 4vw; }
+    .subcat-title::after {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+      margin: 0.8rem auto 0;
+    }
+    .subcat-desc {
+      font-size: 1.05rem; font-weight: 300; max-width: 60ch; margin: 0 auto; line-height: 1.8; opacity: 0.85;
+    }
 
-    /* ══════════════════════════════════════
-       TREATMENT ROW
-    ══════════════════════════════════════ */
-    .treatment-list { padding-bottom: 4rem; }
+    .subcat-banner {
+      border: 1px solid var(--gold-muted);
+      padding: 1rem 2rem; margin: 2rem 10vw 3rem; text-align: center;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); border-radius: 4px;
+    }
+
+    /* ── LISTA DE TRATAMIENTOS (VISUALIZACIÓN ELEGANTE) ── */
+    .treatment-list { padding: 0 10vw; }
+    
     .tr-row {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 23.5rem;
-      border-bottom: 1px solid rgba(184,149,90,0.1);
-      opacity: 0; transform: translateY(28px);
+      display: flex; align-items: center; gap: 5vw;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--gold-muted);
+      opacity: 0; transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .tr-row.visible { opacity:1; transform:translateY(0); }
-    .tr-row:nth-child(even) { direction: rtl; }
-    .tr-row:nth-child(even) > * { direction: ltr; }
-    .tr-img { position: relative; overflow: hidden; background: var(--cream-dark); }
-    .tr-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+    .tr-row:last-child { border-bottom: none; }
+    .tr-row.visible { opacity: 1; transform: translateY(0); }
+    
+    /* Alternar lados naturalmente */
+    .tr-row:nth-child(even) .tr-img { order: 2; }
+    .tr-row:nth-child(even) .tr-body { order: 1; }
+
+    /* Imagen con estilo de arco (Arc shape) para un look más delicado */
+    .tr-img { 
+      flex: 0 0 38%; 
+      aspect-ratio: 3 / 4; 
+      overflow: hidden;
+      border-radius: 200px 200px 8px 8px; /* Arco superior */
+      background: var(--bg-cream-alt);
+      box-shadow: 0 15px 35px rgba(54, 41, 34, 0.08);
+      position: relative;
+    }
+    .cat-block-dark .tr-img { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); }
+    
+    .tr-img img { 
+      width: 100%; height: 100%; 
+      object-fit: cover; object-position: center; 
+      display: block; transition: transform 1s ease; 
+    }
     .tr-row:hover .tr-img img { transform: scale(1.04); }
-    .tr-num { display: none; }
-    .tr-body {
-      padding: 4rem 5vw;
-      display: flex; flex-direction: column; justify-content: center; position: relative;
-    }
-    .tr-body::before {
-      content: ''; position: absolute; top: 3rem; bottom: 3rem; left: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-      opacity: 0.5;
-    }
-    .tr-row:nth-child(even) .tr-body::before { left: auto; right: 0; }
+    
+    .tr-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
     .tr-tag {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      color: var(--gold); margin-bottom: 1rem; text-transform: capitalize;
     }
     .tr-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-      font-weight: 500; letter-spacing: 0.02em;
-      text-transform: uppercase; color: var(--text-dark);
-      line-height: 1.15; margin-bottom: 1.3rem;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-weight: 400; line-height: 1.15; margin-bottom: 1.2rem;
     }
     .tr-desc {
-      font-size: 1.15rem; font-weight: 300;
-      color: var(--text-mid); line-height: 1.85;
-      margin-bottom: 2rem; max-width: 46ch;
+      font-size: 1.05rem; font-weight: 300; line-height: 1.8;
+      margin-bottom: 2rem; max-width: 50ch; opacity: 0.85;
     }
+    .tr-desc strong { font-weight: 500; color: inherit; opacity: 1; }
+    
     .tr-cta {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--white);
-      background: var(--gold); padding: 0.85rem 2rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-dark);
+      background: transparent; padding: 0.8rem 2.5rem;
       text-decoration: none; border: 1px solid var(--gold);
-      align-self: flex-start; transition: background 0.3s, transform 0.3s;
+      align-self: flex-start; transition: all 0.4s ease;
+      border-radius: 4px;
     }
-    .tr-cta:hover { background: var(--brown); border-color: var(--brown); transform: translateY(-2px); }
+    .cat-block-dark .tr-cta { color: var(--text-light); }
+    
+    .tr-cta:hover { 
+      background: var(--gold); color: var(--white); 
+      transform: translateY(-2px); border-color: var(--gold);
+    }
+
+    /* ── GRILLA DE PATOLOGÍAS ── */
+    .patologias-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; padding: 4rem 10vw 2rem;
+    }
+    .pat-card {
+      background: transparent; border: 1px solid var(--gold-muted);
+      border-radius: 8px; padding: 3rem 2rem; text-align: center;
+      transition: all 0.4s ease; position: relative; overflow: hidden;
+    }
+    .pat-card::before {
+      content: ''; position: absolute; inset: 0; background: var(--gold);
+      opacity: 0; transition: opacity 0.4s ease; z-index: 0;
+    }
+    .pat-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+    .pat-card:hover::before { opacity: 0.03; }
+    
+    .pat-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400;
+      color: var(--gold); margin: 0; position: relative; z-index: 1;
+    }
 
     /* ── CTA BANNER ── */
     .cta-banner {
-      background: linear-gradient(135deg, #1a0f08 0%, #2e1a10 50%, #1a0f08 100%);
+      background-color: var(--bg-brown-alt);
       padding: 6rem 10vw; text-align: center; position: relative; overflow: hidden;
     }
     .cta-banner::before {
-      content: ''; position: absolute; inset: 0; opacity: 0.06;
-      background: radial-gradient(circle at 50% 50%, #b8955a 0%, transparent 65%);
+      content: ''; position: absolute; inset: 0; opacity: 0.05;
+      background: radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 60%);
     }
     .cta-banner-inner { position: relative; z-index: 1; }
     .cta-banner-tag {
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block;
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.3em;
+      color: var(--gold); margin-bottom: 1.5rem; display: block;
+      text-transform: uppercase;
     }
     .cta-banner-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 1.5rem;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--text-light); line-height: 1.2; margin-bottom: 1.5rem;
     }
-    .cta-banner-title em { font-style: italic; color: var(--gold-light); }
+    .cta-banner-title em { font-style: italic; color: var(--gold-light); font-weight: 400;}
     .cta-banner-sub {
-      font-size: 1.15rem; font-weight: 300; color: rgba(255,255,255,0.5);
-      max-width: 48ch; margin: 0 auto 3rem; line-height: 1.8;
+      font-size: 1.05rem; font-weight: 300; color: var(--text-muted-light);
+      max-width: 45ch; margin: 0 auto 3rem; line-height: 1.8;
     }
-    .cta-banner-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; padding: 1rem 3rem;
+      background: var(--gold); color: var(--white); text-decoration: none;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.3s; border-radius: 4px;
+    }
+    .btn-primary:hover { background: #9a7642; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .cat-overview { padding: 4rem 6vw 3rem; }
+      .cat-overview { padding: 4rem 6vw; }
       .cat-overview-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .cat-overview-card { padding: 2rem 1.8rem 1.8rem; }
-      .tr-row { grid-template-columns: 1fr; min-height: auto; }
-      .tr-row:nth-child(even) { direction: ltr; }
-      .tr-img { height: 300px; }
-      .tr-num { font-size: 4rem; }
-      .tr-body { padding: 3rem 6vw; }
-      .tr-body::before { top:0; bottom:0; left:0 !important; right:auto !important; }
-      .cat-heading { padding: 4rem 6vw 0; }
-      .cat-divider { margin: 2rem 6vw 0; }
-      .cat-total { display: none; }
-      .page-hero-content { padding: 0 6vw; }
-      .cta-banner { padding: 4.5rem 6vw; }
-      .cat-desc { padding: 2rem 6vw 0; gap: 2rem; }
-      .subcat-block { padding: 0 6vw; }
-      .subcat-block .tr-body { padding-left: 5vw; padding-right: 5vw; }
-    }
-    @media (max-width: 400px) {
-      .tr-body { padding: 2.5rem 5vw; }
-      .tr-img { height: 240px; }
-      .subcat-block { padding: 0 4vw; }
-    }
-  
-    /* ── DETALLES DE PRECIO Y SESIONES ── */
-    .tr-details {
-      display: flex;
-      gap: 2.5rem;
-      margin-bottom: 2rem;
-      border-top: 1px solid rgba(184,149,90,0.2);
-      padding-top: 1.2rem;
-      flex-wrap: wrap;
-    }
-    .tr-detail-item {
-      display: flex;
-      flex-direction: column;
-    }
-    .tr-detail-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold, #b8955a);
-      margin-bottom: 0.4rem;
-    }
-    .tr-detail-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--text-dark, #1a0f08);
-      line-height: 1;
-    }
-    .tr-price-old {
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: line-through;
-      color: rgba(74,55,40,0.4);
-      font-size: 0.6em;
-      font-weight: 400;
-      margin-right: 0.5rem;
-      vertical-align: middle;
-    }
-    .tr-badge {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: none;
-      color: var(--gold, #b8955a);
-      margin-left: 0.3rem;
-    }
-
-    @media (max-width: 600px) {
-      .tr-details {
-        gap: 1.5rem;
-        margin-bottom: 1.8rem;
+      
+      .tr-row { 
+        flex-direction: column; align-items: stretch; gap: 2rem; padding: 3rem 0; 
       }
-      .tr-detail-value {
-        font-size: 1.25rem;
+      .tr-row:nth-child(even) .tr-img, .tr-row:nth-child(even) .tr-body { order: unset; }
+      
+      .tr-img { 
+        flex: 0 0 auto;
+        border-radius: 12px; /* Remover el arco en móvil para mejor uso de espacio */
+        aspect-ratio: 16 / 10; 
       }
+      
+      .cat-header-wrapper { padding: 4rem 6vw 2rem; }
+      .cat-intro-box { padding: 0 6vw 3rem; border: none; box-shadow: none; background: transparent; }
+      .treatment-list { padding: 0 6vw; }
+      .subcat-header { padding: 3rem 6vw 1rem; }
+      .subcat-banner { margin: 1rem 6vw 2rem; }
+      .patologias-grid { padding: 1rem 6vw 3rem; }
     }
-
-</style>
+  </style>
 </head>
 <body>
 
@@ -381,12 +377,12 @@
 <nav id="navbar">
   <a href="index.html" class="nav-logo">PielBy</a>
   <ul class="nav-links">
-    <li><a href="index.html#inicio">Inicio</a></li>
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="servicios.html" style="color:var(--gold)">Servicios</a></li>
-    <li><a href="aparatologia.html">Aparatología</a></li>
-    <li><a href="productos.html">Productos</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="/index.html#inicio">Inicio</a></li>
+    <li><a href="/index.html#nosotros">Quiénes Somos</a></li>  
+    <li><a href="/servicios.html">Servicios</a></li>
+    <li><a href="/productos.html">Productos</a></li>
+    <li><a href="/aparatologia.html">Aparatología</a></li>
+    <li><a href="/index.html#contacto">Contacto</a></li>
     <li><a href="https://wa.me/56999886940" class="nav-cta">Reservar Hora</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menú">
@@ -403,771 +399,75 @@
   <a href="aparatologia.html" class="mobile-link">Aparatología</a>
   <a href="productos.html" class="mobile-link">Productos</a>
   <a href="index.html#contacto" class="mobile-link">Contacto</a>
-  <a href="https://wa.me/56999886940" class="mobile-link" style="color:var(--gold);">Reservar Hora</a>
+  <a href="https://wa.me/56999886940" class="mobile-link" style="color:var(--gold);">Reservar hora</a>
 </div>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="page-hero-pattern"></div>
-  <div class="page-hero-line-left"></div>
-  <div class="page-hero-line-right"></div>
   <div class="page-hero-content">
-    <p class="page-hero-eyebrow">Especialidades & Tratamientos</p>
-    <h1 class="page-hero-title">Nuestros<br><em>Servicios</em></h1>
-    <p class="page-hero-sub">Cada tratamiento es diseñado a medida, combinando las técnicas más avanzadas con productos de eficacia comprobada y tecnología de vanguardia.</p>
+    <span class="page-hero-eyebrow">Especialidades</span>
+    <h1 class="page-hero-title">Nuestros <em>Servicios</em></h1>
+    <p class="page-hero-sub">Cada tratamiento es diseñado a medida, combinando las técnicas más avanzadas con productos de eficacia comprobada.</p>
   </div>
 </section>
 
 <!-- RESUMEN DE CATEGORÍAS -->
 <div class="cat-overview">
   <div class="cat-overview-grid">
-
-    <div class="cat-overview-card reveal">
-      <div class="cat-overview-num">01</div>
+    <a href="#patologias" class="cat-overview-card reveal">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a5.5 5.5 0 0 0-3.09 10.15 5.5 5.5 0 0 0 6.18 0A5.5 5.5 0 0 0 12 2.5Z"></path><path d="M12 21.5a5.5 5.5 0 0 1-3.09-10.15 5.5 5.5 0 0 1 6.18 0A5.5 5.5 0 0 1 12 21.5Z"></path><path d="M2.5 12a5.5 5.5 0 0 0 10.15 3.09 5.5 5.5 0 0 0 0-6.18A5.5 5.5 0 0 0 2.5 12Z"></path><path d="M21.5 12a5.5 5.5 0 0 1-10.15-3.09 5.5 5.5 0 0 1 0 6.18A5.5 5.5 0 0 1 21.5 12Z"></path></svg>
       <h3 class="cat-overview-name">Patologías</h3>
-      <p class="cat-overview-desc">Protocolos clínicos personalizados para acné, rosácea, manchas, rejuvenecimiento y piel deshidratada.</p>
-      <span class="cat-overview-tag">Acné · Rosácea · Manchas</span>
-      <a href="#patologias" class="cat-overview-btn">Ver tratamientos</a>
-    </div>
+      <p class="cat-overview-desc">Dermofacial alteraciones cutáneas. Diseñamos un protocolo pensado solo para tu piel.</p>
+      <span class="cat-overview-btn">Ver sección</span>
+    </a>
 
-    <div class="cat-overview-card reveal" style="transition-delay:0.1s">
-      <div class="cat-overview-num">02</div>
+    <a href="#cosmetologia" class="cat-overview-card reveal" style="transition-delay:0.1s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
       <h3 class="cat-overview-name">Cosmetología</h3>
-      <p class="cat-overview-desc">Tratamientos orientados a mejorar la apariencia y el bienestar de la piel con tecnología y activos cosméticos.</p>
-      <span class="cat-overview-tag">Microneedling · Corporal · Moldeo</span>
-      <a href="#cosmetologia" class="cat-overview-btn">Ver tratamientos</a>
-    </div>
+      <p class="cat-overview-desc">Piel en forma. Combinamos tecnología y activos cosméticos para cambios reales.</p>
+      <span class="cat-overview-btn">Ver sección</span>
+    </a>
 
-    <div class="cat-overview-card reveal" style="transition-delay:0.2s">
-      <div class="cat-overview-num">03</div>
+    <a href="#dermocosmiatria" class="cat-overview-card reveal" style="transition-delay:0.2s">
+      <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
       <h3 class="cat-overview-name">Dermocosmiatría</h3>
-      <p class="cat-overview-desc">Ciencia dermatológica con cosmética de alta tecnología. Activos de última generación para resultados en profundidad.</p>
-      <span class="cat-overview-tag">Mesoterapia · Exosomas · Dermapen</span>
-      <a href="#dermocosmiatria" class="cat-overview-btn">Ver tratamientos</a>
-    </div>
-
+      <p class="cat-overview-desc">Ciencia para tu piel. La ciencia dermatológica se une a tecnología de alta precisión.</p>
+      <span class="cat-overview-btn">Ver sección</span>
+    </a>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     CATEGORÍA 1 — PATOLOGÍAS
+     CATEGORÍA 1 — PATOLOGÍAS 
 ══════════════════════════════════════════ -->
-<section class="cat-block" id="patologias">
+<section class="cat-block cat-block-light" id="patologias">
 
-  <div class="cat-heading reveal">
-    <div>
-      <h2 class="cat-title">Pato<em>logías</em></h2>
-    </div>
-    <div class="cat-total">01</div>
-  </div>
-  <div class="cat-divider"></div>
-
-  <div class="cat-desc reveal">
-    <div class="cat-desc-text">
-      <p class="cat-desc-intro">
-        Abordamos las condiciones dermatológicas más frecuentes con protocolos clínicos personalizados.
-        Nuestros tratamientos están organizados por patología para ofrecerte una solución precisa:
-        si buscas controlar el <a href="#pat-acne">Acné</a>, calmar la rojez de la <a href="#pat-rosacea">Rosácea</a>,
-        recuperar la firmeza con <a href="#pat-rejuvenecimiento">Rejuvenecimiento</a>,
-        tratar <a href="#pat-manchas">Manchas</a> e hiperpigmentación,
-        o restaurar la barrera cutánea en <a href="#pat-deshidratada">Piel Deshidratada</a> —
-        cada subcategoría tiene su propio protocolo especializado.
-      </p>
-      <div class="cat-desc-tags">
-        <a href="#pat-acne" class="cat-desc-tag">Acné</a>
-        <a href="#pat-rosacea" class="cat-desc-tag">Rosácea</a>
-        <a href="#pat-rejuvenecimiento" class="cat-desc-tag">Rejuvenecimiento</a>
-        <a href="#pat-manchas" class="cat-desc-tag">Manchas</a>
-        <a href="#pat-deshidratada" class="cat-desc-tag">Piel Deshidratada</a>
-      </div>
-    </div>
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Pato<em>logías</em></h2>
   </div>
 
-  <!-- ── Subcategoría: Acné ── -->
-  <div class="subcat-block" id="pat-acne">
-    <div class="subcat-header">
-      <div class="subcat-num">01</div>
-      <div class="subcat-info">
-        <h3 class="subcat-title"><em>Acné</em></h3>
-      </div>
-    </div>
-    <div class="subcat-divider"></div>
-    <div class="treatment-list">
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/imagen 3 - acne.png" alt="Limpieza Facial Comedogénica" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Limpieza · Comedones · Poros</span>
-          <h3 class="tr-name">Limpieza Facial<br>Comedogénica</h3>
-          <p class="tr-desc"> Un tratamiento enfocado en despejar y refinar la piel congestionada, combinando exfoliación mecánica y tecnología para una piel visiblemente más limpia y uniforme.
-          Comenzamos con higiene facial profunda y exfoliación con scrub, preparando la piel para la microdermoabrasión con ozonoterapia, que remueve células muertas mientras desinfecta y oxigena en profundidad.
-          Aplicamos radiofrecuencia para estimular la producción de colágeno y mejorar la firmeza y textura de la piel.
-          Finalizamos con mascarilla regenerativa Selvert Thermal, crema de células madres y protector solar, dejando la piel calmada, nutrida y protegida.
-          Ideal para piel con comedones, textura irregular, poros dilatados o congestión que necesita un abordaje profundo y renovador.
-          Sin excesos, resultados visibles desde la primera sesión.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$49.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$149.970</span>$127.470</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/Imagen 1 - acne.png" alt="Limpieza Clínica y Patológica Acné" loading="lazy">
-          <div class="tr-num">02</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Clínico · Acné activo · Equilibrio</span>
-          <h3 class="tr-name">Limpieza Clínica<br>y Patológica · Acné</h3>
-          <p class="tr-desc">Comenzamos con extracción especializada con lancetas para tratar pápulas, pústulas, comedones cerrados y millium con precisión clínica, seguida de Hydrafacial para una limpieza profunda e hidratación instantánea.
-          Sumamos láser infrarrojo MMO —con luz azul y roja— que reduce inflamación y bacterias mientras estimula la regeneración celular.
-          Aplicamos ozonoterapia transdérmica para desinfectar y oxigenar la piel en profundidad.
-          Renovamos textura y luminosidad con un peeling Skin Recovery o AKN ID de Innoestetics, y cerramos con mascarilla regenerativa Restore y protector, dejando tu piel calmada, nutrida y protegida.  
-          Ideal para piel congestionada, con tendencia acneica, poros dilatados o textura irregular que necesita un abordaje clínico real.
-          </p>
-          <p class="tr-desc">
-          Aplicamos peelings de laboratorio Innoestetics, seleccionados según tu tipo de piel y objetivo a tratar —despigmentante, antiacné, antiedad o renovación general—, para actuar directamente sobre manchas, textura irregular, cicatrices o signos de envejecimiento.
-          Sumamos láser MMO ámbar y rojo, que estimula la regeneración celular y calma la piel durante el proceso.
-          Aplicamos ozonoterapia transdérmica para desinfectar y oxigenar la piel en profundidad.
-          Finalizamos con mascarilla regenerativa de Exosomas y protector, potenciando la renovación celular y dejando la piel calmada, nutrida y protegida.
-          Ideal para piel con manchas, textura irregular, cicatrices, signos de envejecimiento o que necesita una renovación profunda sin extracciones.
-          Sin excesos, resultados visibles desde la primera sesión.
-          Sin excesos, resultados visibles desde la primera sesión.</p>
-        
-          <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$108.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$326.970</span>$277.920</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/imagen 2 - acne.png" alt="Skin Recovery + Dermofacial" loading="lazy">
-          <div class="tr-num">03</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Renovación · Marcas · Textura</span>
-          <h3 class="tr-name">Skin Recovery<br>+ Dermofacial</h3>
-          <p class="tr-desc">Renueva la piel desde adentro: limpia los poros, borra las marcas del acné y suaviza la textura irregular.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/imagen 3 - acne.png" alt="AKN-ID + Dermofacial" loading="lazy">
-          <div class="tr-num">04</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Piel grasa · Sebo · Desinflamante</span>
-          <h3 class="tr-name">AKN-ID<br>+ Dermofacial</h3>
-          <p class="tr-desc">Ideal si tu piel tiende al acné y al brillo excesivo. Regula el sebo, desinflama los granos y mantiene los poros limpios.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/Imagen 1 - acne.png" alt="Vitamin Complex + Dermofacial" loading="lazy">
-          <div class="tr-num">05</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Vitaminas · Piel grasa · Energía</span>
-          <h3 class="tr-name">Vitamin Complex<br>+ Dermofacial</h3>
-          <p class="tr-desc">Una dosis de vitaminas y nutrientes esenciales que le da energía a tu piel. Perfecto para piel grasa con impurezas.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-    </div>
+  <div class="cat-intro-box reveal">
+    <strong>Dermofacial alteraciones cutáneas</strong>
+    <p>
+      ¿Acné que no cede, manchas que no se van, o rosácea que aparece y desaparece? Diseñamos un protocolo pensado solo para tu piel, no una receta genérica.<br><br>
+      ¿Lo mejor? Nada de agujas ni recuperación prolongada.
+    </p>
   </div>
 
-  <!-- ── Subcategoría: Rosácea ── -->
-  <div class="subcat-block" id="pat-rosacea">
-    <div class="subcat-header">
-      <div class="subcat-num">02</div>
-      <div class="subcat-info">
-        <h3 class="subcat-title"><em>Rosácea</em></h3>
-      </div>
+  <div class="patologias-grid reveal">
+    <div class="pat-card">
+      <h3>Acné</h3>
     </div>
-    <div class="subcat-divider"></div>
-    <div class="treatment-list">
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/rosacea-1.jpeg" alt="Redness Peel + Dermofacial" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Exfoliación suave · Rosácea · Calmante</span>
-          <h3 class="tr-name">Redness Peel<br>+ Dermofacial</h3>
-          <p class="tr-desc">Una exfoliación muy suave para pieles delicadas o con rosácea. Renueva la piel sin irritarla, reduce el enrojecimiento.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/rosacea-1.jpeg" alt="Redness Peel + Dermofacial" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Exfoliación suave · Rosácea · Calmante</span>
-          <h3 class="tr-name">Tratamiento Dermocosmiátrico<br>para Rosácea</h3>
-          <p class="tr-desc">Comenzamos con higiene facial suave, seguida de Hydrafacial para una limpieza profunda e hidratación sin irritación.
-          Aplicamos láser infrarrojo MMO ámbar, que ayuda a calmar la inflamación y favorecer la regeneración celular.
-          Sumamos una aplicación híbrida: Redness Peeling con suaves toques sobre la epidermis para actuar en superficie sin agredir la piel, y mesoterapia Redness ID de Innoestetics mediante electroporación, que trabaja en dermis profunda para una penetración óptima de los activos calmantes y reductores de rojez.
-          Aplicamos ozonoterapia para desinfectar y oxigenar la piel en profundidad, y finalizamos con mascarilla regenerativa Restore de Innoestetics, dejando la piel calmada, nutrida y fortalecida.
-          Ideal para piel con rosácea, enrojecimiento persistente, sensibilidad o piel reactiva que necesita un cuidado especializado y respetuoso.
-          Sin excesos, resultados visibles desde la primera sesión.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="Redness-ID + Dermofacial" loading="lazy">
-          <div class="tr-num">02</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Enrojecimiento · Ardor · Rosácea</span>
-          <h3 class="tr-name">Redness-ID<br>+ Dermofacial</h3>
-          <p class="tr-desc">Para piel que se enrojece fácilmente o convive con rosácea. Calma el ardor y reduce el enrojecimiento visible.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
+    <div class="pat-card">
+      <h3>Manchas</h3>
     </div>
-  </div>
-
-  <!-- ── Subcategoría: Rejuvenecimiento ── -->
-  <div class="subcat-block" id="pat-rejuvenecimiento">
-    <div class="subcat-header">
-      <div class="subcat-num">03</div>
-      <div class="subcat-info">
-        <h3 class="subcat-title"><em>Rejuvenecimiento</em></h3>
-      </div>
+    <div class="pat-card">
+      <h3>Rosácea</h3>
     </div>
-    <div class="subcat-divider"></div>
-    <div class="treatment-list">
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="Microneedling + Vitamina" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Colágeno · Cicatrices · Poros</span>
-          <h3 class="tr-name">Microneedling<br>+ Vitamina</h3>
-          <p class="tr-desc">Microagujas que estimulan el colágeno propio. Suaviza cicatrices, poros dilatados y arrugas finas.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$99.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$299.970</span>$254.970</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="Electroporador + Vitamina" loading="lazy">
-          <div class="tr-num">02</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Penetración profunda · Vitaminas</span>
-          <h3 class="tr-name">Electroporador<br>+ Vitamina</h3>
-          <p class="tr-desc">El electroporador abre microcanales en la piel para que la vitamina penetre mucho más profundo de lo normal.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$149.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$449.970</span>$382.470</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Microneedling + Electroporador + Vitamina" loading="lazy">
-          <div class="tr-num">03</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Triple acción · Renovación activa</span>
-          <h3 class="tr-name">Microneedling + Electroporador<br>+ Vitamina</h3>
-          <p class="tr-desc">El protocolo más completo de renovación activa. Triple acción en una sola sesión.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$179.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$539.970</span>$458.970</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="T.C AGE + Dermofacial" loading="lazy">
-          <div class="tr-num">04</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Arrugas · Cicatrices · Manchas</span>
-          <h3 class="tr-name">T.C AGE<br>+ Dermofacial</h3>
-          <p class="tr-desc">Para quienes quieren resultados más profundos. Borra arrugas, cicatrices y manchas con una renovación intensa.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1522337360788-8b13dee7a37e.jpg" alt="Dark Circles" loading="lazy">
-          <div class="tr-num">05</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Ojeras · Párpados · Luminosidad</span>
-          <h3 class="tr-name">Dark<br>Circles</h3>
-          <p class="tr-desc">Tratamiento para líneas periorbiculares, ojeras y redensificador de párpados superior e inferior.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$110.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$332.970</span>$282.920</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1616391182219-e080b4d1043a.jpg" alt="Eye Corrector" loading="lazy">
-          <div class="tr-num">06</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Patas de gallo · Párpados</span>
-          <h3 class="tr-name">Eye<br>Corrector</h3>
-          <p class="tr-desc">Corrección de patas de gallo y redensificador de párpados.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$99.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$299.970</span>$254.970</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1600334089648-b0d9d3028eb2.jpg" alt="Drenaje Manual Facial" loading="lazy">
-          <div class="tr-num">07</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Circulación · Drenaje · Desinflamación</span>
-          <h3 class="tr-name">Drenaje Manual<br>Facial</h3>
-          <p class="tr-desc">Activa la circulación linfática, reduce la retención de líquidos y mejora la absorción de activos hidratantes.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$35.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">5 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$175.000</span>$148.750</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="DNA PEPT HA + Dermofacial" loading="lazy">
-          <div class="tr-num">08</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Antiedad · Colágeno · Firmeza</span>
-          <h3 class="tr-name">DNA PEPT HA<br>+ Dermofacial</h3>
-          <p class="tr-desc">El antiedad estrella. Estimula el colágeno propio, rellena arrugas desde adentro y deja la piel más firme.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="Restructure + Dermofacial" loading="lazy">
-          <div class="tr-num">09</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Antioxidantes · Daño solar · Estrés</span>
-          <h3 class="tr-name">Restructure<br>+ Dermofacial</h3>
-          <p class="tr-desc">Combate el envejecimiento causado por el sol, el estrés y la contaminación. Llena la piel de antioxidantes.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Matrix + Dermofacial" loading="lazy">
-          <div class="tr-num">10</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Colágeno · Revitalización</span>
-          <h3 class="tr-name">Matrix<br>+ Dermofacial</h3>
-          <p class="tr-desc">Revitaliza la piel desde adentro estimulando su propia producción de colágeno.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Subcategoría: Manchas ── -->
-  <div class="subcat-block" id="pat-manchas">
-    <div class="subcat-header">
-      <div class="subcat-num">04</div>
-      <div class="subcat-info">
-        <h3 class="subcat-title"><em>Manchas</em></h3>
-      </div>
-    </div>
-    <div class="subcat-divider"></div>
-    <div class="treatment-list">
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1515377905703-c4788e51af15.jpg" alt="Hollywood Black Peel" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Carbono activado · Poros · Luminosidad</span>
-          <h3 class="tr-name">Hollywood<br>Black Peel</h3>
-          <p class="tr-desc">Carbono activado que absorbe el sebo, minimiza poros y revela una piel perfectamente uniforme y luminosa.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$108.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$326.970</span>$277.920</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1629909613654-28e377c37b09.jpg" alt="Lightening + Dermofacial" loading="lazy">
-          <div class="tr-num">02</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Manchas · Melasma · Unificación</span>
-          <h3 class="tr-name">Lightening<br>+ Dermofacial</h3>
-          <p class="tr-desc">Aclara manchas, melasma y marcas del acné. Con cada sesión el tono se va unificando y la piel se ve más pareja.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="MCA 35 + Dermofacial" loading="lazy">
-          <div class="tr-num">03</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Daño solar · Elasticidad · Brillo</span>
-          <h3 class="tr-name">MCA 35<br>+ Dermofacial</h3>
-          <p class="tr-desc">Borra manchas y apaga el daño del sol. Restaura la elasticidad y devuelve ese brillo natural.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Subcategoría: Piel Deshidratada ── -->
-  <div class="subcat-block" id="pat-deshidratada">
-    <div class="subcat-header">
-      <div class="subcat-num">05</div>
-      <div class="subcat-info">
-        <h3 class="subcat-title"><em>Piel Deshidratada</em></h3>
-      </div>
-    </div>
-    <div class="subcat-divider"></div>
-    <div class="treatment-list">
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="Limpieza con Oxígeno" loading="lazy">
-          <div class="tr-num">01</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Oxigenación · Hidratación · Revitalización</span>
-          <h3 class="tr-name">Limpieza<br>con Oxígeno</h3>
-          <p class="tr-desc">Oxigenación profunda desde adentro. Hidrata, nutre y revitaliza la piel al mismo tiempo que la limpia.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$79.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$239.970</span>$203.970</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/rosacea-1.jpeg" alt="Limpieza con Hydrafacial" loading="lazy">
-          <div class="tr-num">02</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Limpieza · Exfoliación · Hidratación</span>
-          <h3 class="tr-name">Limpieza<br>con Hydrafacial</h3>
-          <p class="tr-desc">Limpieza, exfoliación e hidratación en un solo paso. Aspira impurezas e infunde sueros activos.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$79.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$239.970</span>$203.970</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="BIO C + Dermofacial" loading="lazy">
-          <div class="tr-num">03</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Vitamina C · Luminosidad · Prevención</span>
-          <h3 class="tr-name">BIO C<br>+ Dermofacial</h3>
-          <p class="tr-desc">El tratamiento más suave de la línea. Vitamina C y ácidos frutales que iluminan, hidratan y previenen el envejecimiento.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$187.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$561.000</span>$476.850</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Dermapen + Hydrafacial + Electroporador" loading="lazy">
-          <div class="tr-num">04</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Renovación profunda · 3 pasos</span>
-          <h3 class="tr-name">Dermapen + Hydrafacial<br>+ Electroporador</h3>
-          <p class="tr-desc">Renovación profunda en tres pasos: estimulación con dermapen, hidratación activa e infusión de activos.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$180.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$540.000</span>$459.000</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
-      <div class="tr-row">
-        <div class="tr-img">
-          <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="Hyaluronic Acid + Dermofacial" loading="lazy">
-          <div class="tr-num">05</div>
-        </div>
-        <div class="tr-body">
-          <span class="tr-tag">Hidratación profunda · Arrugas finas</span>
-          <h3 class="tr-name">Hyaluronic Acid<br>+ Dermofacial</h3>
-          <p class="tr-desc">Hidratación pura y profunda. Rellena las arrugas finas y deja la piel súper suave y luminosa.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-          <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-        </div>
-      </div>
+    <div class="pat-card">
+      <h3>Hidratación</h3>
     </div>
   </div>
 
@@ -1175,467 +475,563 @@
 
 
 <!-- ══════════════════════════════════════════
-     CATEGORÍA 2 — COSMETOLOGÍA
+     CATEGORÍA 2 — COSMETOLOGÍA 
 ══════════════════════════════════════════ -->
-<section class="cat-block" id="cosmetologia">
+<section class="cat-block cat-block-dark" id="cosmetologia">
 
-  <div class="cat-heading reveal">
-    <div>
-      <h2 class="cat-title">Cosme<em>tología</em></h2>
-    </div>
-    <div class="cat-total">02</div>
-  </div>
-  <div class="cat-divider"></div>
-
-  <div class="cat-desc reveal">
-    <div class="cat-desc-text">
-      <p class="cat-desc-intro">
-        La cosmetología engloba todos los tratamientos orientados a mejorar la apariencia y el bienestar
-        de la piel y el cuerpo desde un enfoque estético integral. En esta categoría encontrarás procedimientos
-        como <em>Microneedling</em>, <em>Pack Papada</em>, <em>Moldeo Corporal 360</em>,
-        <em>Pack Antiinflamatorio</em> y <em>Full Body Reset</em> —
-        protocolos que combinan tecnología y activos cosméticos para moldear, reafirmar y revitalizar
-        tu piel de manera global.
-      </p>
-    </div>
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Cosme<em>tología</em></h2>
   </div>
 
-  <div class="treatment-list" style="margin-top:3rem;">
-    <div class="tr-row">
+  <div class="cat-intro-box reveal">
+    <strong>Piel en forma</strong>
+    <p>¿Quieres mejorar la textura de tu piel o moldear tu figura? Combinamos tecnología y activos cosméticos para que veas cambios reales, sesión a sesión.</p>
+  </div>
+
+  <div class="subcat-header reveal">
+    <h3 class="subcat-title">Tratamientos Corporales</h3>
+    <p class="subcat-desc">¿Buscas mejorar la circulación, reducir volumen o firmeza corporal? Cada sesión combina tecnología y experiencia sensorial.</p>
+  </div>
+    
+  <div class="treatment-list">
+    
+    <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="Microneedling" loading="lazy">
-        <div class="tr-num">01</div>
+        <img src="Recursos/img/photo-1571019613454-1cb2f99b2d8b.jpg" alt="CrioRadiofrecuencia Corporal" loading="lazy">
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Colágeno · Cicatrices · Anti-aging</span>
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">CrioRadiofrecuencia Corporal</h3>
+        <p class="tr-desc">¿Quieres reducir la apariencia de grasa localizada mientras firmas la piel? Frío + radiofrecuencia trabajando juntos: mismo principio que en rostro, pero pensado para zonas corporales.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Manta Infrarroja Térmica" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Manta Infrarroja Térmica</h3>
+        <p class="tr-desc">¿Sabías que el calor infrarrojo prepara tu cuerpo para mejores resultados? Aumenta la circulación y favorece la eliminación de toxinas antes de tu tratamiento principal. Relajación desde el primer minuto.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1518611012118-696072aa579a.jpg" alt="Presoterapia" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Presoterapia</h3>
+        <p class="tr-desc">¿Piernas cansadas o retención de líquidos? Compresión secuencial que activa el drenaje linfático, reduce la sensación de pesadez y desinflama.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1552693673-1bf958298935.jpg" alt="Vacumterapia Corporal" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Vacumterapia Corporal</h3>
+        <p class="tr-desc">¿Buscas mejorar la textura de la piel y activar la circulación? Succión controlada tipo masaje que estimula el drenaje y ayuda a mejorar la apariencia de la celulitis.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="Radiofrecuencia Corporal" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Radiofrecuencia Corporal</h3>
+        <p class="tr-desc">¿Quieres firmeza sin pasar por quirófano? Energía que calienta las capas profundas de la piel, estimulando colágeno para un efecto tensor progresivo.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="Ultracavitación" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Ultracavitación</h3>
+        <p class="tr-desc">¿Grasa localizada que no se va con ejercicio? Ondas ultrasónicas que rompen las células de grasa para que el cuerpo las elimine de forma natural a través del sistema linfático.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1593476550610-87baa860004a.jpg" alt="Ondas Rusas" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Corporal</span>
+        <h3 class="tr-name">Ondas Rusas</h3>
+        <p class="tr-desc">¿Quieres tonificar sin pasar horas en el gimnasio? Estimulación eléctrica muscular que genera contracciones controladas, tonificando y definiendo la zona tratada.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CATEGORÍA 3 — DERMOCOSMIATRÍA 
+══════════════════════════════════════════ -->
+<section class="cat-block cat-block-light" id="dermocosmiatria">
+
+  <div class="cat-header-wrapper reveal">
+    <h2 class="cat-title">Dermocos<em>miatría</em></h2>
+  </div>
+
+  <div class="cat-intro-box reveal">
+    <strong>Ciencia para tu piel</strong>
+    <p>¿Ya probaste de todo y quieres ir un paso más profundo? Aquí la ciencia dermatológica se une a tecnología de alta precisión, sin agujas.</p>
+  </div>
+
+  <!-- ── Subcategoría: Tecnología Base ── -->
+  <div class="subcat-header reveal">
+    <h3 class="subcat-title">Tecnología base</h3>
+  </div>
+    
+  <div class="treatment-list">
+    
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Electroporación" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Electroporación</h3>
+        <p class="tr-desc">
+          ¿Sabías que tu piel solo absorbe de forma natural moléculas muy pequeñas? Existe una regla biológica llamada la Ley de los 500 Daltons: si te aplicas una crema común, cualquier ingrediente que supere ese peso como el colágeno- es demasiado grande para atravesar la piel.<br><br>
+          Nuestro electroporador rompe esa barrera natural. A través de impulsos eléctricos controlados, abre microcanales temporales en la piel que no dependen del tamaño del poro: así logramos introducir, sin una sola aguja, macromoléculas de hasta 800.000 Daltons.<br><br>
+          ¿Lo mejor? Colágeno (~500.000 Da), ácido hialurónico de alto peso (hasta 800.000 Da), vitaminas, aminoácidos y activos tensores llegan directo a la dermis, de forma masiva y casi instantánea. Máxima absorción, sin límite de tamaño, cero dolor.
+        </p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+    
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1522337360788-8b13dee7a37e.jpg" alt="Microneedling" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Tecnología base</span>
         <h3 class="tr-name">Microneedling</h3>
-        <p class="tr-desc">Estimula la producción de colágeno para mejorar cicatrices, líneas finas y textura de la piel.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$199.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">2 Sesiones</span>
-            <span class="tr-detail-value">$399.980</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones</span>
-            <span class="tr-detail-value">$449.990</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
+        <p class="tr-desc">¿Tu piel necesita renovarse desde dentro? Microagujas ultrafinas generan una lesión controlada que activa la producción natural de colágeno, mientras abren paso a los activos que aplicamos después.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
       </div>
     </div>
-    <div class="tr-row">
+    
+    <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1552693673-1bf958298935.jpg" alt="Pack Papada" loading="lazy">
-        <div class="tr-num">02</div>
+        <img src="Recursos/img/photo-1616391182219-e080b4d1043a.jpg" alt="CrioRadiofrecuencia Facial" loading="lazy">
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Contorno facial · Reafirmación</span>
-        <h3 class="tr-name">Pack<br>Papada</h3>
-        <p class="tr-desc">Tratamiento diseñado para reducir y reafirmar la zona de la papada y mejorar el contorno facial.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$120.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">6 Sesiones</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">CrioRadiofrecuencia Facial</h3>
+        <p class="tr-desc">¿Buscas un efecto lifting sin cirugía? Combina frío y radiofrecuencia: el frío calma y desinflama, el calor controlado estimula colágeno y elastina. Firmeza visible, piel más tersa.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
       </div>
     </div>
-    <div class="tr-row">
+
+    <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1571019613454-1cb2f99b2d8b.jpg" alt="Moldeo Corporal 360" loading="lazy">
-        <div class="tr-num">03</div>
+        <img src="Recursos/img/photo-1600334089648-b0d9d3028eb2.jpg" alt="Láser Infrarrojo" loading="lazy">
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Silueta · Circulación · Reducción</span>
-        <h3 class="tr-name">Moldeo<br>Corporal 360</h3>
-        <p class="tr-desc">Ayuda a reducir medidas, mejorar la circulación y modelar la silueta corporal.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$200.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">10 Sesiones</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Láser Infrarrojo</h3>
+        <p class="tr-desc">¿Quieres estimular tu piel desde las capas más profundas? La luz infrarroja penetra sin dañar la superficie, activa la circulación y potencia la producción de colágeno de forma progresiva.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
       </div>
     </div>
-    <div class="tr-row">
+
+    <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Pack Antiinflamatorio" loading="lazy">
-        <div class="tr-num">04</div>
+        <img src="Recursos/img/photo-1515377905703-c4788e51af15.jpg" alt="Ozono Transdérmico" loading="lazy">
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Retención de líquidos · Desinflamación</span>
-        <h3 class="tr-name">Pack<br>Antiinflamatorio</h3>
-        <p class="tr-desc">Disminuye la retención de líquidos y ayuda a desinflamar el cuerpo de forma integral.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$150.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">6 Sesiones</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Ozono Transdérmico</h3>
+        <p class="tr-desc">¿Tu piel necesita regenerarse y desinflamarse en profundidad? Aplicamos ozono de forma transdérmica: efecto antioxidante, oxigenante y regenerador a nivel celular, ideal para piel cansada, con acné o signos de estrés.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
       </div>
     </div>
-    <div class="tr-row">
+
+    <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1518611012118-696072aa579a.jpg" alt="Full Body Reset" loading="lazy">
-        <div class="tr-num">06</div>
+        <img src="Recursos/img/photo-1629909613654-28e377c37b09.jpg" alt="Peeling" loading="lazy">
       </div>
       <div class="tr-body">
-        <span class="tr-tag">Remodelación · Tonificación · Integral</span>
-        <h3 class="tr-name">Full Body<br>Reset</h3>
-        <p class="tr-desc">Protocolo integral para remodelar, tonificar y mejorar la apariencia corporal de forma completa.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor por sesión</span>
-            <span class="tr-detail-value">$250.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Frecuencia recomendada</span>
-            <span class="tr-detail-value">12 Sesiones</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Peeling</h3>
+        <p class="tr-desc">¿Lista para renovar tu piel desde la primera sesión? Exfoliación controlada que remueve células muertas, unifica el tono y devuelve luminosidad inmediata.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
       </div>
     </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="Hidratación Profunda con Ácido Hialurónico" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Hidratación Profunda<br>con Ácido Hialurónico</h3>
+        <p class="tr-desc">¿Quieres el efecto de una hidratación profunda sin pinchazos? Tecnología que introduce ácido hialurónico en capas profundas de forma no invasiva. Piel rellena, luminosa y visiblemente más joven.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/rosacea-1.jpeg" alt="Black Peel" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Black Peel</h3>
+        <p class="tr-desc">¿Poros dilatados o exceso de grasa? Un peeling a base de carbón activo que se combina con tecnología láser para limpieza profunda, control de brillo y piel más uniforme.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="Cabina LED" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Tecnología base</span>
+        <h3 class="tr-name">Cabina LED</h3>
+        <p class="tr-desc">¿Quieres cerrar tu tratamiento potenciando resultados? Luz LED de distintas longitudes de onda que calma, regenera y estimula colágeno según lo que tu piel necesite ese día.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+    
   </div>
+
+  <!-- ── Subcategoría: Tratamientos Estrella ── -->
+  <div class="subcat-header reveal" style="margin-top: 4rem;">
+    <h3 class="subcat-title">Lo más solicitado / Tratamientos estrella</h3>
+    <p class="subcat-desc">¿Sabías que cada piel necesita un enfoque distinto? Esta es nuestra línea de tratamientos estrella: exosomas, mesoterapias y activos en peeling, aplicados sin agujas.</p>
+  </div>
+    
+  <div class="treatment-list">
+    
+    <!-- EXOSOMAS -->
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Exo-Skin" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Exosomas</span>
+        <h3 class="tr-name">Exo-Skin</h3>
+        <p class="tr-desc">¿Sabías que existen mensajeros celulares que aceleran la regeneración de tu piel? Exo-Skin no usa exosomas humanos: es una molécula 100% sintética (tecnología NARBEX™) que imita cómo los exosomas naturales envían señales entre células, activando la propia reparación de tu piel.<br><br>
+        <strong>Beneficios:</strong> regenera y revitaliza a nivel celular, mejora la barrera cutánea, unifica, ilumina y reafirma. También fortalece el cuero cabelludo en caída de cabello.<br><br>
+        <strong>Contraindicaciones:</strong> embarazo y lactancia, enfermedades autoinmunes, infecciones activas o heridas abiertas en la zona.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+    
+    <!-- MESOTERAPIAS -->
+    <div class="subcat-banner reveal">Método de aplicación: Microneedling o Electroporación</div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="DNA Pept HA" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Reconstrucción dérmica</span>
+        <h3 class="tr-name">DNA Pept HA</h3>
+        <p class="tr-desc">¿Tu piel perdió fuerza y necesita reconstruirse? Combina PDRN, péptidos, glutatión y ácido hialurónico para estimular la regeneración celular.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1571019613454-1cb2f99b2d8b.jpg" alt="Matrix" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Revitalización dérmica</span>
+        <h3 class="tr-name">Matrix</h3>
+        <p class="tr-desc">¿Piel cansada, apagada o sin energía? Cóctel revitalizante rico en aminoácidos, vitaminas, minerales y ácido hialurónico.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Restructurer" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Acción antioxidante</span>
+        <h3 class="tr-name">Restructurer</h3>
+        <p class="tr-desc">¿Tu piel está expuesta a contaminación, sol y estrés diario? Cóctel antioxidante que protege del estrés oxidativo y repara el daño de los radicales libres.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1518611012118-696072aa579a.jpg" alt="Vitamin Complex" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Nutrición celular</span>
+        <h3 class="tr-name">Vitamin Complex</h3>
+        <p class="tr-desc">¿Buscas un aporte extra de nutrientes para tu piel? Complejo balanceado de vitaminas, minerales, aminoácidos y ácido hialurónico.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1552693673-1bf958298935.jpg" alt="Hyaluronic Acid" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Hidratación profunda</span>
+        <h3 class="tr-name">Hyaluronic Acid</h3>
+        <p class="tr-desc">¿Tu piel necesita hidratación que dure? Ácido hialurónico de alto y bajo peso molecular que restaura los niveles óptimos de hidratación.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="Redness-ID" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Piel con rosácea</span>
+        <h3 class="tr-name">Redness-ID</h3>
+        <p class="tr-desc">¿Enrojecimiento que aparece sin razón? Cóctel dermocalmante que regula la microcirculación y refuerza la barrera protectora.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="AKN-ID" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Piel grasa y acné</span>
+        <h3 class="tr-name">AKN-ID</h3>
+        <p class="tr-desc">¿Brillo excesivo o brotes frecuentes? Cóctel seborregulador y purificante que controla el exceso de sebo y calma la inflamación.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1593476550610-87baa860004a.jpg" alt="Hair Loss Control" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Alopecia</span>
+        <h3 class="tr-name">Hair Loss Control</h3>
+        <p class="tr-desc">¿Notas tu cabello más débil o con caída? Cóctel anticaída que fortalece el folículo piloso y mejora la microcirculación del cuero cabelludo.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Slimming" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Celulitis</span>
+        <h3 class="tr-name">Slimming</h3>
+        <p class="tr-desc">¿Grasa localizada o celulitis que no se va? Cóctel lipolítico y drenante que favorece la degradación de grasa acumulada.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1522337360788-8b13dee7a37e.jpg" alt="Firming" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Reafirmante</span>
+        <h3 class="tr-name">Firming</h3>
+        <p class="tr-desc">¿Notas flacidez o pérdida de elasticidad? Cóctel reafirmante que estimula colágeno y elastina, fortaleciendo las fibras de sostén.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1616391182219-e080b4d1043a.jpg" alt="Skin Recovery" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Recupera, repara y protege</span>
+        <h3 class="tr-name">Skin Recovery</h3>
+        <p class="tr-desc">¿Piel sensibilizada tras un procedimiento? Cóctel reparador y calmante que restaura la barrera cutánea y acelera la regeneración celular.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1600334089648-b0d9d3028eb2.jpg" alt="NCTF" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Mesoterapia antiedad premiada</span>
+        <h3 class="tr-name">NCTF</h3>
+        <p class="tr-desc">¿Sabías que existe una mesoterapia premiada internacionalmente? NCTF combina ácido hialurónico con más de 50 activos -vitaminas, antioxidantes, aminoácidos y minerales- en un solo cóctel revitalizante. En 2023 fue reconocida como mejor inyectable revitalizante en el congreso AMWC.<br><br>
+        En Pielby la aplicamos sin ese "inyectable": nuestro electroporador abre los microcanales necesarios para que el cóctel llegue a la misma profundidad, sin una sola aguja ni anestesia.<br><br>
+        <strong>Beneficios:</strong> hidrata y revitaliza en profundidad, suaviza líneas de expresión, mejora la textura de la piel, y es ideal para piel fumadora o con daño solar acumulado.<br>
+        <strong>Protocolo:</strong> 3 a 5 sesiones, espaciadas cada 7-14 días al inicio y luego cada 30 días.<br>
+        <strong>Resultados:</strong> se mantienen 6 a 8 meses.<br>
+        <strong>Cuidados:</strong> evitar maquillaje, skincare y calor extremo por 24 horas. Al aplicarse sin agujas, el riesgo de moretones es mínimo. No recomendado en embarazo, lactancia, enfermedades autoinmunes o infecciones activas en la zona.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <!-- ACTIVOS PEELING -->
+    <div class="subcat-banner reveal">Método de aplicación: Tópica directa (Peeling químico)</div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1515377905703-c4788e51af15.jpg" alt="Bio C" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Vitamina C 15%</span>
+        <h3 class="tr-name">Bio C</h3>
+        <p class="tr-desc">¿Quieres un efecto glow inmediato? Peeling antioxidante con Vitamina C estable al 15% que unifica el tono y estimula colágeno.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1629909613654-28e377c37b09.jpg" alt="Lightening" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Vitamina A 3%</span>
+        <h3 class="tr-name">Lightening</h3>
+        <p class="tr-desc">¿Manchas o tono desigual que no se van? Peeling despigmentante con Vitamina A 3% que regula la melanina y acelera la renovación celular.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="MCA 35" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Ácido salicílico modificado 35%</span>
+        <h3 class="tr-name">MCA 35</h3>
+        <p class="tr-desc">¿Tu piel necesita renovarse desde las capas más profundas? Peeling bioestimulante que promueve colágeno y elastina, mejorando textura y firmeza.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/rosacea-1.jpeg" alt="T.C AGE" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">TCA 15%</span>
+        <h3 class="tr-name">T.C AGE</h3>
+        <p class="tr-desc">¿Buscas resultados antiedad más intensos? Peeling bioestimulante que actúa en la dermis profunda, reduciendo líneas de expresión y arrugas.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="Sensitive HRP" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Piel sensible y atópica</span>
+        <h3 class="tr-name">Sensitive HRP</h3>
+        <p class="tr-desc">¿Tu piel se irrita con facilidad? Peeling domiciliario que fortalece la barrera cutánea y restaura el equilibrio de la microflora.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Redness Peel" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Peeling ultra suave</span>
+        <h3 class="tr-name">Redness Peel</h3>
+        <p class="tr-desc">¿Rojeces o venitas visibles? Peeling ultra suave que calma la inflamación y fortalece la barrera cutánea sin generar descamación.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Subcategoría: Línea Élite ── -->
+  <div class="subcat-header reveal" style="margin-top: 4rem;">
+    <h3 class="subcat-title">Línea Élite / Productos de élite</h3>
+    <p class="subcat-desc">
+      ¿Sabías que hay activos tan grandes que sin la tecnología correcta jamás llegarían a tu dermis? BI-DENS y Plenhyage son moléculas de alto peso —hasta 800.000 Daltons— que solo nuestro electroporador puede introducir sin agujas. Por eso son parte de nuestra línea Élite.<br><br>
+      Trabajamos con Innoaesthetics, laboratorio con más de 125 años de trayectoria (fundado en 1898 en Barcelona) y creador de Smart GPS, su tecnología propia que dirige cada activo exactamente a las células donde tiene el máximo efecto.
+    </p>
+  </div>
+    
+  <div class="treatment-list">
+    <div class="subcat-banner reveal">Método de aplicación: Solo electroporación</div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="Bi-Dens 2.5" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Innoaesthetics</span>
+        <h3 class="tr-name">Bi-Dens 2.5</h3>
+        <p class="tr-desc">¿Buscas firmeza sin que se note "relleno"? Ácido hialurónico no reticulado que actúa como bioestimulador y skinbooster, con doble peso molecular: alto y muy alto. Mientras el peso más bajo hidrata profundamente desde el interior, el más alto redensifica la piel, estimula colágeno y elastina, y devuelve firmeza sin generar volumen.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1571019613454-1cb2f99b2d8b.jpg" alt="Plenhyage XL Thin" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Polinucleotidos de ADN de salmón</span>
+        <h3 class="tr-name">Plenhyage XL Thin</h3>
+        <p class="tr-desc">¿Líneas finas, ojeras o piel fina que necesita un cuidado especial? Concentración más suave, pensada para las zonas más delicadas del rostro. Hidrata, protege del estrés oxidativo y crea el ambiente ideal para que la piel se regenere por sí misma, sin aportar volumen.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+    <div class="tr-row reveal">
+      <div class="tr-img">
+        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Plenhyage XL Strong" loading="lazy">
+      </div>
+      <div class="tr-body">
+        <span class="tr-tag">Polinucleotidos de ADN de salmón</span>
+        <h3 class="tr-name">Plenhyage XL Strong</h3>
+        <p class="tr-desc">¿Piel con signos marcados de envejecimiento, cicatrices o fotoenvejecimiento? Máxima concentración, pensada para reparación profunda de tejidos dañados. Estimula el colágeno, mejora la elasticidad y devuelve densidad a la piel desde su estructura más profunda.<br><br>
+        <strong>¿Es seguro un tratamiento con ADN de salmón?</strong> Sí: es lo suficientemente distinto al ADN humano como para no representar ningún riesgo de mutación. Lo que sí comparte con nosotros es la capacidad de activar los procesos naturales de reparación celular.<br><br>
+        <strong>No es un relleno:</strong> Plenhyage no modifica tus facciones ni agrega volumen artificial. Mejora la calidad de tu piel desde adentro más hidratada, firme, luminosa y con mejor capacidad de regenerarse sola. Resultados progresivos y naturales.</p>
+        <a href="https://wa.me/56999886940" class="tr-cta">Reservar hora</a>
+      </div>
+    </div>
+
+  </div>
+
 </section>
-
-
-<!-- ══════════════════════════════════════════
-     CATEGORÍA 3 — DERMOCOSMIÁTRIA
-══════════════════════════════════════════ -->
-<section class="cat-block" id="dermocosmiatria">
-
-  <div class="cat-heading reveal">
-    <div>
-      <h2 class="cat-title">Dermocos<em>miatría</em></h2>
-    </div>
-    <div class="cat-total">03</div>
-  </div>
-  <div class="cat-divider"></div>
-
-  <div class="cat-desc reveal">
-    <div class="cat-desc-text">
-      <p class="cat-desc-intro">
-        Nuestra línea premium integra la ciencia dermatológica con la cosmética de alta tecnología,
-        utilizando activos de última generación y equipamiento médico-estético avanzado.
-        En esta categoría encontrarás protocolos de alto rendimiento como
-        <em>Plenhyage</em>, <em>PDRN</em>, <em>Exosomas</em> y <em>Crioradiofrecuencia</em> —
-        tratamientos que van más allá de la superficie para actuar en profundidad
-        sobre la estructura y calidad de la piel.
-      </p>
-    </div>
-  </div>
-
-  <div class="treatment-list" style="margin-top:3rem;">
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1526045612212-70caf35c14df.jpg" alt="PDRN + Dermofacial" loading="lazy">
-        <div class="tr-num">01</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Regeneración · Hidratación · Firmeza</span>
-        <h3 class="tr-name">PDRN<br>+ Dermofacial</h3>
-        <p class="tr-desc">Regenera y renueva la piel en profundidad. La deja más hidratada, firme y luminosa.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="PDRN + Vitamina + Dermofacial" loading="lazy">
-        <div class="tr-num">02</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Regeneración profunda · Personalizado</span>
-        <h3 class="tr-name">PDRN + Vitamina<br>+ Dermofacial</h3>
-        <p class="tr-desc">El protocolo completo: regeneración profunda con PDRN más una vitamina elegida según lo que tu piel necesita.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$408.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$1.224.000</span>$1.040.400</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1593476550610-87baa860004a.jpg" alt="Crioradiofrecuencia" loading="lazy">
-        <div class="tr-num">03</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Contorno facial · Tensado · Sin agujas</span>
-        <h3 class="tr-name">Crioradiofrecuencia</h3>
-        <p class="tr-desc">Tensa y define el contorno facial completo — rostro, cuello y escote — sin agujas. También disponible por zona a $30.000.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$160.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$480.000</span>$408.000</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1518611012118-696072aa579a.jpg" alt="Bi-Dens + Dermofacial" loading="lazy">
-        <div class="tr-num">04</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Firmeza · Luminosidad intensa</span>
-        <h3 class="tr-name">Bi-Dens<br>+ Dermofacial</h3>
-        <p class="tr-desc">Rellena y rejuvenece la piel con mayor concentración de activos, para firmeza y luminosidad intensas.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1544161515-4ab6ce6db874.jpg" alt="Me Line + Dermofacial" loading="lazy">
-        <div class="tr-num">05</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Manchas rebeldes · Melasma</span>
-        <h3 class="tr-name">Me Line<br>+ Dermofacial</h3>
-        <p class="tr-desc">El peeling despigmentante ME LINE ID aplicado con electroporador, para manchas rebeldes, melasma y daño solar acumulado.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$218.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$654.000</span>$555.900</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1519415510236-718bdfcd89c8.jpg" alt="Plenhyage Thin + Dermofacial" loading="lazy">
-        <div class="tr-num">06</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Hidratación progresiva · Zonas delicadas</span>
-        <h3 class="tr-name">Plenhyage Thin<br>+ Dermofacial</h3>
-        <p class="tr-desc">Versión más suave del Plenhyage, ideal para empezar o para zonas delicadas. Hidrata y regenera progresivamente.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$428.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$1.284.000</span>$1.091.400</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1537368910025-700350fe46c7.jpg" alt="Plenhyage Thin + Vitamina + Dermofacial" loading="lazy">
-        <div class="tr-num">07</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Regeneración suave · Resultados naturales</span>
-        <h3 class="tr-name">Plenhyage Thin + Vitamina<br>+ Dermofacial</h3>
-        <p class="tr-desc">Regeneración suave más vitamina activa, para mejorar la piel paso a paso con resultados naturales.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$578.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$1.734.000</span>$1.473.900</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1616391182219-e080b4d1043a.jpg" alt="Plenhyage Strong + Dermofacial" loading="lazy">
-        <div class="tr-num">08</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Alta concentración · Firmeza</span>
-        <h3 class="tr-name">Plenhyage Strong<br>+ Dermofacial</h3>
-        <p class="tr-desc">Alta concentración de activos regeneradores para recuperar firmeza y revertir signos de envejecimiento.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$428.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$1.284.000</span>$1.091.400</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1620916566398-39f1143ab7be.jpg" alt="Plenhyage Strong + Vitamina + Dermofacial" loading="lazy">
-        <div class="tr-num">09</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Máxima regeneración · Personalizado</span>
-        <h3 class="tr-name">Plenhyage Strong + Vitamina<br>+ Dermofacial</h3>
-        <p class="tr-desc">La versión más completa: máxima regeneración más vitamina personalizada según lo que necesite tu piel.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">Valor</span>
-            <span class="tr-detail-value">Consultar valor</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1608248597279-f99d160bfcbc.jpg" alt="Exo-Skin + Dermofacial + Vitamina" loading="lazy">
-        <div class="tr-num">10</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Exosomas · Reparación celular</span>
-        <h3 class="tr-name">Exo-Skin + Dermofacial<br>+ Vitamina</h3>
-        <p class="tr-desc">Lo más avanzado en regeneración. Los exosomas reparan la piel a nivel celular y la vitamina potencia el resultado.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$508.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$1.524.000</span>$1.295.400</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1576091160399-112ba8d25d1d.jpg" alt="Selvertmed Biotech Exosomes + Dermofacial" loading="lazy">
-        <div class="tr-num">11</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Exosomas biotecnológicos · Alta pureza</span>
-        <h3 class="tr-name">Selvertmed Biotech Exosomes<br>+ Dermofacial</h3>
-        <p class="tr-desc">Exosomas biotecnológicos de alta pureza en ampolla. Reparan la piel desde adentro, reducen arrugas y flacidez.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$258.000</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$774.000</span>$657.900</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-    <div class="tr-row">
-      <div class="tr-img">
-        <img src="Recursos/img/photo-1487412947147-5cebf100ffc2.jpg" alt="Microneedling con Exosomas" loading="lazy">
-        <div class="tr-num">12</div>
-      </div>
-      <div class="tr-body">
-        <span class="tr-tag">Microagujas · Exosomas · Regeneración</span>
-        <h3 class="tr-name">Microneedling<br>con Exosomas</h3>
-        <p class="tr-desc">Combina microagujas con exosomas de alta tecnología para una regeneración celular profunda.</p>
-        <div class="tr-details">
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">1 Sesión</span>
-            <span class="tr-detail-value">$249.990</span>
-          </div>
-          <div class="tr-detail-item">
-            <span class="tr-detail-label">3 Sesiones <span class="tr-badge">⭐ Más Elegido</span></span>
-            <span class="tr-detail-value"><span class="tr-price-old">$749.970</span>$637.470</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/56999886940" class="tr-cta">Agendar hora</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- CTA BANNER -->
 <div class="cta-banner">
   <div class="cta-banner-inner">
     <span class="cta-banner-tag">Tu piel merece lo mejor</span>
-    <h2 class="cta-banner-title">¿No sabes qué tratamiento<br>es el <em>ideal para ti?</em></h2>
-    <p class="cta-banner-sub">Agenda una evaluación con nuestros especialistas y te guiaremos hacia el protocolo perfecto para tu piel.</p>
+    <h2 class="cta-banner-title">¿Lista para agendar tu<br><em>evaluación?</em></h2>
+    <p class="cta-banner-sub">Escríbenos por WhatsApp y te guiaremos hacia el protocolo perfecto para tu piel.</p>
     <div class="cta-banner-actions">
-      <a href="https://wa.me/56999886940" class="btn-primary">Agendar Evaluación</a>
-      <a href="index.html#contacto" class="btn-ghost">Contáctanos</a>
+      <a href="https://wa.me/56999886940" class="btn-primary">Reservar hora</a>
     </div>
   </div>
 </div>
@@ -1645,7 +1041,7 @@
   <div class="footer-grid">
     <div>
       <div class="footer-brand">PielBy</div>
-      <p class="footer-tagline">Cosmetología y estética avanzada. Representantes exclusivos de las más prestigiosas marcas europeas de medicina estética en Chile.</p>
+      <p class="footer-tagline">Centro Integral Belleza y Bienestar Pielby Spa.</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/pielbymariarodriguez_chile" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
@@ -1685,7 +1081,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 PielBy Cosmetología. Todos los derechos reservados.</span>
+    <span class="footer-copy">© 2026 PielBy. Todos los derechos reservados.</span>
   </div>
 </footer>
 
@@ -1695,9 +1091,33 @@
 </a>
 
 <script>
+  // ── SCRIPT BARRA DE NAVEGACIÓN DINÁMICA ──
   const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  
+  window.addEventListener('scroll', () => {
+    // Clase básica de scroll
+    const isScrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', isScrolled);
 
+    // Detección de colisión con secciones oscuras para la transición de color
+    let isOverDark = false;
+    const navHeight = nav.offsetHeight || 80;
+    
+    document.querySelectorAll('.cat-block-dark').forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= (navHeight / 2) && rect.bottom >= (navHeight / 2)) {
+        isOverDark = true;
+      }
+    });
+    
+    if (isOverDark && isScrolled) {
+      nav.classList.add('nav-dark-mode');
+    } else {
+      nav.classList.remove('nav-dark-mode');
+    }
+  });
+
+  // ── SCRIPT MENÚ MÓVIL ──
   document.getElementById('hamburger').addEventListener('click', () =>
     document.getElementById('mobileMenu').classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', () =>
@@ -1705,22 +1125,23 @@
   document.querySelectorAll('.mobile-link').forEach(l =>
     l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
 
+  // ── SCRIPT ANIMACIONES DE REVELADO (SCROLL) ──
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal, .subcat-header').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal, .subcat-header, .cat-intro-box').forEach(el => revealObserver.observe(el));
 
   const rowObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const rows = Array.from(e.target.closest('.treatment-list').querySelectorAll('.tr-row'));
+        const rows = Array.from(e.target.closest('.treatment-list, .patologias-grid, .cat-overview-grid').querySelectorAll('.tr-row, .pat-card, .cat-overview-card'));
         const idx = rows.indexOf(e.target);
-        setTimeout(() => e.target.classList.add('visible'), idx * 60);
+        setTimeout(() => e.target.classList.add('visible'), Math.max(idx, 0) * 80);
         rowObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.tr-row').forEach(el => rowObserver.observe(el));
+  document.querySelectorAll('.tr-row, .pat-card').forEach(el => rowObserver.observe(el));
 </script>
 
 </body>
