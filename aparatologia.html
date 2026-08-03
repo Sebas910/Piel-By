@@ -219,7 +219,8 @@
     @media (max-width: 900px) {
       .tr-row { grid-template-columns: 1fr; min-height: auto; }
       .tr-row:nth-child(even) { direction: ltr; }
-      .tr-img { height: 300px; }
+      .tr-img {flex: 0 0 auto; border-radius: 12px; aspect-ratio: auto;}
+      .tr-img img {height: auto;object-fit: contain;}
       .tr-body { padding: 3rem 6vw; }
       .tr-body::before { top:0; bottom:0; left:0 !important; right:auto !important; }
       .cat-heading { padding: 4rem 6vw 0; }
