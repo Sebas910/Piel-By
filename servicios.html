@@ -293,6 +293,58 @@
     }
 
     /* ── GRILLA DE PATOLOGÍAS ── */
+
+    /* ── GRILLA DE PATOLOGÍAS ── */
+    .patologias-grid {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; 
+      padding: 4rem 10vw 2rem;
+    }
+    .pat-card {
+      background: transparent; 
+      border: 1px solid var(--gold-muted);
+      border-radius: 8px; 
+      padding: 3rem 2rem; 
+      text-align: center;
+      transition: all 0.4s ease; 
+      position: relative; 
+      overflow: hidden;
+      
+      /* Ajustes para enlaces clickeables */
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .pat-card::before {
+      content: ''; 
+      position: absolute; 
+      inset: 0; 
+      background: var(--gold);
+      opacity: 0; 
+      transition: opacity 0.4s ease; 
+      z-index: 0;
+    }
+    .pat-card:hover { 
+      transform: translateY(-5px); 
+      border-color: var(--gold); 
+    }
+    .pat-card:hover::before { 
+      opacity: 0.03; 
+    }
+    
+    .pat-card h3 {
+      font-family: 'Cormorant Garamond', serif; 
+      font-size: 2rem; 
+      font-weight: 400;
+      color: var(--gold); 
+      margin: 0; 
+      position: relative; 
+      z-index: 1;
+    }
+    
     .patologias-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem; padding: 4rem 10vw 2rem;
@@ -442,36 +494,20 @@
 <!-- ══════════════════════════════════════════
      CATEGORÍA 1 — PATOLOGÍAS 
 ══════════════════════════════════════════ -->
-<section class="cat-block cat-block-light" id="patologias">
-
-  <div class="cat-header-wrapper reveal">
-    <h2 class="cat-title">Pato<em>logías</em></h2>
-  </div>
-
-  <div class="cat-intro-box reveal">
-    <strong>Dermofacial alteraciones cutáneas</strong>
-    <p>
-      ¿Acné que no cede, manchas que no se van, o rosácea que aparece y desaparece? Diseñamos un protocolo pensado solo para tu piel, no una receta genérica.<br><br>
-      ¿Lo mejor? Nada de agujas ni recuperación prolongada.
-    </p>
-  </div>
-
-  <div class="patologias-grid reveal">
-    <div class="pat-card">
+<div class="patologias-grid reveal">
+    <a href="precios.html#control-acne" class="pat-card">
       <h3>Acné</h3>
-    </div>
-    <div class="pat-card">
+    </a>
+    <a href="precios.html#manchas-despigmentacion" class="pat-card">
       <h3>Manchas</h3>
-    </div>
-    <div class="pat-card">
+    </a>
+    <a href="precios.html#rosacea-rojeces" class="pat-card">
       <h3>Rosácea</h3>
-    </div>
-    <div class="pat-card">
+    </a>
+    <a href="precios.html#resequedad-deshidratacion" class="pat-card">
       <h3>Hidratación</h3>
-    </div>
+    </a>
   </div>
-
-</section>
 
 
 <!-- ══════════════════════════════════════════
