@@ -252,9 +252,11 @@
     }
     .cat-block-dark .tr-img { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); }
     
+    /* MODIFICACIÓN: object-fit vuelto a cover para llenar todo el contenedor */
     .tr-img img { 
       width: 100%; height: 100%; 
-      object-fit: cover; object-position: center; 
+      object-fit: cover;
+      object-position: center; 
       display: block; transition: transform 1s ease; 
     }
     .tr-row:hover .tr-img img { transform: scale(1.04); }
@@ -291,8 +293,6 @@
       background: var(--gold); color: var(--white); 
       transform: translateY(-2px); border-color: var(--gold);
     }
-
-    /* ── GRILLA DE PATOLOGÍAS ── */
 
     /* ── GRILLA DE PATOLOGÍAS ── */
     .patologias-grid {
@@ -343,27 +343,6 @@
       margin: 0; 
       position: relative; 
       z-index: 1;
-    }
-    
-    .patologias-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem; padding: 4rem 10vw 2rem;
-    }
-    .pat-card {
-      background: transparent; border: 1px solid var(--gold-muted);
-      border-radius: 8px; padding: 3rem 2rem; text-align: center;
-      transition: all 0.4s ease; position: relative; overflow: hidden;
-    }
-    .pat-card::before {
-      content: ''; position: absolute; inset: 0; background: var(--gold);
-      opacity: 0; transition: opacity 0.4s ease; z-index: 0;
-    }
-    .pat-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-    .pat-card:hover::before { opacity: 0.03; }
-    
-    .pat-card h3 {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400;
-      color: var(--gold); margin: 0; position: relative; z-index: 1;
     }
 
     /* ── CTA BANNER ── */
@@ -958,7 +937,7 @@
 
     <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/img/photo-1616394584738-fc6e612e71b9.jpg" alt="MCA 35" loading="lazy">
+        <img src="Recursos/quimicos/MCA 35.png" alt="MCA 35" loading="lazy">
       </div>
       <div class="tr-body">
         <span class="tr-tag">Ácido salicílico modificado 35%</span>
@@ -1032,7 +1011,7 @@
 
     <div class="tr-row reveal">
       <div class="tr-img">
-        <img src="Recursos/quimicos/plenhyage xl thin.webp" alt="Plenhyage XL Thin" loading="lazy">
+        <img src="Recursos/quimicos/plenhyage-xl-thin.webp" alt="Plenhyage XL Thin" loading="lazy">
       </div>
       <div class="tr-body">
         <span class="tr-tag">Polinucleotidos de ADN de salmón</span>
